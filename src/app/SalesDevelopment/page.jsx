@@ -6,6 +6,7 @@ import Upnav from "../../components/Upnav";
 import Footer from "../../components/Footer";
 import { useState } from "react";
 import Image from "next/image"; // Import Next.js Image component
+import Link from 'next/link';
 
 
 function SalesDevelopment() {
