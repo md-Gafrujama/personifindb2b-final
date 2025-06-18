@@ -11,8 +11,8 @@ import Link from 'next/link';
 import Upnav from "../components/Upnav";
 import Lownav from "../components/Lownav";
 import Footer from "../components/Footer";
-import LatestProject from "../components/LatestProject";
-import Logoscroll from "../components/LogoScroll";
+
+// import Logoscroll from "../components/LogoScroll";
 import HowItWork from "../components/HowItWork";
 import ProjectStatsComponent from "../components/ProjectStatsComponent";
 
@@ -266,7 +266,7 @@ const services = [
         </div>
       </section>
 
-      <Logoscroll />
+      {/* <Logoscroll /> */}
 
       {/* Services Section */}
       <div className="bg-[#0E1F1C] py-12 px-4 sm:px-6 lg:px-8 min-h-screen relative overflow-hidden">
@@ -432,7 +432,7 @@ const services = [
       </div>
 
       <ProjectStatsComponent />
-      <LatestProject />
+     
       <HowItWork />
       <Footer />
     </>
