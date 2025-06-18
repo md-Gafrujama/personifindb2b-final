@@ -374,7 +374,7 @@ const LowNav = () => {
                         focus:outline-none focus:ring-2 focus:ring-[#386861] focus:ring-offset-2
                     `}>
                         Get Started Now ↗
-                        <span className="absolute inset-0 bg-gradient-to-r from-[#386861] to-[#4a9e8f] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                 <span className="absolute inset-0 opacity-0 bg-gradient-to-r from-[#F7D270]/60 to-transparent group-hover:opacity-100 transition-opacity duration-500"></span>
                         <span className="absolute top-1/2 left-1/2 w-0 h-0 rounded-full bg-white/20 group-hover:w-64 group-hover:h-64 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500"></span>
                     </a>
                 </Link>
