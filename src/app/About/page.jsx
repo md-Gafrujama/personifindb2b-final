@@ -10,7 +10,7 @@ import Upnav from "../../components/Upnav";
 import Lownav from "../../components/Lownav";
 import Footer from "../../components/Footer";
 import LatestProject from "../../components/LatestProject";
-import Logoscroll from "../../components/Logoscroll";
+import Logoscroll from "../../components/LogoScroll";
 import HowItWork from "../../components/HowItWork";
 import ProjectStatsComponent from "../../components/ProjectStatsComponent";
 
