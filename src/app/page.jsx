@@ -7,14 +7,19 @@ import "aos/dist/aos.css";
 import { ArrowUpRight, CheckCircle, Award } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import Head from 'next/head';
 import Upnav from "../components/Upnav";
 import Lownav from "../components/Lownav";
 import Footer from "../components/Footer";
 
-// import Logoscroll from "../components/LogoScroll";
-import HowItWork from "../components/HowItWork";
-import ProjectStatsComponent from "../components/ProjectStatsComponent";
+// 1. Import dynamic from next/dynamic
+import dynamic from 'next/dynamic';
+
+// 2. Dynamically import the components
+//    - ssr: false ensures they are only rendered on the client side
+const LazyLogoscroll = dynamic(() => import("../components/LogoScroll"), { ssr: false });
+const LazyHowItWork = dynamic(() => import("../components/HowItWork"), { ssr: false });
+const LazyProjectStatsComponent = dynamic(() => import("../components/ProjectStatsComponent"), { ssr: false });
 
 const ServiceCard = ({ service, isHovered, onMouseEnter, onMouseLeave }) => {
   return (
@@ -66,18 +71,15 @@ const Home = () => {
   const paragraphRef = useRef(null);
   const isInView = useInView(paragraphRef, { once: true, margin: "-100px" });
   const [hoveredCard, setHoveredCard] = useState(null);
-  
+
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
   const solution = [
-    { id: "01", title: "Marketing Strategy", link: "/solution/marketing-strategy" },
-    { id: "02", title: "Web Development", link: "/solution/web-development" },
-    { id: "03", title: "Business Strategy", link: "/solution/business-strategy" },
-    { id: "04", title: "Email Marketing", link: "/solution/email-marketing" },
-    { id: "05", title: "Intent Leads", link: "/solution/intent-leads" },
-    { id: "06", title: "SEO Optimization", link: "/solution/seo-optimization" },
+    { id: "01", title: "Content Syndication", link: "/ContentSyndication" },
+    { id: "02", title: "Display Advertising", link: "/DisplayAds" },
+    { id: "03", title: "Sales Development", link: "/SalesDevelopment" },
   ];
 
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -129,37 +131,23 @@ const services = [
         image: "/images/account_based.jpg",
         link: "/services/account-based-marketing", // Link for the specific service page
       },
-      {
-        id: 4,
-        title: "Web Design",
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum culpa dolorum harum?",
-        image: "/images/web_development-1.png",
-        link: "/services/web-design", // Link for the specific service page
-      },
-      {
-        id: 5,
-        title: "Display Advertisements",
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum culpa dolorum harum?",
-        image: "/images/advertising.jpg",
-        link: "/services/display-advertisements", // Link for the specific service page
-      },
-      {
-        id: 6,
-        title: "Market Analysis",
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum culpa dolorum harum?",
-        image: "/images/analysis-1.jpg",
-        link: "/services/market-analysis", // Link for the specific service page
-      },
     ];
 
   return (
     <>
+      <Head>
+        <title>Home</title>
+        <meta property="og:title" content=" Digital Marketing Agency" />
+        <meta property="og:description" content="Digital marketing agencies often run paid advertising campaigns for themselves." />
+        {/* <meta property="og:image" content="https://blogs.compare-bazaar.com/images/blog2.webp" />
+        <meta property="og:url" content={currentUrl} /> */}
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="PersonifiedB2B" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
       <Upnav />
       <Lownav />
-      
+
       {/* Hero Section */}
       <section className="relative bg-[#0E1F1C] text-white pt-[30px] lg:pt-20 pb-20 px-6 xl:px-32 min-h-[70vh] flex items-center justify-center overflow-hidden mt-24">
         <div className="absolute inset-0 z-0">
@@ -266,44 +254,64 @@ const services = [
         </div>
       </section>
 
-      {/* <Logoscroll /> */}
+      {/* 3. Use the dynamically imported components */}
+      {/* <LazyLogoscroll /> */}
 
       {/* Services Section */}
-      <div className="bg-[#0E1F1C] py-12 px-4 sm:px-6 lg:px-8 min-h-screen relative overflow-hidden">
-        <Image
-          src="https://bestwpware.com/themes-wp/kulan/wp-content/uploads/2024/01/star.png"
-          alt="Star"
-          width={150}
-          height={150}
-          className="absolute left-0 top-28 w-20 sm:w-28 lg:w-36 z-0 opacity-70"
-          data-aos="fade-up"
-          data-aos-delay="100"
-        />
+<section className="bg-[#0E1F1C] py-20 px-4 sm:px-6 lg:px-12 min-h-screen relative overflow-hidden text-white">
+  {/* Background Star Decoration */}
+  <Image
+    src="https://bestwpware.com/themes-wp/kulan/wp-content/uploads/2024/01/star.png"
+    alt="Star"
+    width={150}
+    height={150}
+    className="absolute left-0 top-28 w-20 sm:w-28 lg:w-36 z-0 opacity-50 animate-pulse"
+    data-aos="fade-up"
+    data-aos-delay="100"
+  />
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-base font-semibold tracking-wide uppercase text-[#F7D270]">
-              Services
-            </h2>
-            <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              What Services We Provide
-            </h1>
-            <p className="mt-3 text-xl text-white sm:mt-4">For Your Business</p>
-          </div>
+  <div className="max-w-7xl mx-auto relative z-10">
+    {/* Heading */}
+    <div className="text-center mb-16">
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <ServiceCard
-                key={service.id}
-                service={service}
-                isHovered={hoveredCard === service.id}
-                onMouseEnter={() => setHoveredCard(service.id)}
-                onMouseLeave={() => setHoveredCard(null)}
-              />
-            ))}
+      <h1 className="mt-2 text-4xl font-extrabold text-white sm:text-5xl">
+        What We Offer
+      </h1>
+      <p className="mt-3 text-lg text-white/80 sm:text-xl">
+        Fueling Your Business Growth with Precision
+      </p>
+    </div>
+
+    {/* Services Grid */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      {services.map((service) => (
+        <div
+          key={service.id}
+          className="group bg-[#152925] p-6 rounded-2xl shadow-lg border border-[#00d9a640] hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-[#00d9a6]"
+        >
+          <div className="overflow-hidden rounded-xl mb-4">
+            <img
+              src={service.image}
+              alt={service.title}
+              className="w-full h-56 object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
+            />
           </div>
+          <h3 className="text-2xl font-bold text-[#F7D270] mb-2 transition duration-300 group-hover:text-[#fff] group-hover:drop-shadow-[0_0_10px_#f7d270] ">
+            {service.title}
+          </h3>
+          <p className="text-white/80 mb-4">{service.description}</p>
+          <a
+            href={service.link}
+            className="inline-block text-sm font-semibold text-[#00d9a6] group-hover:text-white transition duration-300 "
+          >
+            Learn More →
+          </a>
         </div>
-      </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Why Choose Section */}
       <section className="bg-[#0f2d26] text-white py-16 px-4 sm:px-8 lg:px-24">
@@ -409,7 +417,7 @@ const services = [
                 Our Solutions
               </p>
               <div>
-                <h2 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+                <h2 className="text-white text-1xl md:text-3xl lg:text-2xl font-bold leading-tight">
                   What Solutions We Provide <br />
                   For Your Business
                 </h2>
@@ -421,7 +429,7 @@ const services = [
                     src="/images/solutions.jpg"
                     alt="Team of professionals working together"
                     width={700}
-                    height={500}
+                    height={50}
                     className="w-full h-full object-cover rounded-tl-3xl rounded-tr-3xl rounded-br-[15rem] rounded-bl-3xl"
                   />
                 </div>
@@ -431,9 +439,10 @@ const services = [
         </div>
       </div>
 
-      <ProjectStatsComponent />
-     
-      <HowItWork />
+      {/* Replace original components with their lazy-loaded counterparts */}
+      <LazyProjectStatsComponent />
+
+      <LazyHowItWork />
       <Footer />
     </>
   );
