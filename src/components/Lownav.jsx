@@ -225,7 +225,7 @@ const LowNav = () => {
                     </ul>
 
                     {/* Desktop */}
-                    <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 z-50 mt-8 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all origin-top">
+                    <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 z-50 mt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all origin-top">
                         <div className="bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden border border-gray-200">
                             <div className="grid grid-cols-3 gap-4 p-4 w-max">
                                 {solutionsDesktopItems.map((item, index) => (
@@ -278,7 +278,7 @@ const LowNav = () => {
                     </ul>
 
                     {/* Desktop */}
-                    <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 z-50 mt-8 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all origin-top">
+                    <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 z-50 mt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all origin-top">
                         <div className="bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden border border-gray-200">
                             <div className="flex gap-4 p-4 w-max">
                                 {audienceDesktopItems.map((item, index) => (
