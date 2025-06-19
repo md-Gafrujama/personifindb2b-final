@@ -212,11 +212,16 @@ const LowNav = () => {
 
     // Memoized dropdown component for desktop
     const DesktopDropdown = React.memo(({ items, isOpen, gridCols = 'grid-cols-3' }) => (
-        <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 z-50 mt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 origin-top">
+        <div className={`hidden md:block absolute left-1/2 transform -translate-x-1/2 z-50 mt-5 transition-all duration-200 origin-top ${isOpen ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none'}`}>
             <div className="bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden border border-gray-200">
                 <div className={`grid ${gridCols} gap-4 p-4 w-max`}>
                     {items.map((item, index) => (
-                        <div key={`${item.name}-${index}`} className="relative w-56 h-56 overflow-hidden rounded-lg group/item">
+                        <Link 
+                            key={`${item.name}-${index}`}
+                            href={item.href}
+                            className="relative w-56 h-56 overflow-hidden rounded-lg group/item block focus:outline-none focus:ring-2 focus:ring-[#386861] focus:ring-offset-2 transition-transform duration-200 hover:scale-105"
+                            aria-label={`Navigate to ${item.name}`}
+                        >
                             <Image 
                                 src={item.image} 
                                 alt={item.alt || item.name}
@@ -226,16 +231,11 @@ const LowNav = () => {
                                 loading="lazy"
                                 quality={75}
                             />
-                            <div className="absolute inset-0 z-10 p-4 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent">
+                            <div className="absolute inset-0 z-10 p-4 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent pointer-events-none">
                                 <h3 className="text-xl font-bold mb-1 text-white">{item.name}</h3>
                                 <p className="text-sm text-white/90">{item.subText}</p>
                             </div>
-                            <Link 
-                                href={item.href}
-                                className="absolute inset-0 z-20 focus:outline-none focus:ring-2 focus:ring-white rounded"
-                                aria-label={`Navigate to ${item.name}`}
-                            />
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
@@ -381,6 +381,8 @@ const LowNav = () => {
                             aria-haspopup="true"
                             role="menuitem"
                             aria-controls="solutions-menu"
+                            onMouseEnter={() => !screenSize.isSmall && setSolutionsOpen(true)}
+                            onMouseLeave={() => !screenSize.isSmall && setSolutionsOpen(false)}
                         >
                             Solutions <FaChevronDown size={12} className={`transition-transform duration-200 ${solutionsOpen ? 'rotate-180' : ''}`} />
                         </button>
@@ -391,11 +393,17 @@ const LowNav = () => {
                             ariaLabel="Solutions submenu"
                         />
 
-                        <DesktopDropdown 
-                            items={navigationData.solutionsDesktopItems}
-                            isOpen={solutionsOpen}
-                            gridCols="grid-cols-3"
-                        />
+                        <div 
+                            className="hidden md:block"
+                            onMouseEnter={() => setSolutionsOpen(true)}
+                            onMouseLeave={() => setSolutionsOpen(false)}
+                        >
+                            <DesktopDropdown 
+                                items={navigationData.solutionsDesktopItems}
+                                isOpen={solutionsOpen}
+                                gridCols="grid-cols-3"
+                            />
+                        </div>
                     </li>
 
                     {/* AUDIENCES DROPDOWN */}
@@ -408,6 +416,8 @@ const LowNav = () => {
                             aria-haspopup="true"
                             role="menuitem"
                             aria-controls="audience-menu"
+                            onMouseEnter={() => !screenSize.isSmall && setServicesOpen(true)}
+                            onMouseLeave={() => !screenSize.isSmall && setServicesOpen(false)}
                         >
                             Audience <FaChevronDown size={12} className={`transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
                         </button>
@@ -418,11 +428,17 @@ const LowNav = () => {
                             ariaLabel="Audience submenu"
                         />
 
-                        <DesktopDropdown 
-                            items={navigationData.audienceDesktopItems}
-                            isOpen={servicesOpen}
-                            gridCols="grid-cols-4"
-                        />
+                        <div 
+                            className="hidden md:block"
+                            onMouseEnter={() => setServicesOpen(true)}
+                            onMouseLeave={() => setServicesOpen(false)}
+                        >
+                            <DesktopDropdown 
+                                items={navigationData.audienceDesktopItems}
+                                isOpen={servicesOpen}
+                                gridCols="grid-cols-4"
+                            />
+                        </div>
                     </li>
 
                     {/* RESOURCES */}
@@ -435,6 +451,8 @@ const LowNav = () => {
                             aria-haspopup="true"
                             role="menuitem"
                             aria-controls="resources-menu"
+                            onMouseEnter={() => !screenSize.isSmall && setResourcesOpen(true)}
+                            onMouseLeave={() => !screenSize.isSmall && setResourcesOpen(false)}
                         >
                             Resources <FaChevronDown size={12} className={`transition-transform duration-200 ${resourcesOpen ? 'rotate-180' : ''}`} />
                         </button>
@@ -446,11 +464,17 @@ const LowNav = () => {
                         />
 
                         {/* Desktop Resources Dropdown with Images */}
-                        <DesktopDropdown 
-                            items={navigationData.resourcesDesktopItems}
-                            isOpen={resourcesOpen}
-                            gridCols="grid-cols-2"
-                        />
+                        <div 
+                            className="hidden md:block"
+                            onMouseEnter={() => setResourcesOpen(true)}
+                            onMouseLeave={() => setResourcesOpen(false)}
+                        >
+                            <DesktopDropdown 
+                                items={navigationData.resourcesDesktopItems}
+                                isOpen={resourcesOpen}
+                                gridCols="grid-cols-2"
+                            />
+                        </div>
                     </li>
 
                     <li role="none">
