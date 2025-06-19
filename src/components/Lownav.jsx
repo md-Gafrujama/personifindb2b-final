@@ -210,9 +210,51 @@ const LowNav = () => {
         }
     }, [screenSize.isSmall]);
 
+    // Desktop hover handlers with delay
+    const handleDesktopMouseEnter = useCallback((dropdownType) => {
+        if (!screenSize.isSmall) {
+            switch(dropdownType) {
+                case 'solutions':
+                    setSolutionsOpen(true);
+                    setServicesOpen(false);
+                    setResourcesOpen(false);
+                    break;
+                case 'services':
+                    setServicesOpen(true);
+                    setSolutionsOpen(false);
+                    setResourcesOpen(false);
+                    break;
+                case 'resources':
+                    setResourcesOpen(true);
+                    setSolutionsOpen(false);
+                    setServicesOpen(false);
+                    break;
+            }
+        }
+    }, [screenSize.isSmall]);
+
+    const handleDesktopMouseLeave = useCallback((dropdownType) => {
+        if (!screenSize.isSmall) {
+            // Add a small delay to prevent flickering when moving between button and dropdown
+            setTimeout(() => {
+                switch(dropdownType) {
+                    case 'solutions':
+                        setSolutionsOpen(false);
+                        break;
+                    case 'services':
+                        setServicesOpen(false);
+                        break;
+                    case 'resources':
+                        setResourcesOpen(false);
+                        break;
+                }
+            }, 100);
+        }
+    }, [screenSize.isSmall]);
+
     // Memoized dropdown component for desktop
     const DesktopDropdown = React.memo(({ items, isOpen, gridCols = 'grid-cols-3' }) => (
-        <div className={`hidden md:block absolute left-1/2 transform -translate-x-1/2 z-50 mt-5 transition-all duration-200 origin-top ${isOpen ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none'}`}>
+        <div className={`hidden md:block absolute left-1/2 transform -translate-x-1/2 z-50 mt-3 transition-all duration-200 origin-top ${isOpen ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none'}`}>
             <div className="bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden border border-gray-200">
                 <div className={`grid ${gridCols} gap-4 p-4 w-max`}>
                     {items.map((item, index) => (
@@ -372,7 +414,12 @@ const LowNav = () => {
                     </li>
 
                     {/* SOLUTIONS */}
-                    <li className="relative group" role="none">
+                    <li 
+                        className="relative group" 
+                        role="none"
+                        onMouseEnter={() => handleDesktopMouseEnter('solutions')}
+                        onMouseLeave={() => handleDesktopMouseLeave('solutions')}
+                    >
                         <button 
                             onClick={toggleSolutions} 
                             type="button" 
@@ -381,8 +428,6 @@ const LowNav = () => {
                             aria-haspopup="true"
                             role="menuitem"
                             aria-controls="solutions-menu"
-                            onMouseEnter={() => !screenSize.isSmall && setSolutionsOpen(true)}
-                            onMouseLeave={() => !screenSize.isSmall && setSolutionsOpen(false)}
                         >
                             Solutions <FaChevronDown size={12} className={`transition-transform duration-200 ${solutionsOpen ? 'rotate-180' : ''}`} />
                         </button>
@@ -393,21 +438,20 @@ const LowNav = () => {
                             ariaLabel="Solutions submenu"
                         />
 
-                        <div 
-                            className="hidden md:block"
-                            onMouseEnter={() => setSolutionsOpen(true)}
-                            onMouseLeave={() => setSolutionsOpen(false)}
-                        >
-                            <DesktopDropdown 
-                                items={navigationData.solutionsDesktopItems}
-                                isOpen={solutionsOpen}
-                                gridCols="grid-cols-3"
-                            />
-                        </div>
+                        <DesktopDropdown 
+                            items={navigationData.solutionsDesktopItems}
+                            isOpen={solutionsOpen}
+                            gridCols="grid-cols-3"
+                        />
                     </li>
 
                     {/* AUDIENCES DROPDOWN */}
-                    <li className="relative group" role="none">
+                    <li 
+                        className="relative group" 
+                        role="none"
+                        onMouseEnter={() => handleDesktopMouseEnter('services')}
+                        onMouseLeave={() => handleDesktopMouseLeave('services')}
+                    >
                         <button 
                             onClick={toggleServices} 
                             type="button" 
@@ -416,8 +460,6 @@ const LowNav = () => {
                             aria-haspopup="true"
                             role="menuitem"
                             aria-controls="audience-menu"
-                            onMouseEnter={() => !screenSize.isSmall && setServicesOpen(true)}
-                            onMouseLeave={() => !screenSize.isSmall && setServicesOpen(false)}
                         >
                             Audience <FaChevronDown size={12} className={`transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
                         </button>
@@ -428,21 +470,20 @@ const LowNav = () => {
                             ariaLabel="Audience submenu"
                         />
 
-                        <div 
-                            className="hidden md:block"
-                            onMouseEnter={() => setServicesOpen(true)}
-                            onMouseLeave={() => setServicesOpen(false)}
-                        >
-                            <DesktopDropdown 
-                                items={navigationData.audienceDesktopItems}
-                                isOpen={servicesOpen}
-                                gridCols="grid-cols-4"
-                            />
-                        </div>
+                        <DesktopDropdown 
+                            items={navigationData.audienceDesktopItems}
+                            isOpen={servicesOpen}
+                            gridCols="grid-cols-4"
+                        />
                     </li>
 
                     {/* RESOURCES */}
-                    <li className="relative group" role="none">
+                    <li 
+                        className="relative group" 
+                        role="none"
+                        onMouseEnter={() => handleDesktopMouseEnter('resources')}
+                        onMouseLeave={() => handleDesktopMouseLeave('resources')}
+                    >
                         <button 
                             onClick={toggleResources} 
                             type="button" 
@@ -451,8 +492,6 @@ const LowNav = () => {
                             aria-haspopup="true"
                             role="menuitem"
                             aria-controls="resources-menu"
-                            onMouseEnter={() => !screenSize.isSmall && setResourcesOpen(true)}
-                            onMouseLeave={() => !screenSize.isSmall && setResourcesOpen(false)}
                         >
                             Resources <FaChevronDown size={12} className={`transition-transform duration-200 ${resourcesOpen ? 'rotate-180' : ''}`} />
                         </button>
@@ -463,18 +502,11 @@ const LowNav = () => {
                             ariaLabel="Resources submenu"
                         />
 
-                        {/* Desktop Resources Dropdown with Images */}
-                        <div 
-                            className="hidden md:block"
-                            onMouseEnter={() => setResourcesOpen(true)}
-                            onMouseLeave={() => setResourcesOpen(false)}
-                        >
-                            <DesktopDropdown 
-                                items={navigationData.resourcesDesktopItems}
-                                isOpen={resourcesOpen}
-                                gridCols="grid-cols-2"
-                            />
-                        </div>
+                        <DesktopDropdown 
+                            items={navigationData.resourcesDesktopItems}
+                            isOpen={resourcesOpen}
+                            gridCols="grid-cols-2"
+                        />
                     </li>
 
                     <li role="none">
