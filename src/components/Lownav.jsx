@@ -136,8 +136,10 @@ const LowNav = () => {
     ];
 
     const resourcesItems = [
-        { name: 'White Paper', link: '#' },
-        { name: 'Blogs', link: '#' },
+         { name: 'White Paper', subText: 'Research', image: '/images/IT.webp', link: '/IT' },
+          { name: 'Blogs', subText: 'Our Blogs', image: '/images/IT.webp', link: '/IT' },
+        // { name: 'White Paper', link: '#' },
+        // { name: 'Blogs', link: '#' },
     ];
 
     return (
