@@ -34,6 +34,13 @@ const LowNav = () => {
         showGetStarted: true
     });
 
+    // Timeout refs for handling hover delays
+    const timeoutRefs = useMemo(() => ({
+        solutions: null,
+        services: null,
+        resources: null
+    }), []);
+
     // Memoized navigation data
     const navigationData = useMemo(() => ({
         solutionsItems: [
@@ -171,8 +178,12 @@ const LowNav = () => {
         window.addEventListener('resize', debouncedCheckScreenSize);
         return () => {
             window.removeEventListener('resize', debouncedCheckScreenSize);
+            // Clean up timeouts
+            Object.values(timeoutRefs).forEach(timeout => {
+                if (timeout) clearTimeout(timeout);
+            });
         };
-    }, [checkScreenSize, debouncedCheckScreenSize]);
+    }, [checkScreenSize, debouncedCheckScreenSize, timeoutRefs]);
 
     const getResponsiveStyles = useMemo(() => {
         if (screenSize.isXLarge) {
@@ -210,9 +221,15 @@ const LowNav = () => {
         }
     }, [screenSize.isSmall]);
 
-    // Desktop hover handlers with delay
+    // Fixed desktop hover handlers
     const handleDesktopMouseEnter = useCallback((dropdownType) => {
         if (!screenSize.isSmall) {
+            // Clear any existing timeout for this dropdown
+            if (timeoutRefs[dropdownType]) {
+                clearTimeout(timeoutRefs[dropdownType]);
+                timeoutRefs[dropdownType] = null;
+            }
+
             switch(dropdownType) {
                 case 'solutions':
                     setSolutionsOpen(true);
@@ -231,12 +248,17 @@ const LowNav = () => {
                     break;
             }
         }
-    }, [screenSize.isSmall]);
+    }, [screenSize.isSmall, timeoutRefs]);
 
     const handleDesktopMouseLeave = useCallback((dropdownType) => {
         if (!screenSize.isSmall) {
-            // Add a small delay to prevent flickering when moving between button and dropdown
-            setTimeout(() => {
+            // Clear any existing timeout
+            if (timeoutRefs[dropdownType]) {
+                clearTimeout(timeoutRefs[dropdownType]);
+            }
+
+            // Set a longer delay to allow moving to dropdown
+            timeoutRefs[dropdownType] = setTimeout(() => {
                 switch(dropdownType) {
                     case 'solutions':
                         setSolutionsOpen(false);
@@ -248,13 +270,18 @@ const LowNav = () => {
                         setResourcesOpen(false);
                         break;
                 }
-            }, 100);
+                timeoutRefs[dropdownType] = null;
+            }, 300); // Increased delay to 300ms
         }
-    }, [screenSize.isSmall]);
+    }, [screenSize.isSmall, timeoutRefs]);
 
     // Memoized dropdown component for desktop
-    const DesktopDropdown = React.memo(({ items, isOpen, gridCols = 'grid-cols-3' }) => (
-        <div className={`hidden md:block absolute left-1/2 transform -translate-x-1/2 z-50 mt-3 transition-all duration-200 origin-top ${isOpen ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none'}`}>
+    const DesktopDropdown = React.memo(({ items, isOpen, gridCols = 'grid-cols-3', dropdownType }) => (
+        <div 
+            className={`hidden md:block absolute left-1/2 transform -translate-x-1/2 z-50 mt-1 transition-all duration-200 origin-top ${isOpen ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none'}`}
+            onMouseEnter={() => handleDesktopMouseEnter(dropdownType)}
+            onMouseLeave={() => handleDesktopMouseLeave(dropdownType)}
+        >
             <div className="bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden border border-gray-200">
                 <div className={`grid ${gridCols} gap-4 p-4 w-max`}>
                     {items.map((item, index) => (
@@ -442,6 +469,7 @@ const LowNav = () => {
                             items={navigationData.solutionsDesktopItems}
                             isOpen={solutionsOpen}
                             gridCols="grid-cols-3"
+                            dropdownType="solutions"
                         />
                     </li>
 
@@ -474,6 +502,7 @@ const LowNav = () => {
                             items={navigationData.audienceDesktopItems}
                             isOpen={servicesOpen}
                             gridCols="grid-cols-4"
+                            dropdownType="services"
                         />
                     </li>
 
@@ -506,6 +535,7 @@ const LowNav = () => {
                             items={navigationData.resourcesDesktopItems}
                             isOpen={resourcesOpen}
                             gridCols="grid-cols-2"
+                            dropdownType="resources"
                         />
                     </li>
 
