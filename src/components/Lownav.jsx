@@ -135,7 +135,7 @@ const LowNav = () => {
         { name: 'Finance', subText: 'Our Finance by audience', image: '/images/finance.webp', link: '/Finance' },
     ];
 
-    const resourcesItems = [
+    const resourcesDesktopItems = [
          { name: 'White Paper', subText: 'Research', image: '/images/IT.webp', link: '/IT' },
           { name: 'Blogs', subText: 'Our Blogs', image: '/images/IT.webp', link: '/IT' },
         // { name: 'White Paper', link: '#' },
