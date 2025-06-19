@@ -41,6 +41,9 @@ const LowNav = () => {
         resources: null
     }), []);
 
+    // Track if dropdown was opened by click (for better UX)
+    const [clickedDropdown, setClickedDropdown] = useState(null);
+
     // Memoized navigation data
     const navigationData = useMemo(() => ({
         solutionsItems: [
@@ -140,6 +143,7 @@ const LowNav = () => {
         setServicesOpen(false);
         setSolutionsOpen(false);
         setResourcesOpen(false);
+        setClickedDropdown(null);
     }, []);
 
     const checkScreenSize = useCallback(() => {
@@ -163,6 +167,7 @@ const LowNav = () => {
             setServicesOpen(false);
             setSolutionsOpen(false);
             setResourcesOpen(false);
+            setClickedDropdown(null);
         }
     }, []);
 
@@ -175,8 +180,21 @@ const LowNav = () => {
     useEffect(() => {
         checkScreenSize();
         
+        // Close dropdowns when clicking outside
+        const handleClickOutside = (event) => {
+            if (!event.target.closest('.dropdown-container')) {
+                setServicesOpen(false);
+                setSolutionsOpen(false);
+                setResourcesOpen(false);
+                setClickedDropdown(null);
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
         window.addEventListener('resize', debouncedCheckScreenSize);
+        
         return () => {
+            document.removeEventListener('click', handleClickOutside);
             window.removeEventListener('resize', debouncedCheckScreenSize);
             // Clean up timeouts
             Object.values(timeoutRefs).forEach(timeout => {
@@ -202,78 +220,104 @@ const LowNav = () => {
             setSolutionsOpen(prev => !prev);
             setServicesOpen(false);
             setResourcesOpen(false);
+        } else {
+            // Desktop click behavior
+            const newState = !solutionsOpen;
+            setSolutionsOpen(newState);
+            setServicesOpen(false);
+            setResourcesOpen(false);
+            setClickedDropdown(newState ? 'solutions' : null);
         }
-    }, [screenSize.isSmall]);
+    }, [screenSize.isSmall, solutionsOpen]);
 
     const toggleServices = useCallback(() => {
         if (screenSize.isSmall) {
             setServicesOpen(prev => !prev);
             setSolutionsOpen(false);
             setResourcesOpen(false);
+        } else {
+            // Desktop click behavior
+            const newState = !servicesOpen;
+            setServicesOpen(newState);
+            setSolutionsOpen(false);
+            setResourcesOpen(false);
+            setClickedDropdown(newState ? 'services' : null);
         }
-    }, [screenSize.isSmall]);
+    }, [screenSize.isSmall, servicesOpen]);
 
     const toggleResources = useCallback(() => {
         if (screenSize.isSmall) {
             setResourcesOpen(prev => !prev);
             setSolutionsOpen(false);
             setServicesOpen(false);
+        } else {
+            // Desktop click behavior
+            const newState = !resourcesOpen;
+            setResourcesOpen(newState);
+            setSolutionsOpen(false);
+            setServicesOpen(false);
+            setClickedDropdown(newState ? 'resources' : null);
         }
-    }, [screenSize.isSmall]);
+    }, [screenSize.isSmall, resourcesOpen]);
 
-    // Fixed desktop hover handlers
+    // Improved desktop hover handlers
     const handleDesktopMouseEnter = useCallback((dropdownType) => {
-        if (!screenSize.isSmall) {
+        if (!screenSize.isSmall && clickedDropdown !== dropdownType) {
             // Clear any existing timeout for this dropdown
             if (timeoutRefs[dropdownType]) {
                 clearTimeout(timeoutRefs[dropdownType]);
                 timeoutRefs[dropdownType] = null;
             }
 
-            switch(dropdownType) {
-                case 'solutions':
-                    setSolutionsOpen(true);
-                    setServicesOpen(false);
-                    setResourcesOpen(false);
-                    break;
-                case 'services':
-                    setServicesOpen(true);
-                    setSolutionsOpen(false);
-                    setResourcesOpen(false);
-                    break;
-                case 'resources':
-                    setResourcesOpen(true);
-                    setSolutionsOpen(false);
-                    setServicesOpen(false);
-                    break;
+            // Only open on hover if not clicked open
+            if (!clickedDropdown) {
+                switch(dropdownType) {
+                    case 'solutions':
+                        setSolutionsOpen(true);
+                        setServicesOpen(false);
+                        setResourcesOpen(false);
+                        break;
+                    case 'services':
+                        setServicesOpen(true);
+                        setSolutionsOpen(false);
+                        setResourcesOpen(false);
+                        break;
+                    case 'resources':
+                        setResourcesOpen(true);
+                        setSolutionsOpen(false);
+                        setServicesOpen(false);
+                        break;
+                }
             }
         }
-    }, [screenSize.isSmall, timeoutRefs]);
+    }, [screenSize.isSmall, timeoutRefs, clickedDropdown]);
 
     const handleDesktopMouseLeave = useCallback((dropdownType) => {
-        if (!screenSize.isSmall) {
+        if (!screenSize.isSmall && clickedDropdown !== dropdownType) {
             // Clear any existing timeout
             if (timeoutRefs[dropdownType]) {
                 clearTimeout(timeoutRefs[dropdownType]);
             }
 
-            // Set a longer delay to allow moving to dropdown
-            timeoutRefs[dropdownType] = setTimeout(() => {
-                switch(dropdownType) {
-                    case 'solutions':
-                        setSolutionsOpen(false);
-                        break;
-                    case 'services':
-                        setServicesOpen(false);
-                        break;
-                    case 'resources':
-                        setResourcesOpen(false);
-                        break;
-                }
-                timeoutRefs[dropdownType] = null;
-            }, 300); // Increased delay to 300ms
+            // Only close on hover leave if not clicked open
+            if (!clickedDropdown) {
+                timeoutRefs[dropdownType] = setTimeout(() => {
+                    switch(dropdownType) {
+                        case 'solutions':
+                            setSolutionsOpen(false);
+                            break;
+                        case 'services':
+                            setServicesOpen(false);
+                            break;
+                        case 'resources':
+                            setResourcesOpen(false);
+                            break;
+                    }
+                    timeoutRefs[dropdownType] = null;
+                }, 200); // Slightly reduced delay
+            }
         }
-    }, [screenSize.isSmall, timeoutRefs]);
+    }, [screenSize.isSmall, timeoutRefs, clickedDropdown]);
 
     // Memoized dropdown component for desktop
     const DesktopDropdown = React.memo(({ items, isOpen, gridCols = 'grid-cols-3', dropdownType }) => (
@@ -442,7 +486,7 @@ const LowNav = () => {
 
                     {/* SOLUTIONS */}
                     <li 
-                        className="relative group" 
+                        className="relative group dropdown-container" 
                         role="none"
                         onMouseEnter={() => handleDesktopMouseEnter('solutions')}
                         onMouseLeave={() => handleDesktopMouseLeave('solutions')}
@@ -450,11 +494,12 @@ const LowNav = () => {
                         <button 
                             onClick={toggleSolutions} 
                             type="button" 
-                            className={`hover:text-gray-700 flex items-center gap-1 font-bold ${getResponsiveStyles.textSize} focus:outline-none focus:ring-2 focus:ring-[#386861] focus:rounded`}
+                            className={`hover:text-gray-700 flex items-center gap-1 font-bold ${getResponsiveStyles.textSize} focus:outline-none focus:ring-2 focus:ring-[#386861] focus:rounded transition-colors duration-200 ${solutionsOpen ? 'text-[#386861]' : ''}`}
                             aria-expanded={solutionsOpen}
                             aria-haspopup="true"
                             role="menuitem"
                             aria-controls="solutions-menu"
+                            title="Click to toggle or hover to open"
                         >
                             Solutions <FaChevronDown size={12} className={`transition-transform duration-200 ${solutionsOpen ? 'rotate-180' : ''}`} />
                         </button>
@@ -475,7 +520,7 @@ const LowNav = () => {
 
                     {/* AUDIENCES DROPDOWN */}
                     <li 
-                        className="relative group" 
+                        className="relative group dropdown-container" 
                         role="none"
                         onMouseEnter={() => handleDesktopMouseEnter('services')}
                         onMouseLeave={() => handleDesktopMouseLeave('services')}
@@ -483,11 +528,12 @@ const LowNav = () => {
                         <button 
                             onClick={toggleServices} 
                             type="button" 
-                            className={`hover:text-gray-700 flex items-center gap-1 font-bold ${getResponsiveStyles.textSize} focus:outline-none focus:ring-2 focus:ring-[#386861] focus:rounded`}
+                            className={`hover:text-gray-700 flex items-center gap-1 font-bold ${getResponsiveStyles.textSize} focus:outline-none focus:ring-2 focus:ring-[#386861] focus:rounded transition-colors duration-200 ${servicesOpen ? 'text-[#386861]' : ''}`}
                             aria-expanded={servicesOpen}
                             aria-haspopup="true"
                             role="menuitem"
                             aria-controls="audience-menu"
+                            title="Click to toggle or hover to open"
                         >
                             Audience <FaChevronDown size={12} className={`transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
                         </button>
@@ -508,7 +554,7 @@ const LowNav = () => {
 
                     {/* RESOURCES */}
                     <li 
-                        className="relative group" 
+                        className="relative group dropdown-container" 
                         role="none"
                         onMouseEnter={() => handleDesktopMouseEnter('resources')}
                         onMouseLeave={() => handleDesktopMouseLeave('resources')}
@@ -516,11 +562,12 @@ const LowNav = () => {
                         <button 
                             onClick={toggleResources} 
                             type="button" 
-                            className={`hover:text-gray-700 flex items-center gap-1 font-bold ${getResponsiveStyles.textSize} focus:outline-none focus:ring-2 focus:ring-[#386861] focus:rounded`}
+                            className={`hover:text-gray-700 flex items-center gap-1 font-bold ${getResponsiveStyles.textSize} focus:outline-none focus:ring-2 focus:ring-[#386861] focus:rounded transition-colors duration-200 ${resourcesOpen ? 'text-[#386861]' : ''}`}
                             aria-expanded={resourcesOpen}
                             aria-haspopup="true"
                             role="menuitem"
                             aria-controls="resources-menu"
+                            title="Click to toggle or hover to open"
                         >
                             Resources <FaChevronDown size={12} className={`transition-transform duration-200 ${resourcesOpen ? 'rotate-180' : ''}`} />
                         </button>
