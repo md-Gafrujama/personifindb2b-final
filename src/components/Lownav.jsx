@@ -112,7 +112,7 @@ const LowNav = () => {
         ],
         resourcesItems: [
             { name: 'White Paper', href: '/whitepaper' },
-            { name: 'Blogs', href: 'https://blogs-presonifind-oy62.vercel.app/' },
+            { name: 'Blogs', href: 'https://blogs-presonifind-oy62.vercel.app/Blogs' },
         ],
         resourcesDesktopItems: [
             { 
@@ -126,7 +126,7 @@ const LowNav = () => {
                 name: 'Blog Articles', 
                 subText: 'Latest trends and updates', 
                 image: '/images/blog.jpg', 
-                href: 'https://blogs-presonifind-oy62.vercel.app/',
+                href: 'https://blogs-presonifind-oy62.vercel.app/Blogs',
                 alt: 'Blog Articles - Latest industry trends and updates'
             },
         ],
