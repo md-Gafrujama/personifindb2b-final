@@ -112,7 +112,7 @@ const LowNav = () => {
         ],
         resourcesItems: [
             { name: 'White Paper', href: '/whitepaper' },
-            { name: 'Blogs', href: '/blogs' },
+            { name: 'Blogs', href: 'https://blogs-presonifind-oy62.vercel.app/' },
         ],
         resourcesDesktopItems: [
             { 
@@ -126,7 +126,7 @@ const LowNav = () => {
                 name: 'Blog Articles', 
                 subText: 'Latest trends and updates', 
                 image: '/images/blog.jpg', 
-                href: '/blogs',
+                href: 'https://blogs-presonifind-oy62.vercel.app/',
                 alt: 'Blog Articles - Latest industry trends and updates'
             },
         ],
