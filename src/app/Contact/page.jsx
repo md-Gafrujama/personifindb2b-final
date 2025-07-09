@@ -402,7 +402,7 @@ const Contact = () => {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-semibold mb-1 text-[#356e62]">Email Address *</label>
+                                <label className="block text-sm font-semibold mb-1 text-[#356e62]">Email Addres *</label>
                                 <div className="relative">
                                     <span className="absolute left-3 top-3 text-gray-400">
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16 12H8m8 0a4 4 0 11-8 0 4 4 0 018 0zm-8 0V8a4 4 0 018 0v4"/></svg>
