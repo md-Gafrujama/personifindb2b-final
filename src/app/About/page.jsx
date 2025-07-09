@@ -5,7 +5,7 @@ import React, { useEffect ,useRef,useState } from "react";
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { CheckCircle, Award,ArrowUpRight} from "lucide-react";
+import { CheckCircle, Award,ArrowUpRight, Heading1} from "lucide-react";
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -131,7 +131,7 @@ const About = () => {
     At Personified B2B Marketing, we help B2B brands connect with the people who matter most — qualified buyers with real intent.
     We’re not just another lead generation agency. We’re a growth partner built on trust, transparency, and performance.
   </p>
-
+<h1 className="text-lg font-bold">🎯 What Makes Us Different?</h1>
   <div className="space-y-8">
     <div className="flex items-start gap-4">
       <div className="bg-[#F7D270] text-black p-3 rounded-full text-xl min-w-[3rem]" aria-hidden="true">💰</div>
@@ -142,7 +142,7 @@ const About = () => {
         </p>
       </div>
     </div>
-
+ 
     <div className="flex items-start gap-4">
       <div className="bg-[#F7D270] text-black p-3 rounded-full text-xl min-w-[3rem]" aria-hidden="true">📊</div>
       <div>
@@ -152,7 +152,32 @@ const About = () => {
         </p>
       </div>
     </div>
+    <div className="flex items-start gap-4">
+      <div className="bg-[#F7D270] text-black p-3 rounded-full text-xl min-w-[3rem]" aria-hidden="true">💰</div>
+      <div>
+        <h3 className="text-lg font-bold">Results You Can Trust</h3>
+        <p className="text-gray-300 leading-relaxed">
+          Every campaign is built to drive outcomes you care about: qualified leads, better engagement, and stronger ROI.</p>
+      </div>
+    </div>
   </div>
+  <h1 className="text-lg font-bold">🤝 Built on Partnership</h1>
+    <div className="flex items-start gap-4">
+      <div className="bg-[#F7D270] text-black p-3 rounded-full text-xl min-w-[3rem]" aria-hidden="true">👥</div>
+      <div>
+        <h3 className="text-lg font-bold">Team collaborations</h3>
+        <p className="text-gray-300 leading-relaxed">
+          We see ourselves as an extension of your marketing and sales teams. That means working collaboratively, reporting transparently, and always keeping your goals at the center of what we do.</p>
+      </div>
+    </div>
+     <div className="flex items-start gap-4">
+      <div className="bg-[#F7D270] text-black p-3 rounded-full text-xl min-w-[3rem]" aria-hidden="true">	📈</div>
+      <div>
+        <h3 className="text-lg font-bold">Product launching</h3>
+        <p className="text-gray-300 leading-relaxed">
+          Whether you’re launching a new product, scaling demand, or breaking into a new market — Personified B2B Marketing helps you reach the right people at the right time, with the right message.</p>
+      </div>
+    </div>
   </div>
 
     {/* Image Right */}
@@ -180,17 +205,17 @@ const About = () => {
   <div className="relative max-w-7xl mx-auto">
     
     {/* Image Left */}
-    <div className="absolute left-0 top-0 w-full lg:w-2/4 h-full">
-      <Image
-        src="/images/workkulan.jpg"
-        alt="Business professionals in strategic discussion"
-        fill
-        className="rounded-2xl object-cover"
-        loading="lazy"
-        quality={85}
-        sizes="(max-width: 1024px) 100vw, 50vw"
-      />
-    </div>
+     <div className="absolute left-0 top-0 w-full lg:w-[50%] h-[500px] mt-48">
+  <Image
+    src="/images/workkulan.jpg"
+    alt="Business professionals in strategic discussion"
+    fill
+    className="rounded-2xl object-cover"
+    loading="lazy"
+    quality={85}
+    sizes="(max-width: 1024px) 100vw, 40vw"
+  />
+</div>
 
     {/* Content Right */}
     <div className="relative z-10 lg:w-1/2 lg:ml-auto">
@@ -207,34 +232,66 @@ const About = () => {
       </div>
 
       <div className="bg-[#356e62] p-6 md:p-8 rounded-2xl shadow-lg mt-8 lg:mt-12 lg:-ml-16">
-        <div className="flex items-center gap-4 md:gap-6 mb-6">
-          <Award className="text-[#b9aa86] flex-shrink-0" size={36} aria-hidden="true" />
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
-            World Marketing Excellence Awards 2023
-          </h3>
-        </div>
+  <div className="flex items-center gap-4 md:gap-6 mb-6">
+    <Award className="text-[#b9aa86] flex-shrink-0" size={36} aria-hidden="true" />
+    <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
+      Top B2B Campaign Excellence Award
+    </h3>
+  </div>
 
-        <ul className="space-y-3 md:space-y-4" role="list">
-          <li className="flex items-start gap-3 md:gap-4">
-            <CheckCircle className="text-[#b9aa86] mt-1 flex-shrink-0" size={20} aria-hidden="true" />
-            <span className="text-sm md:text-base lg:text-lg">
-              Intent-Focused Targeting : We don’t chase cold lists.  
-            </span>
-          </li>
-          <li className="flex items-start gap-3 md:gap-4">
-            <CheckCircle className="text-[#b9aa86] mt-1 flex-shrink-0" size={20} aria-hidden="true" />
-            <span className="text-sm md:text-base lg:text-lg">
-              People-First Approach: Your brand deserves more than clicks.
-            </span>
-          </li>
-          <li className="flex items-start gap-3 md:gap-4">
-            <CheckCircle className="text-[#b9aa86] mt-1 flex-shrink-0" size={20} aria-hidden="true" />
-            <span className="text-sm md:text-base lg:text-lg">
-              Custom Strategies, Not Templates
-            </span>
-          </li>
-        </ul>
+  <ul className="space-y-6 md:space-y-6 text-white" role="list">
+    <li className="flex items-start gap-3">
+      <span className="text-xl">🎯</span>
+      <div>
+        <h4 className="font-bold text-base md:text-lg mb-1">Intent-Focused Targeting</h4>
+        <p className="text-sm md:text-base leading-snug text-gray-100">
+          We don’t chase cold lists. We engage prospects who are already researching and comparing — ready to buy.
+        </p>
       </div>
+    </li>
+
+    <li className="flex items-start gap-3">
+      <span className="text-xl">🤝</span>
+      <div>
+        <h4 className="font-bold text-base md:text-lg mb-1">People-First Approach</h4>
+        <p className="text-sm md:text-base leading-snug text-gray-100">
+          Your brand deserves more than clicks. We deliver relevant, timely messaging that resonates deeply.
+        </p>
+      </div>
+    </li>
+
+    <li className="flex items-start gap-3">
+      <span className="text-xl">📊</span>
+      <div>
+        <h4 className="font-bold text-base md:text-lg mb-1">Results You Can Measure</h4>
+        <p className="text-sm md:text-base leading-snug text-gray-100">
+          We focus on lead quality, conversions, and ROI. What gets measured gets improved.
+        </p>
+      </div>
+    </li>
+
+    <li className="flex items-start gap-3">
+      <span className="text-xl">🛠</span>
+      <div>
+        <h4 className="font-bold text-base md:text-lg mb-1">Custom Strategies, Not Templates</h4>
+        <p className="text-sm md:text-base leading-snug text-gray-100">
+          Every campaign is tailored to your goals, your industry, and your buyer personas.
+        </p>
+      </div>
+    </li>
+
+    <li className="flex items-start gap-3">
+      <span className="text-xl">🔒</span>
+      <div>
+        <h4 className="font-bold text-base md:text-lg mb-1">Transparent & Accountable</h4>
+        <p className="text-sm md:text-base leading-snug text-gray-100">
+          Know what we do, why we do it, and how it performs — always.
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>
+
     </div>
   </div>
 </section>

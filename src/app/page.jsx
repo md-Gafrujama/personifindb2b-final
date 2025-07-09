@@ -381,72 +381,103 @@ const Home = () => {
       </section>
 
       {/* Why Choose Section */}
-      <section 
+       <section 
         className="bg-[#0f2d26] text-white py-16 px-4 sm:px-8 lg:px-24"
         role="region"
         aria-labelledby="why-choose-heading"
       >
         <div className="relative max-w-7xl mx-auto">
-          <div className="absolute right-0 top-0 w-full lg:w-2/4 h-full">
-            <Image
-              src="/images/workkulan.jpg"
-              alt="Business professionals in strategic discussion"
-              fill
-              className="rounded-2xl object-cover"
-              loading="lazy"
-              quality={85}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
-
-          <div className="relative z-10 lg:w-1/2">
-            <div className="mb-8 lg:mb-12">
-              <span className="bg-[#b9aa86] text-[#0f2d26] px-6 py-3 rounded-lg font-semibold mb-6 inline-block">
+          
+          {/* Image Left */}
+             <div className="absolute left-0 top-0 w-full lg:w-[50%] h-[500px] mt-48">
+             <Image
+               src="/images/workkulan.jpg"
+               alt="Business professionals in strategic discussion"
+               fill
+               className="rounded-2xl object-cover"
+               loading="lazy"
+               quality={85}
+               sizes="(max-width: 1024px) 100vw, 40vw"
+             />
+           </div>
+          {/* Content Right */}
+          <div className="relative z-10 lg:w-1/2 lg:ml-auto">
+            <div className="mb-20 lg:mb-12 ml-4">
+              <span className="bg-[#b9aa86] text-[#0f2d26] px-6 py-3 rounded-lg font-semibold mb-6 inline-block left-gap-2">
                 Why Choose Us
               </span>
-              <h2 id="why-choose-heading" className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 id="why-choose-heading" className="text-3xl md:text-4xl font-bold mb-4 gap-1">
                 We Deliver More Than Leads — We Deliver Real Growth
               </h2>
               <p className="text-lg md:text-xl">
-                 At Personified B2B Marketing, we don’t believe in one-size-fits-all lead generation. We focus on delivering qualified, intent-driven leads that actually move the needle for your business. Whether you're a fast-growing SaaS brand or an enterprise tech provider, our tailored strategies ensure you connect with the right decision-makers at the right time.
+                At Personified B2B Marketing, we don’t believe in one-size-fits-all lead generation. We focus on delivering qualified, intent-driven leads that actually move the needle for your business. Whether you're a fast-growing SaaS brand or an enterprise tech provider, our tailored strategies ensure you connect with the right decision-makers at the right time.
               </p>
             </div>
-
-            <div className="bg-[#356e62] p-6 md:p-8 rounded-2xl shadow-lg mt-8 lg:mt-12 lg:-mr-16">
-              <div className="flex items-center gap-4 md:gap-6 mb-6">
-                <Award className="text-[#b9aa86] flex-shrink-0" size={36} aria-hidden="true" />
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
-                  World Marketing Excellence Awards 2023
-                </h3>
-              </div>
-
-              <ul className="space-y-3 md:space-y-4" role="list">
-                <li className="flex items-start gap-3 md:gap-4">
-                  <CheckCircle className="text-[#b9aa86] mt-1 flex-shrink-0" size={20} aria-hidden="true" />
-                  <span className="text-sm md:text-base lg:text-lg">
-                    Intent-Focused Targeting :
-We don’t chase cold lists.  
-                  </span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4">
-                  <CheckCircle className="text-[#b9aa86] mt-1 flex-shrink-0" size={20} aria-hidden="true" />
-                  <span className="text-sm md:text-base lg:text-lg">
-                    People-First Approach:
-Your brand deserves more than clicks.
-                  </span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4">
-                  <CheckCircle className="text-[#b9aa86] mt-1 flex-shrink-0" size={20} aria-hidden="true" />
-                  <span className="text-sm md:text-base lg:text-lg">
-                     Custom Strategies, Not Templates
-                  </span>
-                </li>
-              </ul>
+      
+            <div className="bg-[#356e62] p-6 md:p-8 rounded-2xl shadow-lg mt-8 lg:mt-12 lg:-ml-16">
+        <div className="flex items-center gap-4 md:gap-6 mb-6">
+          <Award className="text-[#b9aa86] flex-shrink-0" size={36} aria-hidden="true" />
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
+            Top B2B Campaign Excellence Award
+          </h3>
+        </div>
+      
+        <ul className="space-y-6 md:space-y-6 text-white" role="list">
+          <li className="flex items-start gap-3">
+            <span className="text-xl">🎯</span>
+            <div>
+              <h4 className="font-bold text-base md:text-lg mb-1">Intent-Focused Targeting</h4>
+              <p className="text-sm md:text-base leading-snug text-gray-100">
+                We don’t chase cold lists. We engage prospects who are already researching and comparing — ready to buy.
+              </p>
             </div>
+          </li>
+      
+          <li className="flex items-start gap-3">
+            <span className="text-xl">🤝</span>
+            <div>
+              <h4 className="font-bold text-base md:text-lg mb-1">People-First Approach</h4>
+              <p className="text-sm md:text-base leading-snug text-gray-100">
+                Your brand deserves more than clicks. We deliver relevant, timely messaging that resonates deeply.
+              </p>
+            </div>
+          </li>
+      
+          <li className="flex items-start gap-3">
+            <span className="text-xl">📊</span>
+            <div>
+              <h4 className="font-bold text-base md:text-lg mb-1">Results You Can Measure</h4>
+              <p className="text-sm md:text-base leading-snug text-gray-100">
+                We focus on lead quality, conversions, and ROI. What gets measured gets improved.
+              </p>
+            </div>
+          </li>
+      
+          <li className="flex items-start gap-3">
+            <span className="text-xl">🛠</span>
+            <div>
+              <h4 className="font-bold text-base md:text-lg mb-1">Custom Strategies, Not Templates</h4>
+              <p className="text-sm md:text-base leading-snug text-gray-100">
+                Every campaign is tailored to your goals, your industry, and your buyer personas.
+              </p>
+            </div>
+          </li>
+      
+          <li className="flex items-start gap-3">
+            <span className="text-xl">🔒</span>
+            <div>
+              <h4 className="font-bold text-base md:text-lg mb-1">Transparent & Accountable</h4>
+              <p className="text-sm md:text-base leading-snug text-gray-100">
+                Know what we do, why we do it, and how it performs — always.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
           </div>
         </div>
       </section>
-
       {/* Solutions Section */}
       <section 
         className="bg-[#0E1F1C] min-h-screen w-full py-12 px-4 md:py-16 md:px-8 lg:px-12 relative overflow-hidden"
