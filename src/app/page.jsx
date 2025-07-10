@@ -232,7 +232,7 @@ const Home = () => {
         <div className="relative z-20 w-full max-w-7xl flex flex-col md:flex-row items-center justify-between gap-y-12 md:gap-y-0">
           <div className="w-full md:w-[55%] space-y-6 lg:space-y-8 min-h-[550px] justify-center">
             <span className="inline-block bg-[#1E2E2B] text-[#F7D270] px-6 py-2 rounded-md text-lg xl:text-xl font-bold tracking-wide border border-[#3ABF6E]">
-              Digital Marketing Agency
+            B2B Marketing Company
             </span>
 
             <motion.h1
@@ -241,8 +241,8 @@ const Home = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight text-balance"
             >
-              <span>Digital Marketing</span><br className="hidden lg:block" />
-              <span>Solutions For Your Business Growth</span>
+              <span> Turning Buyer  </span><br className="hidden lg:block" />
+              <span>Intent into Real Opportunities</span>
             </motion.h1>
 
             <motion.p
@@ -252,9 +252,7 @@ const Home = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-gray-300 text-base xl:text-lg leading-relaxed"
             >
-              Transform your business with our comprehensive digital marketing solutions. 
-              We specialize in data-driven strategies that deliver measurable results 
-              and accelerate your growth in today's competitive marketplace.
+             At Personified B2B Marketing, we specialize in connecting businesses with the right buyers — at the right moment. Our focus is simple but powerful: generate qualified leads from high-intent decision-makers who are actively exploring solutions.
             </motion.p>
 
             <div className="relative inline-block">
@@ -297,21 +295,19 @@ const Home = () => {
               About Us
             </span>
             <h2 id="about-heading" className="text-4xl sm:text-5xl font-bold leading-tight">
-              Save Your Time And Money With Our Expert Agency
+               Driven by Data. Focused on People. Built for Results.
             </h2>
             <p className="text-gray-300">
-              Our experienced team delivers innovative digital marketing solutions that drive real results. 
-              We combine strategic thinking with cutting-edge technology to help your business thrive.
+               At Personified B2B Marketing, we help B2B brands connect with the people who matter most — qualified buyers with real intent. We’re not just another lead generation agency. We’re a growth partner built on trust, transparency, and performance.
             </p>
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <div className="bg-[#F7D270] text-black p-3 rounded-full text-xl min-w-[3rem]" aria-hidden="true">💰</div>
                 <div>
-                  <h3 className="text-lg font-bold">Experience and Expertise</h3>
+                  <h3 className="text-lg font-bold">Intent-Led Targeting</h3>
                   <p className="text-gray-300">
-                    With years of industry experience, our team brings deep expertise in digital marketing 
-                    strategies that deliver measurable ROI for businesses of all sizes.
+                    We focus on real buyer signals — not guesswork — to ensure your brand shows up when prospects are actively researching.
                   </p>
                 </div>
               </div>
@@ -319,10 +315,9 @@ const Home = () => {
               <div className="flex items-start gap-4">
                 <div className="bg-[#F7D270] text-black p-3 rounded-full text-xl min-w-[3rem]" aria-hidden="true">📊</div>
                 <div>
-                  <h3 className="text-lg font-bold">Data-Driven Approach</h3>
+                  <h3 className="text-lg font-bold">Humanized Outreach</h3>
                   <p className="text-gray-300">
-                    Every strategy is backed by comprehensive data analysis and market research 
-                    to ensure optimal performance and continuous improvement.
+                    Our content and campaigns speak to real pain points, challenges, and goals — making your message feel relevant, not robotic.
                   </p>
                 </div>
               </div>
@@ -330,7 +325,7 @@ const Home = () => {
 
             <div className="pt-4">
               <Link 
-                href="/about"
+                href="/About"
                 className="relative overflow-hidden group px-6 py-3 rounded-md border border-[#3ABF6E] text-white text-base xl:text-lg transition duration-300 bg-[#1E2E2B] hover:text-black z-10 inline-block focus:outline-none focus:ring-2 focus:ring-[#F7D270]"
                 aria-label="Learn more about our company"
               >
@@ -386,71 +381,103 @@ const Home = () => {
       </section>
 
       {/* Why Choose Section */}
-      <section 
+       <section 
         className="bg-[#0f2d26] text-white py-16 px-4 sm:px-8 lg:px-24"
         role="region"
         aria-labelledby="why-choose-heading"
       >
         <div className="relative max-w-7xl mx-auto">
-          <div className="absolute right-0 top-0 w-full lg:w-2/4 h-full">
-            <Image
-              src="/images/workkulan.jpg"
-              alt="Business professionals in strategic discussion"
-              fill
-              className="rounded-2xl object-cover"
-              loading="lazy"
-              quality={85}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
-
-          <div className="relative z-10 lg:w-1/2">
-            <div className="mb-8 lg:mb-12">
-              <span className="bg-[#b9aa86] text-[#0f2d26] px-6 py-3 rounded-lg font-semibold mb-6 inline-block">
-                Why Choose PersonifiedB2B
+          
+          {/* Image Left */}
+             <div className="absolute left-0 top-0 w-full lg:w-[50%] h-[500px] mt-48">
+             <Image
+               src="/images/workkulan.jpg"
+               alt="Business professionals in strategic discussion"
+               fill
+               className="rounded-2xl object-cover"
+               loading="lazy"
+               quality={85}
+               sizes="(max-width: 1024px) 100vw, 40vw"
+             />
+           </div>
+          {/* Content Right */}
+          <div className="relative z-10 lg:w-1/2 lg:ml-auto">
+            <div className="mb-20 lg:mb-12 ml-4">
+              <span className="bg-[#b9aa86] text-[#0f2d26] px-6 py-3 rounded-lg font-semibold mb-6 inline-block left-gap-2">
+                Why Choose Us
               </span>
-              <h2 id="why-choose-heading" className="text-3xl md:text-4xl font-bold mb-4">
-                We Help Your Business Grow Stronger and Faster
+              <h2 id="why-choose-heading" className="text-3xl md:text-4xl font-bold mb-4 gap-1">
+                We Deliver More Than Leads — We Deliver Real Growth
               </h2>
               <p className="text-lg md:text-xl">
-                Our proven methodologies and innovative approaches ensure your business 
-                achieves sustainable growth and competitive advantage in the digital landscape.
+                At Personified B2B Marketing, we don’t believe in one-size-fits-all lead generation. We focus on delivering qualified, intent-driven leads that actually move the needle for your business. Whether you're a fast-growing SaaS brand or an enterprise tech provider, our tailored strategies ensure you connect with the right decision-makers at the right time.
               </p>
             </div>
-
-            <div className="bg-[#356e62] p-6 md:p-8 rounded-2xl shadow-lg mt-8 lg:mt-12 lg:-mr-16">
-              <div className="flex items-center gap-4 md:gap-6 mb-6">
-                <Award className="text-[#b9aa86] flex-shrink-0" size={36} aria-hidden="true" />
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
-                  World Marketing Excellence Awards 2023
-                </h3>
-              </div>
-
-              <ul className="space-y-3 md:space-y-4" role="list">
-                <li className="flex items-start gap-3 md:gap-4">
-                  <CheckCircle className="text-[#b9aa86] mt-1 flex-shrink-0" size={20} aria-hidden="true" />
-                  <span className="text-sm md:text-base lg:text-lg">
-                    Flexible payment methods and billing options tailored to your business needs.
-                  </span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4">
-                  <CheckCircle className="text-[#b9aa86] mt-1 flex-shrink-0" size={20} aria-hidden="true" />
-                  <span className="text-sm md:text-base lg:text-lg">
-                    24/7 customer support with dedicated account management.
-                  </span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4">
-                  <CheckCircle className="text-[#b9aa86] mt-1 flex-shrink-0" size={20} aria-hidden="true" />
-                  <span className="text-sm md:text-base lg:text-lg">
-                    Transparent reporting and real-time analytics dashboard.
-                  </span>
-                </li>
-              </ul>
+      
+            <div className="bg-[#356e62] p-6 md:p-8 rounded-2xl shadow-lg mt-8 lg:mt-12 lg:-ml-16">
+        <div className="flex items-center gap-4 md:gap-6 mb-6">
+          <Award className="text-[#b9aa86] flex-shrink-0" size={36} aria-hidden="true" />
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
+            Top B2B Campaign Excellence Award
+          </h3>
+        </div>
+      
+        <ul className="space-y-6 md:space-y-6 text-white" role="list">
+          <li className="flex items-start gap-3">
+            <span className="text-xl">🎯</span>
+            <div>
+              <h4 className="font-bold text-base md:text-lg mb-1">Intent-Focused Targeting</h4>
+              <p className="text-sm md:text-base leading-snug text-gray-100">
+                We don’t chase cold lists. We engage prospects who are already researching and comparing — ready to buy.
+              </p>
             </div>
+          </li>
+      
+          <li className="flex items-start gap-3">
+            <span className="text-xl">🤝</span>
+            <div>
+              <h4 className="font-bold text-base md:text-lg mb-1">People-First Approach</h4>
+              <p className="text-sm md:text-base leading-snug text-gray-100">
+                Your brand deserves more than clicks. We deliver relevant, timely messaging that resonates deeply.
+              </p>
+            </div>
+          </li>
+      
+          <li className="flex items-start gap-3">
+            <span className="text-xl">📊</span>
+            <div>
+              <h4 className="font-bold text-base md:text-lg mb-1">Results You Can Measure</h4>
+              <p className="text-sm md:text-base leading-snug text-gray-100">
+                We focus on lead quality, conversions, and ROI. What gets measured gets improved.
+              </p>
+            </div>
+          </li>
+      
+          <li className="flex items-start gap-3">
+            <span className="text-xl">🛠</span>
+            <div>
+              <h4 className="font-bold text-base md:text-lg mb-1">Custom Strategies, Not Templates</h4>
+              <p className="text-sm md:text-base leading-snug text-gray-100">
+                Every campaign is tailored to your goals, your industry, and your buyer personas.
+              </p>
+            </div>
+          </li>
+      
+          <li className="flex items-start gap-3">
+            <span className="text-xl">🔒</span>
+            <div>
+              <h4 className="font-bold text-base md:text-lg mb-1">Transparent & Accountable</h4>
+              <p className="text-sm md:text-base leading-snug text-gray-100">
+                Know what we do, why we do it, and how it performs — always.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
           </div>
         </div>
       </section>
-
       {/* Solutions Section */}
       <section 
         className="bg-[#0E1F1C] min-h-screen w-full py-12 px-4 md:py-16 md:px-8 lg:px-12 relative overflow-hidden"

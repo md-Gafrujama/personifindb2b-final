@@ -5,7 +5,7 @@ import React, { useEffect ,useRef,useState } from "react";
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { CheckCircle, Award,ArrowUpRight} from "lucide-react";
+import { CheckCircle, Award,ArrowUpRight, Heading1} from "lucide-react";
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -110,66 +110,193 @@ const About = () => {
         <div className="absolute w-[200px] h-[200px] rounded-full border border-gray-600 opacity-10 bottom-[10%] right-[10%]"></div>
         <h1 className="mt-4 text-3xl font-extrabold z-10">About US</h1>
       </div>
+<section 
+  className="relative bg-[#0E1F1C] text-white py-20 px-6 md:px-20"
+  role="region"
+  aria-labelledby="about-heading"
+>
+  <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+    
+    {/* Content Left */}
+    <div className="md:w-1/2 space-y-10">
+  <span className="inline-block bg-[#1E2E2B] text-[#F7D270] px-6 py-2 rounded-md text-lg font-bold tracking-wide">
+    About Us
+  </span>
+
+  <h2 id="about-heading" className="text-4xl sm:text-5xl font-bold leading-tight">
+    Driven by Data. Focused on People. Built for Results.
+  </h2>
+
+  <p className="text-gray-300 leading-relaxed">
+    At Personified B2B Marketing, we help B2B brands connect with the people who matter most — qualified buyers with real intent.
+    We’re not just another lead generation agency. We’re a growth partner built on trust, transparency, and performance.
+  </p>
+<h1 className="text-lg font-bold">🎯 What Makes Us Different?</h1>
+  <div className="space-y-8">
+    <div className="flex items-start gap-4">
+      <div className="bg-[#F7D270] text-black p-3 rounded-full text-xl min-w-[3rem]" aria-hidden="true">💰</div>
+      <div>
+        <h3 className="text-lg font-bold">Intent-Led Targeting</h3>
+        <p className="text-gray-300 leading-relaxed">
+          We focus on real buyer signals — not guesswork — to ensure your brand shows up when prospects are actively researching.
+        </p>
+      </div>
+    </div>
+ 
+    <div className="flex items-start gap-4">
+      <div className="bg-[#F7D270] text-black p-3 rounded-full text-xl min-w-[3rem]" aria-hidden="true">📊</div>
+      <div>
+        <h3 className="text-lg font-bold">Humanized Outreach</h3>
+        <p className="text-gray-300 leading-relaxed">
+          Our content and campaigns speak to real pain points, challenges, and goals — making your message feel relevant, not robotic.
+        </p>
+      </div>
+    </div>
+    <div className="flex items-start gap-4">
+      <div className="bg-[#F7D270] text-black p-3 rounded-full text-xl min-w-[3rem]" aria-hidden="true">💰</div>
+      <div>
+        <h3 className="text-lg font-bold">Results You Can Trust</h3>
+        <p className="text-gray-300 leading-relaxed">
+          Every campaign is built to drive outcomes you care about: qualified leads, better engagement, and stronger ROI.</p>
+      </div>
+    </div>
+  </div>
+  <h1 className="text-lg font-bold">🤝 Built on Partnership</h1>
+    <div className="flex items-start gap-4">
+      <div className="bg-[#F7D270] text-black p-3 rounded-full text-xl min-w-[3rem]" aria-hidden="true">👥</div>
+      <div>
+        <h3 className="text-lg font-bold">Team collaborations</h3>
+        <p className="text-gray-300 leading-relaxed">
+          We see ourselves as an extension of your marketing and sales teams. That means working collaboratively, reporting transparently, and always keeping your goals at the center of what we do.</p>
+      </div>
+    </div>
+     <div className="flex items-start gap-4">
+      <div className="bg-[#F7D270] text-black p-3 rounded-full text-xl min-w-[3rem]" aria-hidden="true">	📈</div>
+      <div>
+        <h3 className="text-lg font-bold">Product launching</h3>
+        <p className="text-gray-300 leading-relaxed">
+          Whether you’re launching a new product, scaling demand, or breaking into a new market — Personified B2B Marketing helps you reach the right people at the right time, with the right message.</p>
+      </div>
+    </div>
+  </div>
+
+    {/* Image Right */}
+    <div className="md:w-7/12">
+      <Image
+        src="/images/about-team.jpg"
+        alt="Professional team collaborating in modern office environment"
+        width={800}
+        height={550}
+        className="rounded-lg shadow-lg h-[550px] object-cover w-full"
+        loading="lazy"
+        quality={85}
+        sizes="(max-width: 768px) 100vw, 58vw"
+      />
+    </div>
+  </div>
+</section>
 
       {/* Why Choose Kulan Section */}
-      <section className="bg-[#0f2d26] text-white py-16 px-4 sm:px-8 lg:px-24">
-        <div className="relative max-w-7xl mx-auto">
-          <div className="absolute right-0 top-0 w-full lg:w-2/4 h-full">
-            <Image
-              src="/images/workkulan.jpg"
-              alt="Business Discussion"
-              className="rounded-2xl object-cover"
-              fill
-              style={{
-                objectFit: "cover",
-              }}
-            />
-          </div>
+     <section 
+  className="bg-[#0f2d26] text-white py-16 px-4 sm:px-8 lg:px-24"
+  role="region"
+  aria-labelledby="why-choose-heading"
+>
+  <div className="relative max-w-7xl mx-auto">
+    
+    {/* Image Left */}
+     <div className="absolute left-0 top-0 w-full lg:w-[50%] h-[500px] mt-48">
+  <Image
+    src="/images/workkulan.jpg"
+    alt="Business professionals in strategic discussion"
+    fill
+    className="rounded-2xl object-cover"
+    loading="lazy"
+    quality={85}
+    sizes="(max-width: 1024px) 100vw, 40vw"
+  />
+</div>
 
-          <div className="relative z-10 lg:w-1/2">
-            <div className="mb-8 lg:mb-12">
-              <button className="bg-[#b9aa86] text-[#0f2d26] px-6 py-3 rounded-lg font-semibold mb-6 hover:bg-[#d4c5a0] transition-colors">
-                Why Choose Kulan
-              </button>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                We Help Your Business To Grow Up More Stronger
-              </h2>
-              <p className="text-lg md:text-xl">
-                Digital marketing agencies often run paid advertising campaigns
-                for themselves. This includes creating compelling.
-              </p>
-            </div>
+    {/* Content Right */}
+    <div className="relative z-10 lg:w-1/2 lg:ml-auto">
+      <div className="mb-20 lg:mb-12 ml-4">
+        <span className="bg-[#b9aa86] text-[#0f2d26] px-6 py-3 rounded-lg font-semibold mb-6 inline-block left-gap-2">
+          Why Choose Us
+        </span>
+        <h2 id="why-choose-heading" className="text-3xl md:text-4xl font-bold mb-4 gap-1">
+          We Deliver More Than Leads — We Deliver Real Growth
+        </h2>
+        <p className="text-lg md:text-xl">
+          At Personified B2B Marketing, we don’t believe in one-size-fits-all lead generation. We focus on delivering qualified, intent-driven leads that actually move the needle for your business. Whether you're a fast-growing SaaS brand or an enterprise tech provider, our tailored strategies ensure you connect with the right decision-makers at the right time.
+        </p>
+      </div>
 
-            <div className="bg-[#356e62] p-6 md:p-8 rounded-2xl shadow-lg mt-8 lg:mt-12 lg:-mr-16">
-              <div className="flex items-center gap-4 md:gap-6 mb-6">
-                <Award className="text-[#b9aa86]" size={36} />
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
-                  World Marketing Winning Awards 2023
-                </h3>
-              </div>
+      <div className="bg-[#356e62] p-6 md:p-8 rounded-2xl shadow-lg mt-8 lg:mt-12 lg:-ml-16">
+  <div className="flex items-center gap-4 md:gap-6 mb-6">
+    <Award className="text-[#b9aa86] flex-shrink-0" size={36} aria-hidden="true" />
+    <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
+      Top B2B Campaign Excellence Award
+    </h3>
+  </div>
 
-              <ul className="space-y-3 md:space-y-4">
-                <li className="flex items-start gap-3 md:gap-4">
-                  <CheckCircle className="text-[#b9aa86] mt-1" size={20} />
-                  <span className="text-sm md:text-base lg:text-lg">
-                    Allow customers to choose from various payment methods and
-                    offer flexible billing options to accommodate their
-                    financial preferences.
-                  </span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4">
-                  <CheckCircle className="text-[#b9aa86] mt-1" size={20} />
-                  <span className="text-sm md:text-base lg:text-lg">
-                    Deliver excellent customer service through various channels,
-                    including phone, email, live chat, and in-person assistance
-                    at physical locations.
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+  <ul className="space-y-6 md:space-y-6 text-white" role="list">
+    <li className="flex items-start gap-3">
+      <span className="text-xl">🎯</span>
+      <div>
+        <h4 className="font-bold text-base md:text-lg mb-1">Intent-Focused Targeting</h4>
+        <p className="text-sm md:text-base leading-snug text-gray-100">
+          We don’t chase cold lists. We engage prospects who are already researching and comparing — ready to buy.
+        </p>
+      </div>
+    </li>
+
+    <li className="flex items-start gap-3">
+      <span className="text-xl">🤝</span>
+      <div>
+        <h4 className="font-bold text-base md:text-lg mb-1">People-First Approach</h4>
+        <p className="text-sm md:text-base leading-snug text-gray-100">
+          Your brand deserves more than clicks. We deliver relevant, timely messaging that resonates deeply.
+        </p>
+      </div>
+    </li>
+
+    <li className="flex items-start gap-3">
+      <span className="text-xl">📊</span>
+      <div>
+        <h4 className="font-bold text-base md:text-lg mb-1">Results You Can Measure</h4>
+        <p className="text-sm md:text-base leading-snug text-gray-100">
+          We focus on lead quality, conversions, and ROI. What gets measured gets improved.
+        </p>
+      </div>
+    </li>
+
+    <li className="flex items-start gap-3">
+      <span className="text-xl">🛠</span>
+      <div>
+        <h4 className="font-bold text-base md:text-lg mb-1">Custom Strategies, Not Templates</h4>
+        <p className="text-sm md:text-base leading-snug text-gray-100">
+          Every campaign is tailored to your goals, your industry, and your buyer personas.
+        </p>
+      </div>
+    </li>
+
+    <li className="flex items-start gap-3">
+      <span className="text-xl">🔒</span>
+      <div>
+        <h4 className="font-bold text-base md:text-lg mb-1">Transparent & Accountable</h4>
+        <p className="text-sm md:text-base leading-snug text-gray-100">
+          Know what we do, why we do it, and how it performs — always.
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+    </div>
+  </div>
+</section>
+
+    
 
       {/* Use the dynamically imported components */}
       {/* If you uncomment Logoscroll later, use <LazyLogoscroll /> */}
@@ -272,31 +399,31 @@ const About = () => {
             {
               title: 'Our Mission',
               content: [
-                'At Queen B2M leadership, our mission is to revolutionize the full-time literacy landscape through world-leading strategies, cutting-edge technology, and a deep understanding of our clients\' needs.',
-                'We aim to be the trusted partner that guides businesses toward sustainable growth and prosperity.',
+                'At Personified B2B Marketing, our vision is to reshape how B2B companies connect with their ideal customers —',
+                'not through volume, but through value. We believe that lead generation should feel less like chasing numbers and more like building meaningful relationships.',
               ],
             },
             {
               title: 'Our Approach',
               content: [
-                'We believe in the power of data-driven insights, creative ingenuity, and a relentless pursuit of excellence.',
-                'Rooted in deep market understanding, our approach delivers transformative solutions aligned with client goals.',
+                'In a market crowded with noise, our goal is to bring clarity, trust, and authenticity to every buyer interaction.',
+                'We envision a future where B2B marketing is not just data-driven, but people-driven — where brands thrive by understanding real buyer intent and responding with relevance and empathy.',
               ],
             },
             {
-              title: 'Our Values',
-              content: [
-                '<strong>Innovation:</strong> Constantly pushing boundaries to deliver fresh, effective strategies.',
-                '<strong>Collaboration:</strong> Success through strong, value-driven client partnerships.',
-              ],
-            },
-            {
-              title: 'Our Vision',
-              content: [
-                '<strong>Integrity:</strong> We uphold trust and transparency in every interaction.',
-                '<strong>Results:</strong> Focused on delivering measurable, tangible success.',
-              ],
-            },
+  title: 'What Drives Us',
+  content: [
+    '<strong>Purposeful Growth:</strong> We aim to help our clients grow not just faster, but smarter — with qualified leads that align with their goals and values.',
+    '<strong>Precision over Guesswork:</strong> By focusing on intent signals and buyer behavior, we bring accuracy and efficiency to demand generation.',
+     ]
+}, {
+  title: 'Our Vision',
+  content: [
+    'Our long-term vision is to become the most trusted B2B marketing partner for companies who value <strong>integrity</strong>, <strong>performance</strong>, and a <strong>human touch</strong> in every interaction.',
+    'We envision a future where B2B marketing is more human, and more aligned with the real needs of buyers — not just metrics. Through ongoing innovation and authentic partnerships, we aim to lead the industry in delivering sustainable growth.'
+  ]
+}
+
           ].map((item, i) => (
             <div
               key={i}

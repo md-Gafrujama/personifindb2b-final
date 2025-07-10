@@ -1,4 +1,4 @@
-// app/contact/page.jsx (or pages/contact.jsx if using Pages Router)
+ // app/contact/page.jsx (or pages/contact.jsx if using Pages Router)
 'use client'; // This directive makes the component a Client Component
 
 import React, { useState } from "react";
@@ -10,7 +10,7 @@ import Link from "next/link";   // For client-side navigation
 import Upnav from "../../components/Upnav";
 import Lownav from "../../components/Lownav";
 import Footer from "../../components/Footer";
-import FAQ from '../../components/FAQ'; // Ensure FAQ component is also 'use client' if it uses hooks
+// import FAQ from '../../components/FAQ'; // Ensure FAQ component is also 'use client' if it uses hooks
 
 const Contact = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -159,178 +159,223 @@ const Contact = () => {
             <Upnav />
             <Lownav />
             {/* Hero Section */}
-            <section className="bg-[#356e62] py-16 px-4 text-white text-center mt-[150px]">
-                <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
-                <p className="max-w-xl mx-auto text-white text-lg">
-                    We're here to help! Reach out for support, business inquiries, or just to say hello.
-                </p>
-            </section>
+           <section className="bg-[#356e62] py-12 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 text-white text-center mt-[100px] md:mt-[150px]">
+    <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
+            Contact Us
+        </h1>
+        <div className="w-20 h-1 bg-white/50 mx-auto mb-6 md:mb-8"></div>
+        <p className="text-base sm:text-lg lg:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
+            We're here to help! Reach out for support, business inquiries, or just to say hello.
+        </p>
+    </div>
+</section>
             {/* Why Contact Us Section */}
-            <section className="max-w-5xl mx-auto px-4 py-12 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-[white] mb-4">Why Contact Compare Bazaar?</h2>
+           <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 relative z-10">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center text-white">Why Contact Compare Bazaar?</h2>
                 <p className="text-lg text-[#ceeec6] mb-8">
                     Our team is dedicated to providing you with the best support, whether you have a question about our services, need technical help, or want to explore partnership opportunities.
                 </p>
                 <div className="flex flex-col md:flex-row justify-center gap-8">
-                    <div className="flex-1 bg-white rounded-xl shadow-lg p-6 border-t-4 border-[yellow] transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 cursor-pointer">
+                    <div className="flex-1 bg-white rounded-xl shadow-lg p-6 border-t-4 border-[#356e62] transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 cursor-pointer">
                         <h3 className="text-xl font-semibold text-[#356e62] mb-2">24/7 Customer Support</h3>
                         <p className="text-gray-600">We’re always here to help, no matter the time or day.</p>
                     </div>
-                    <div className="flex-1 bg-white rounded-xl shadow-lg p-6 border-t-4 border-[yellow] transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 cursor-pointer">
+                    <div className="flex-1 bg-white rounded-xl shadow-lg p-6 border-t-4 border-[#356e62] transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 cursor-pointer">
                         <h3 className="text-xl font-semibold text-[#356e62] mb-2">Business Inquiries</h3>
                         <p className="text-gray-600">Looking to partner or collaborate? Reach out to our business team directly.</p>
                     </div>
-                    <div className="flex-1 bg-white rounded-xl shadow-lg p-6 border-t-4 border-[yellow] transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 cursor-pointer">
+                    <div className="flex-1 bg-white rounded-xl shadow-lg p-6 border-t-4 border-[#356e62] transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 cursor-pointer">
                         <h3 className="text-xl font-semibold text-[#356e62] mb-2">Technical Support</h3>
                         <p className="text-gray-600">Report issues or get help with our platform from our tech experts.</p>
                     </div>
                 </div>
             </section>
-            {/* Testimonial Slider */}
-            <section className="max-w-4xl mx-auto px-4 py-12">
-                <h2 className="text-3xl font-bold text-[#ceeec6] text-center mb-8">What Our Clients Say</h2>
-                <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 cursor-pointer">
-                    <p className="text-lg italic text-gray-700 mb-4">
-                        Compare Bazaar’s support team is incredibly responsive and helpful. They resolved my issue within minutes!
-                    </p>
-                    <span className="font-semibold text-[#356e62
-                    ]">— Nitya S., Business Owner</span>
-                </div>
-            </section>
-            {/* Main Contact Section */}
-            <section className="max-w-6xl mx-auto px-4 md:px-8 mt-20 relative z-10">
-                <div className="bg-white rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden">
-                    {/* Left: Contact Info */}
-                    <div className="bg-gradient-to-br from-[#356e62]
-                    ] to-[#356e62
-                    ] text-white flex-1 p-10 flex flex-col justify-between transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 cursor-pointer">
-                        <div>
-                            <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
-                            <div className="mb-6">
-                                <div className="flex items-center mb-4">
-                                    <svg className="w-7 h-7 mr-3 text-[#356e62]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                    <span>539 W. Commerce St #2577, Dallas, TX 75208</span>
-                                </div>
-                                <div className="flex items-center mb-4">
-                                    <svg className="w-7 h-7 mr-3 text-[#356e62]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-                                    <span>Contactus@compare-bazaar.com</span>
-                                </div>
-                                <div className="flex items-center mb-4">
-                                    <svg className="w-7 h-7 mr-3 text-[#356e62]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    <span>Mon-Fri: 09:00 - 23:00, Sun: 09:00 - 16:00</span>
-                                </div>
+           
+             {/* Main Contact Section */}
+ {/* Main Contact Section */}
+ {/* Main Contact Section */}
+<section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 relative z-10">
+    <div className="bg-white rounded-3xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+        <div className="flex flex-col lg:flex-row">
+            {/* Left: Contact Info */}
+            <div className="bg-gradient-to-br from-[#2a5c52] to-[#356e62] text-white p-8 md:p-10 lg:p-12 flex-1">
+                <div className="h-full flex flex-col justify-between">
+                    {/* Header aligned with right side */}
+                    <div className="flex items-center mb-8 h-[60px]">
+                        <h2 className="text-3xl md:text-4xl font-bold">Get in Touch</h2>
+                    </div>
+                    
+                    <div className="space-y-6">
+                        <div className="flex items-start">
+                            <div className="flex-shrink-0 bg-white/10 p-2 rounded-lg mr-4">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                                </svg>
                             </div>
-                            <div className="mt-8">
-                                {/* The Google Maps iframe doesn't directly use next/image. 
-                                    For map images, you might consider static map APIs and then use next/image.
-                                    For live interactive maps, iframes are standard. */}
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.1793079333634!2d73.93027927385937!3d18.520797569169968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c1e490827b59%3A0xc6891bc6deabc8be!2sQuore%20B2B%20Private%20Limited!5e0!3m2!1sen!2sin!4v1739178092301!5m2!1sen!2sin"
-                                    width="100%"
-                                    height="180"
-                                    style={{ border: 0, borderRadius: '1rem' }}
-                                    allowFullScreen
-                                    loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                    className="grayscale invert-[90%]"
-                                    title="Company Location"
-                                ></iframe>
+                            <div>
+                                <h3 className="font-semibold text-lg mb-1">Our Location</h3>
+                                <p className="text-white/90">539 W. Commerce St #2577, Dallas, TX 75208</p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start">
+                            <div className="flex-shrink-0 bg-white/10 p-2 rounded-lg mr-4">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="font-semibold text-lg mb-1">Email Us</h3>
+                                <p className="text-white/90">Contactus@compare-bazaar.com</p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start">
+                            <div className="flex-shrink-0 bg-white/10 p-2 rounded-lg mr-4">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="font-semibold text-lg mb-1">Opening Hours</h3>
+                                <p className="text-white/90">Mon-Fri: 09:00 - 23:00</p>
+                                <p className="text-white/90">Sun: 09:00 - 16:00</p>
                             </div>
                         </div>
                     </div>
-                    {/* Right: Contact Form */}
-                    <div className="flex-1 p-10 flex flex-col justify-center transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 cursor-pointer">
-                        <h2 className="text-2xl font-bold mb-6 text-[#356e62]">Send Us a Message</h2>
-                        {isSubmitted ? (
-                            <div className="flex flex-col items-center justify-center py-8">
-                                <div className="bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-[#356e62] rounded-xl p-8 w-full mb-8 shadow-lg">
-                                    <div className="flex justify-center mb-6">
-                                        <div className="relative">
-                                            <div className="absolute inset-0 bg-[#356e62
-                                            ] rounded-full opacity-20 animate-ping"></div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 text-[#356e62] animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-center text-[#356e62] mb-4">Thank you for your message!</h3>
-                                    <p className="text-center text-[#356e62] text-base">
-                                        We appreciate your inquiry and will get back to you as soon as possible.
-                                    </p>
-                                </div>
-                                <button
-                                    onClick={() => setIsSubmitted(false)}
-                                    className="bg-gradient-to-r from-[#356e62] to-[#356e62] text-white px-8 py-4 rounded-full text-sm font-bold hover:from-[#356e62] hover:to-[#0E1F1C] transition-all duration-300 mt-2 w-[200px] shadow-lg hover:shadow-xl"
-                                >
-                                    GO BACK
-                                </button>
+
+                    <div className="mt-8">
+                        <div className="h-64 md:h-80 lg:h-[300px] xl:h-[350px] rounded-xl overflow-hidden border-2 border-white/20">
+    <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.1793079333634!2d73.93027927385937!3d18.520797569169968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c1e490827b59%3A0xc6891bc6deabc8be!2sQuore%20B2B%20Private%20Limited!5e0!3m2!1sen!2sin!4v1739178092301!5m2!1sen!2sin"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        className="w-full h-full grayscale invert-[90%]"
+        title="Company Location"
+    ></iframe>
+</div>
+
+                    </div>
+                </div>
+            </div>
+
+            {/* Right: Contact Form */}
+            <div className="p-8 md:p-10 lg:p-12 flex-1">
+                {isSubmitted ? (
+                    <div className="h-full flex flex-col items-center justify-center text-center py-8">
+                        <div className="max-w-md w-full bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-[#356e62]/30 rounded-xl p-8 mb-8">
+                            <div className="relative inline-block mb-6">
+                                <div className="absolute inset-0 bg-[#356e62] rounded-full opacity-20 animate-ping"></div>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-[#356e62]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
                             </div>
-                        ) : (
-                            <form onSubmit={handleSubmit} className="space-y-6">
-                                <input type="hidden" name="access_key" value="a8fe8c95-167c-41a6-bd53-987b128dff69" />
-                                <div className="grid grid-cols-1 gap-6">
+                            <h3 className="text-2xl font-bold text-[#356e62] mb-3">Thank you for your message!</h3>
+                            <p className="text-[#356e62]/90 mb-6">
+                                We appreciate your inquiry and will get back to you as soon as possible.
+                            </p>
+                            <button
+                                onClick={() => setIsSubmitted(false)}
+                                className="bg-[#356e62] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#2a5c52] transition-colors duration-300 shadow-md hover:shadow-lg"
+                            >
+                                Send Another Message
+                            </button>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="h-full flex flex-col">
+                        {/* Header aligned with left side */}
+                        <div className="flex items-center mb-8 h-[60px]">
+                            <h2 className="text-3xl md:text-4xl font-bold text-[#356e62]">Send Us a Message</h2>
+                        </div>
+                        
+                        <form onSubmit={handleSubmit} className="space-y-6 flex-grow flex flex-col">
+                            <input type="hidden" name="access_key" value="a8fe8c95-167c-41a6-bd53-987b128dff69" />
+                            
+                            <div className="space-y-6 flex-grow">
+                                {/* Full Name Field */}
+                                <div>
+                                    <label htmlFor="name" className="sr-only">Full Name</label>
                                     <input
                                         type="text"
+                                        id="name"
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
                                         placeholder="Full Name"
-                                        className="w-full border-b-2 border-[#356e62
-                                        ] outline-none py-3 px-2 bg-gray-50 rounded-lg text-gray-800"
+                                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#356e62] focus:border-transparent transition-all"
                                         required
                                     />
+                                </div>
+
+                                {/* Email Field */}
+                                <div>
+                                    <label htmlFor="email" className="sr-only">Email</label>
                                     <input
                                         type="email"
+                                        id="email"
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
                                         placeholder="Email Address"
-                                        className="w-full border-b-2 border-[#356e62
-                                        ] outline-none py-3 px-2 bg-gray-50 rounded-lg text-gray-800"
+                                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#356e62] focus:border-transparent transition-all"
                                         required
                                     />
+                                </div>
+
+                                {/* Phone Field */}
+                                <div>
+                                    <label htmlFor="phone" className="sr-only">Phone</label>
                                     <input
-                                        type="text"
+                                        type="tel"
+                                        id="phone"
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
                                         placeholder="Phone Number"
-                                        className="w-full border-b-2 border-[#356e62
-                                        ] outline-none py-3 px-2 bg-gray-50 rounded-lg text-gray-800"
+                                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#356e62] focus:border-transparent transition-all"
                                         required
                                     />
+                                </div>
+
+                                {/* Message Field */}
+                                <div className="flex-grow">
+                                    <label htmlFor="message" className="sr-only">Message</label>
                                     <textarea
+                                        id="message"
                                         name="message"
                                         value={formData.message}
                                         onChange={handleChange}
                                         placeholder="Your Message"
-                                        className="w-full border-b-2 border-[#356e62
-                                        ] outline-none py-3 px-2 bg-gray-50 rounded-lg text-gray-800"
                                         rows="4"
+                                        className="w-full h-full min-h-[150px] px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#356e62] focus:border-transparent transition-all"
                                     ></textarea>
                                 </div>
-                                <div className="flex-1 p-10 flex flex-col justify-center transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 cursor-pointer">
-                                    <button
+                            </div>
+
+                            <div className="pt-4">
+                                <button
                                     type="submit"
-                                    className="bg-gradient-to-r from-[#356e62] to-[#4fd1c5] text-white px-8 py-3 rounded-full font-bold border-2 border-white hover:from-[#356e62] hover:to-[#001e74] transition-all duration-300 shadow-lg"
-                                    >
-                                    SEND NOW
-                                    </button>
-                                </div>
-                            </form>
-                        )}
+                                    className="w-full bg-gradient-to-r from-[#356e62] to-[#4a9e8f] text-white px-8 py-3 rounded-lg font-semibold hover:from-[#2a5c52] hover:to-[#356e62] transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#356e62] focus:ring-offset-2"
+                                >
+                                    SEND MESSAGE
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                </div>
-            </section>
+                )}
+            </div>
+        </div>
+    </div>
+</section>
             {/* Interested in Our Services Section */}
-            <section className="max-w-6xl mx-auto px-4 py-16">
+            <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 relative z-10">
                 <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
                     <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center text-[#356e62
                     ]">Interested in Our Services?</h2>
@@ -357,7 +402,7 @@ const Contact = () => {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-semibold mb-1 text-[#356e62]">Email Address *</label>
+                                <label className="block text-sm font-semibold mb-1 text-[#356e62]">Email Addres *</label>
                                 <div className="relative">
                                     <span className="absolute left-3 top-3 text-gray-400">
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16 12H8m8 0a4 4 0 11-8 0 4 4 0 018 0zm-8 0V8a4 4 0 018 0v4"/></svg>
@@ -412,12 +457,12 @@ const Contact = () => {
                                 <label className="block text-sm font-semibold mb-2 text-[#356e62]">Services You're Interested In *</label>
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
                                     {[
-                                        "Best CRM Software",
-                                        "Best Email Marketing Services",
-                                        "Best Website Building Platforms",
-                                        "Business Phone Systems",
-                                        "GPS Fleet Management Software",
-                                        "Best Employee Management Software"
+                                        "B2B Content Syndication",
+                                        "Display Advertising",
+                                        "Sales Development",
+                                        "Lead Generation",
+                                        "Data Solutions",
+                                        "Account Based Marketing"
                                     ].map((service) => (
                                         <label key={service} className="flex items-center space-x-2 text-gray-700">
                                             <input
@@ -486,7 +531,7 @@ const Contact = () => {
             </section>
             {/* FAQ and CTA */}
             <section className="mt-20">
-                <FAQ faqs={contactFAQs} />
+                {/* <FAQ faqs={contactFAQs} /> */}
             </section>
             <section className="bg-[#356e62] text-white text-center py-16 px-4 mt-10">
                 <h2 className="text-4xl font-semibold mb-4">Ready to grow your business?</h2>
