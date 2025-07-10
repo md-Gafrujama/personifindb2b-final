@@ -212,7 +212,7 @@ const Home = () => {
 
       {/* Hero Section */}
       <section 
-  className="relative bg-[#0E1F1C] text-white pt-[30px] lg:pt-20 pb-20 px-6 xl:px-32 min-h-[70vh] flex items-center justify-center overflow-hidden mt-24"
+    className="relative bg-[#0E1F1C] text-white py-12 md:py-20 px-4 sm:px-6 md:px-20 mt-24"
   role="banner"
   aria-label="Hero section"
 >
