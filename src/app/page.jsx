@@ -211,18 +211,23 @@ const Home = () => {
       <Lownav />
 
       {/* Hero Section */}
-      <section 
-    className="relative bg-[#0E1F1C] text-white py-12 md:py-20 px-4 sm:px-6 md:px-20 mt-24"
+   <section 
+  className="relative bg-[#0E1F1C] text-white py-12 md:py-20 px-4 sm:px-6 lg:px-12 mt-24"
   role="banner"
   aria-label="Hero section"
 >
-  <div className="relative z-20 w-full max-w-7xl flex flex-col md:flex-row items-center justify-between gap-y-12 md:gap-y-0">
+  <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-y-12 md:gap-y-0">
     
     {/* LEFT: Content */}
-    <div className="w-full md:w-[55%] space-y-6 lg:space-y-8 min-h-[550px] justify-center">
-      <span className="inline-block bg-[#1E2E2B] text-[#F7D270] px-6 py-2 rounded-md text-lg xl:text-xl font-bold tracking-wide border border-[#3ABF6E]">
-        B2B Marketing Company
-      </span>
+    <div className="w-full md:w-[50%] space-y-6 lg:space-y-8 min-h-[550px] flex flex-col justify-center">
+        <div className="w-fit">
+  <span className="inline-block bg-[#1E2E2B] text-[#F7D270] px-6 py-2 rounded-md text-lg xl:text-xl font-bold tracking-wide border border-[#3ABF6E]">
+  B2B Marketing Company
+</span>
+
+</div>
+
+
 
       <motion.h1
         initial={{ opacity: 0, y: 40 }}
@@ -256,20 +261,20 @@ const Home = () => {
       </div>
     </div>
 
-    {/* RIGHT: Image (not background!) */}
-     <div className="md:w-[70%] w-full flex justify-center items-center relative">
-  <Image
-    src="/images/home-image.png"
-    alt="Professional team collaborating on digital marketing strategies"
-    width={600} // Increased from 400
-    height={600} // Increased from 400
-    className="rounded-lg object-cover max-w-full h-auto z-10"
-  />
-</div>
-
+    {/* RIGHT: Image */}
+    <div className="w-full md:w-[50%] flex justify-center items-center relative">
+      <Image
+        src="/images/home-image.png"
+        alt="Professional team collaborating on digital marketing strategies"
+        width={600}
+        height={600}
+        className="rounded-lg object-cover max-w-full h-auto z-10"
+      />
+    </div>
 
   </div>
 </section>
+
 
 
       {/* About Us Section */}

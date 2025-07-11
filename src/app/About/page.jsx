@@ -119,9 +119,7 @@ const About = () => {
     
     {/* Content Left - completely unchanged except responsive spacing */}
     <div className="w-full md:w-1/2 space-y-6 md:space-y-10">
-      <span className="inline-block bg-[#1E2E2B] text-[#F7D270] px-6 py-2 rounded-md text-lg font-bold tracking-wide">
-        About Us
-      </span>
+       
 
       <h2 id="about-heading" className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
         Driven by Data. Focused on People. Built for Results.
@@ -190,7 +188,7 @@ const About = () => {
     </div>
 
     {/* Image Right - now fully responsive without cutting */}
-    <div className="w-full md:w-7/12 h-auto mt-24 md:mt-100">
+    <div className="w-full md:w-7/12 h-auto mt-24 md:mt-80">
       <div className="relative w-full h-full min-h-[300px] md:min-h-[400px] lg:min-h-[550px]">
         <Image
           src="/images/about-team.jpg"
@@ -320,14 +318,14 @@ const About = () => {
         <div className="absolute left-0 bottom-0 w-20 h-20 rounded-full border border-[#f5d78c] opacity-20"></div>
 
         <Image
-          src="https://bestwpware.com/themes-wp/kulan/wp-content/uploads/2024/01/star.png"
-          alt="Star"
-          width={100}
-          height={100}
-          className="absolute top-28 left-0 w-16 sm:w-20 lg:w-24 opacity-40 animate-float z-0 pointer-events-none"
-          data-aos="fade-up"
-          data-aos-delay="100"
-        />
+            src="/images/flower.png"
+            alt=""
+            width={150}
+            height={150}
+            className="absolute left-0 top-28 w-20 sm:w-28 lg:w-36 z-0 opacity-50 animate-pulse"
+            loading="lazy"
+            aria-hidden="true"
+          />
 
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
