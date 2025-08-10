@@ -1316,9 +1316,9 @@ function B2BcontentSyndication() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-2xl mb-6">
+                <div className="relative w-full h-74 rounded-xl overflow-hidden shadow-2xl mb-6">
                   <Image
-                    src="https://images.pexels.com/photos/697259/pexels-photo-697259.jpeg"
+                    src="images/work1.webp"
                     alt="Sales Development"
                     fill
                     className="object-cover hover:scale-110 transition-transform duration-700"
@@ -1395,7 +1395,7 @@ function B2BcontentSyndication() {
               >
                 <div className="relative w-full h-74 rounded-xl overflow-hidden shadow-2xl mb-6">
                   <Image
-                    src="images/work1.webp"
+                    src="images/work2.webp"
                     alt="B2B Data & Intent"
                     fill
                     className="object-cover hover:scale-110 transition-transform duration-700"
