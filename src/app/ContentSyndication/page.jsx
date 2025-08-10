@@ -540,9 +540,10 @@
 // export default B2BcontentSyndication;
 
 
+
 "use client";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Plus, Upload, Target, Users, Database, CheckCircle } from "lucide-react";
+import { ArrowUpRight, Plus, Upload, Target, Users, Database } from "lucide-react";
 import { useState } from "react";
 import Head from 'next/head';
 import Link from 'next/link';
@@ -815,168 +816,56 @@ function B2BcontentSyndication() {
         </motion.section>
       </div>
 
-      {/* How It Works Section - Updated with left image and right content */}
-      <div className="w-full bg-[#0E1F1C] py-20 px-6 sm:px-8 md:px-16 lg:px-32">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <div className="inline-block bg-[#FFD800] text-black px-4 py-2 rounded-full text-sm font-semibold mb-4">
-            How It Works
-          </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-white">
-            How Kulan Is Work Process For Our
-          </h2>
-          <h2 className="text-3xl md:text-5xl font-bold text-[#FFD800] mt-2">
-            Marketing Customer
-          </h2>
-        </motion.div>
-
-        <div className="flex flex-col lg:flex-row items-center gap-16">
-          {/* Left Side - Process Steps */}
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:w-1/2 space-y-8"
-          >
-            {/* Step 1 - Strategy */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex items-start space-x-6"
-            >
-              <div className="flex-shrink-0">
-                <div className="bg-[#FFD800] text-black font-bold text-xl rounded-full w-12 h-12 flex items-center justify-center">
-                  01
-                </div>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-3">Strategy</h3>
-                <p className="text-gray-300 text-lg">
-                  Based on the insights gathered, we develop a comprehensive strategy tailored to your 
-                  business's unique needs and objectives. Our strategic approach ensures maximum ROI 
-                  and targeted audience engagement.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Step 2 - Process */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex items-start space-x-6"
-            >
-              <div className="flex-shrink-0">
-                <div className="bg-[#FFD800] text-black font-bold text-xl rounded-full w-12 h-12 flex items-center justify-center">
-                  02
-                </div>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-3">Process</h3>
-                <p className="text-gray-300 text-lg">
-                  We implement our proven process methodology, leveraging our first-party data intelligence 
-                  and advanced targeting capabilities. Every step is carefully monitored and optimized for 
-                  peak performance and quality assurance.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Step 3 - Implement */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex items-start space-x-6"
-            >
-              <div className="flex-shrink-0">
-                <div className="bg-[#FFD800] text-black font-bold text-xl rounded-full w-12 h-12 flex items-center justify-center">
-                  03
-                </div>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-3">Implement</h3>
-                <p className="text-gray-300 text-lg">
-                  Full-scale implementation of your customized marketing campaigns. We execute with precision, 
-                  continuously optimize performance, and deliver measurable results that drive revenue growth 
-                  and business success.
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Right Side - Team Image */}
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:w-1/2"
-          >
-            <div className="relative">
-              <Image
-                src="/images/team-working.jpg" // You can use the image from the attachment or similar team image
-                alt="Marketing team collaboration"
-                width={600}
-                height={400}
-                className="rounded-2xl shadow-2xl object-cover w-full h-[500px]"
-                loading="lazy"
-              />
-              {/* Overlay content */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>
-              <div className="absolute bottom-6 left-6 text-white">
-                <h4 className="text-xl font-bold mb-2">Expert Team Collaboration</h4>
-                <p className="text-gray-200">
-                  Our dedicated professionals work together to deliver exceptional results
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Bottom section with additional info */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-16 text-center"
-        >
-          <p className="text-gray-300 text-lg max-w-4xl mx-auto">
-            Delivering your content with precision, tailored to resonate with your audience. 
-            Our comprehensive approach ensures every campaign drives meaningful engagement and converts 
-            prospects into valuable customers.
-          </p>
-          
-          <motion.button
-            whileHover={{ scale: 1.05, backgroundColor: "#ffea00" }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-[#FFD800] text-black font-semibold py-4 px-8 rounded-full transition-all duration-300 mt-8 text-lg"
-          >
-            Start Your Campaign Today →
-          </motion.button>
-        </motion.div>
-      </div>
-
-      {/* Benefits Cards */}
-      <div className="w-full bg-gradient-to-br from-yellow-300 to-yellow-500 py-20 px-6 sm:px-8 md:px-16 lg:px-32">
+      {/* How It Works Section */}
+      <div className="w-full bg-gradient-to-br from-yellow-300 to-yellow-500 py-20 px-6 sm:px-8 md:px-16 lg:px-32 text-center">
         <motion.h2 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-3xl md:text-4xl font-bold text-black mb-12 text-center"
+          className="text-3xl md:text-4xl font-bold text-black mb-12"
         >
-          Why choose our <span className="text-gray-800">B2B solutions?</span>
+          HOW IT WORKS
+        </motion.h2>
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="bg-white p-8 rounded-xl shadow-lg max-w-4xl mx-auto"
+        >
+          <div className="flex items-center justify-center mb-6">
+            <Upload className="w-12 h-12 text-gray-600 mr-4" />
+            <h3 className="text-2xl font-bold text-black">Upload Your Content</h3>
+          </div>
+          <p className="text-gray-700 text-lg">
+            Upload your content and let our precision targeting system distribute it to your ideal audience. 
+            Our first-party data intelligence ensures your content reaches engaged prospects who are ready to convert.
+          </p>
+        </motion.div>
+
+        <motion.p 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-black text-lg mt-8 font-semibold"
+        >
+          Delivering your content with precision, tailored to resonate with your audience
+        </motion.p>
+      </div>
+
+      {/* Benefits Cards */}
+      <div className="w-full bg-[#0E1F1C] py-20 px-6 sm:px-8 md:px-16 lg:px-32">
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-3xl md:text-4xl font-bold text-white mb-12 text-center"
+        >
+          Why choose our <span className="text-[#FFD700]">B2B solutions?</span>
         </motion.h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -1004,7 +893,7 @@ function B2BcontentSyndication() {
               viewport={{ once: true, amount: 0.5 }}
               whileHover={hoverEffect}
               variants={cardVariants}
-              className="bg-white p-8 rounded-xl shadow-lg min-h-[250px] flex flex-col justify-center text-black"
+              className="bg-[#FFD800] p-8 rounded-xl shadow-lg min-h-[250px] flex flex-col justify-center text-black"
             >
               <benefit.icon className="w-12 h-12 mb-4 text-gray-800" />
               <h3 className="font-bold text-xl mb-3 text-gray-800">
