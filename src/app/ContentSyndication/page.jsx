@@ -2328,7 +2328,7 @@ function B2BcontentSyndication() {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          access_key: 'a8fe8c95-167c-41a6-bd53-987b128dff69',
+          access_key: 'e505fedc-14ad-49ed-834f-32cd23ad6136',
           ...formData
         })
       });
