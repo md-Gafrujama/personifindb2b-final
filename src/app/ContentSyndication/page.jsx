@@ -1395,7 +1395,7 @@ function B2BcontentSyndication() {
               >
                 <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-2xl mb-6">
                   <Image
-                    src="https://m.media-amazon.com/images/I/81OXEQrFPTL._UF1000,1000_QL80_.jpg"
+                    src="images/work1.webp"
                     alt="B2B Data & Intent"
                     fill
                     className="object-cover hover:scale-110 transition-transform duration-700"
@@ -1590,52 +1590,7 @@ function B2BcontentSyndication() {
         </div>
       )}
 
-      {/* How It Works Section */}
-      <div className="w-full bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 py-24 px-6 sm:px-8 md:px-16 lg:px-32 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-300/20 to-yellow-500/20" />
-        <motion.h2 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="text-3xl md:text-4xl font-bold text-black mb-16 relative z-10"
-        >
-          HOW IT WORKS
-        </motion.h2>
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 80 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="bg-white/95 backdrop-blur-sm p-10 rounded-2xl shadow-2xl max-w-4xl mx-auto relative z-10 border border-white/20"
-        >
-          <div className="flex items-center justify-center mb-8">
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="bg-gradient-to-r from-gray-600 to-gray-800 p-4 rounded-full mr-6 shadow-lg"
-            >
-              <Upload className="w-12 h-12 text-white" />
-            </motion.div>
-            <h3 className="text-2xl font-bold text-black">Upload Your Content</h3>
-          </div>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            Upload your content and let our precision targeting system distribute it to your ideal audience. 
-            Our first-party data intelligence ensures your content reaches engaged prospects who are ready to convert.
-          </p>
-        </motion.div>
-
-        <motion.p 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="text-black text-lg mt-10 font-bold relative z-10"
-        >
-          Delivering your content with precision, tailored to resonate with your audience
-        </motion.p>
-      </div>
+     
 
       {/* Benefits Cards */}
       <div className="w-full bg-gradient-to-br from-[#0E1F1C] via-[#1a2f29] to-[#0E1F1C] py-24 px-6 sm:px-8 md:px-16 lg:px-32">
