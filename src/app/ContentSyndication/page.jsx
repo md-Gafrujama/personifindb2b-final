@@ -162,7 +162,7 @@ function B2BcontentSyndication() {
       <div className="relative w-full min-h-screen mt-24 bg-cover bg-center flex items-center justify-start px-6 sm:px-8 md:px-16 lg:px-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent z-0" />
         <Image
-          src="images/content.png"
+          src="/images/syndication.jpg"
           alt="B2B Solutions for Growth"
           fill
           priority
