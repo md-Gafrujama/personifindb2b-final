@@ -28,6 +28,3 @@ body {
 body {
   overflow-x: hidden;
 }
-body {
-  @apply overflow-x-hidden;
-}
