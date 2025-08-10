@@ -4058,7 +4058,7 @@ function B2BcontentSyndication() {
                 transition={{ type: "spring", stiffness: 300 }}
                 className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-r from-[#FFD700]/20 to-[#FFA500]/20 p-3"
               >
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
+                <div className="relative aspect-[19/10] rounded-2xl overflow-hidden">
                   <Image
                     src="/images/work2.webp"
                     alt="B2B Data Intelligence Dashboard"
