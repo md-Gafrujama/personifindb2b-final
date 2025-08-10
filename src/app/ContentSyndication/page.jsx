@@ -2880,217 +2880,128 @@ function B2BcontentSyndication() {
         </motion.section>
       </div>
 
-      {/* FIXED MODAL - Fully Responsive */}
+      {/* FULLY RESPONSIVE MODAL - COMPLETELY REDESIGNED */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-[9999] flex items-center justify-center">
-          <div className="absolute inset-0" onClick={() => setShowModal(false)}></div>
-          
+        <div 
+          className="fixed inset-0 bg-black/90 backdrop-blur-md z-[9999] flex items-center justify-center p-2 sm:p-4"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowModal(false);
+            }
+          }}
+        >
           <motion.div 
-            initial={{ opacity: 0, scale: 0.7, y: 100 }}
+            initial={{ opacity: 0, scale: 0.8, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.7, y: 100 }}
+            exit={{ opacity: 0, scale: 0.8, y: 50 }}
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="bg-white rounded-3xl shadow-2xl relative z-10 w-[95vw] h-[95vh] overflow-hidden max-w-6xl"
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-6xl max-h-[98vh] overflow-hidden relative"
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
+            {/* Close Button - Fixed Position */}
             <motion.button 
               onClick={() => setShowModal(false)}
               whileHover={{ scale: 1.1, rotate: 90 }}
               whileTap={{ scale: 0.9 }}
-              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 bg-gray-100 hover:bg-gray-200 p-2 sm:p-3 rounded-full transition-all duration-200 shadow-lg"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 bg-gray-100/90 hover:bg-gray-200/90 backdrop-blur-sm p-2 rounded-full transition-all duration-200 shadow-lg"
             >
-              <X size={20} className="text-gray-600" />
+              <X size={18} className="text-gray-600" />
             </motion.button>
 
-            {/* Main Content Container - Scrollable */}
-            <div className="flex flex-col lg:flex-row h-full">
+            {/* Scrollable Container */}
+            <div className="h-full max-h-[98vh] overflow-y-auto">
               
-              {/* Left Side - Enhanced Branding Panel */}
-              <div className="lg:w-2/5 bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] p-6 sm:p-8 lg:p-12 text-white flex flex-col justify-center relative overflow-hidden min-h-[300px] lg:min-h-full">
-                
-                {/* Animated Background Elements */}
-                <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-                  <motion.div 
-                    className="absolute -top-10 -left-10 w-40 h-40 bg-gradient-to-br from-[#FFD700]/20 to-[#FFA500]/20 rounded-full blur-3xl"
-                    animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                  />
-                  <motion.div 
-                    className="absolute -bottom-10 -right-10 w-32 h-32 bg-gradient-to-br from-[#4ECDC4]/20 to-[#44A08D]/20 rounded-full blur-2xl"
-                    animate={{ scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="relative z-10">
-                  {/* Logo/Brand Section */}
-                  <motion.div 
-                    className="mb-8 lg:mb-12"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <div className="flex items-center mb-6">
-                      <div className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] p-3 rounded-2xl mr-4 shadow-xl">
-                        <Database className="w-8 h-8 text-black" />
+              {/* Mobile-First Layout */}
+              <div className="block lg:hidden">
+                {/* Mobile Header */}
+                <div className="bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] p-6 text-white relative overflow-hidden">
+                  <div className="relative z-10">
+                    <div className="flex items-center mb-4">
+                      <div className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] p-2 rounded-xl mr-3 shadow-xl">
+                        <Database className="w-6 h-6 text-black" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold">ProspectBase</h3>
-                        <p className="text-blue-200 text-sm">B2B Data Intelligence</p>
+                        <h3 className="text-lg font-bold">ProspectBase</h3>
+                        <p className="text-blue-200 text-xs">B2B Data Intelligence</p>
                       </div>
                     </div>
                     
-                    <motion.h2 
-                      className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 }}
-                    >
+                    <h2 className="text-2xl font-bold leading-tight mb-3">
                       Unlock Your <br />
                       <span className="bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FFD700] bg-clip-text text-transparent">
                         Audience
                       </span> <br />
                       Potential
-                    </motion.h2>
+                    </h2>
                     
-                    <motion.p 
-                      className="text-blue-100 text-lg mt-4 leading-relaxed"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.6 }}
-                    >
+                    <p className="text-blue-100 text-sm leading-relaxed mb-4">
                       Get precise audience counts and insights to accelerate your B2B growth strategy.
-                    </motion.p>
-                  </motion.div>
-
-                  {/* Enhanced Stats Section */}
-                  <motion.div 
-                    className="mb-8 lg:mb-12"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8 }}
-                  >
-                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                      <p className="text-blue-200 text-sm mb-4 text-center">Global Database Coverage</p>
-                      <div className="grid grid-cols-3 gap-4">
-                        <motion.div 
-                          className="text-center"
-                          whileHover={{ scale: 1.05 }}
-                        >
-                          <div className="text-2xl lg:text-3xl font-bold text-[#FFD700] mb-1">185M+</div>
-                          <div className="text-xs text-blue-200">B2B Contacts</div>
-                        </motion.div>
-                        <motion.div 
-                          className="text-center"
-                          whileHover={{ scale: 1.05 }}
-                        >
-                          <div className="text-2xl lg:text-3xl font-bold text-[#4ECDC4] mb-1">142</div>
-                          <div className="text-xs text-blue-200">Countries</div>
-                        </motion.div>
-                        <motion.div 
-                          className="text-center"
-                          whileHover={{ scale: 1.05 }}
-                        >
-                          <div className="text-2xl lg:text-3xl font-bold text-[#FF6B6B] mb-1">25M+</div>
-                          <div className="text-xs text-blue-200">Companies</div>
-                        </motion.div>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  {/* Trust Indicators */}
-                  <motion.div 
-                    className="space-y-4"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1 }}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <div className="flex space-x-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 text-[#FFD700] fill-current" />
-                        ))}
-                      </div>
-                      <span className="text-blue-200 text-sm">Trusted by 1000+ companies</span>
-                    </div>
-                    
-                    <div className="flex items-center space-x-3">
-                      <Shield className="w-5 h-5 text-[#4ECDC4]" />
-                      <span className="text-blue-200 text-sm">GDPR & CCPA Compliant</span>
-                    </div>
-                    
-                    <div className="flex items-center space-x-3">
-                      <Check className="w-5 h-5 text-green-400" />
-                      <span className="text-blue-200 text-sm">Real-time data verification</span>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-
-              {/* Right Side - Form Panel with Proper Scrolling */}
-              <div className="lg:w-3/5 bg-gray-50 flex-1 overflow-y-auto">
-                <div className="p-6 sm:p-8 lg:p-12 min-h-full">
-                  {/* Form Header */}
-                  <motion.div 
-                    className="mb-8"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
-                      Request Audience Count
-                    </h3>
-                    <p className="text-gray-600">
-                      Fill out the form below and we'll provide you with detailed audience insights within 24 hours.
                     </p>
-                  </motion.div>
-
+                    
+                    {/* Mobile Stats */}
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                      <p className="text-blue-200 text-xs mb-3 text-center">Global Database Coverage</p>
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="text-center">
+                          <div className="text-lg font-bold text-[#FFD700] mb-1">185M+</div>
+                          <div className="text-xs text-blue-200">B2B Contacts</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-lg font-bold text-[#4ECDC4] mb-1">142</div>
+                          <div className="text-xs text-blue-200">Countries</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-lg font-bold text-[#FF6B6B] mb-1">25M+</div>
+                          <div className="text-xs text-blue-200">Companies</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Mobile Background Elements */}
+                  <div className="absolute -top-5 -left-5 w-20 h-20 bg-gradient-to-br from-[#FFD700]/20 to-[#FFA500]/20 rounded-full blur-2xl"></div>
+                  <div className="absolute -bottom-5 -right-5 w-16 h-16 bg-gradient-to-br from-[#4ECDC4]/20 to-[#44A08D]/20 rounded-full blur-xl"></div>
+                </div>
+                
+                {/* Mobile Form */}
+                <div className="p-6">
+                  <div className="mb-6">
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">Request Audience Count</h3>
+                    <p className="text-gray-600 text-sm">Fill out the form below and we'll provide you with detailed audience insights within 24 hours.</p>
+                  </div>
+                  
                   {/* Status Messages */}
                   {submitStatus === 'success' && (
-                    <motion.div 
-                      initial={{ opacity: 0, y: -20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="mb-6 p-4 bg-green-50 border-l-4 border-green-400 rounded-r-xl"
-                    >
+                    <div className="mb-4 p-3 bg-green-50 border-l-4 border-green-400 rounded-r-xl">
                       <div className="flex items-center">
-                        <div className="bg-green-400 rounded-full p-1 mr-3">
-                          <Check className="w-4 h-4 text-white" />
+                        <div className="bg-green-400 rounded-full p-1 mr-2">
+                          <Check className="w-3 h-3 text-white" />
                         </div>
                         <div>
-                          <h4 className="text-green-800 font-semibold">Success!</h4>
-                          <p className="text-green-700 text-sm">Your request has been submitted. We'll get back to you soon!</p>
+                          <h4 className="text-green-800 font-semibold text-sm">Success!</h4>
+                          <p className="text-green-700 text-xs">Your request has been submitted. We'll get back to you soon!</p>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   )}
                   
                   {submitStatus === 'error' && (
-                    <motion.div 
-                      initial={{ opacity: 0, y: -20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="mb-6 p-4 bg-red-50 border-l-4 border-red-400 rounded-r-xl"
-                    >
+                    <div className="mb-4 p-3 bg-red-50 border-l-4 border-red-400 rounded-r-xl">
                       <div className="flex items-center">
-                        <X className="w-5 h-5 text-red-400 mr-3" />
+                        <X className="w-4 h-4 text-red-400 mr-2" />
                         <div>
-                          <h4 className="text-red-800 font-semibold">Error</h4>
-                          <p className="text-red-700 text-sm">There was an error submitting your request. Please try again.</p>
+                          <h4 className="text-red-800 font-semibold text-sm">Error</h4>
+                          <p className="text-red-700 text-xs">There was an error submitting your request. Please try again.</p>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   )}
-
-                  {/* Enhanced Form */}
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    
-                    {/* Name Fields */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.4 }}
-                      >
+                  
+                  {/* Mobile Form Fields */}
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    {/* Name Fields - Stacked on Mobile */}
+                    <div className="space-y-4">
+                      <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           <User className="w-4 h-4 inline mr-2" />
                           First Name
@@ -3104,13 +3015,9 @@ function B2BcontentSyndication() {
                           className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500"
                           required
                         />
-                      </motion.div>
+                      </div>
                       
-                      <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.5 }}
-                      >
+                      <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           Last Name
                         </label>
@@ -3123,16 +3030,12 @@ function B2BcontentSyndication() {
                           className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500"
                           required
                         />
-                      </motion.div>
+                      </div>
                     </div>
                     
-                    {/* Contact Fields */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.6 }}
-                      >
+                    {/* Contact Fields - Stacked on Mobile */}
+                    <div className="space-y-4">
+                      <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           <Mail className="w-4 h-4 inline mr-2" />
                           Email Address
@@ -3146,13 +3049,9 @@ function B2BcontentSyndication() {
                           className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500"
                           required
                         />
-                      </motion.div>
+                      </div>
                       
-                      <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.7 }}
-                      >
+                      <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           <Phone className="w-4 h-4 inline mr-2" />
                           Phone Number
@@ -3165,34 +3064,317 @@ function B2BcontentSyndication() {
                           placeholder="Enter your phone number"
                           className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500"
                         />
-                      </motion.div>
+                      </div>
                     </div>
 
-                    {/* Service Selection */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.8 }}
+                    {/* Service Selection - Mobile Optimized */}
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-3">
+                        Which service interests you most?
+                      </label>
+                      <div className="space-y-2">
+                        {[
+                          { value: 'Content Syndication', icon: Target },
+                          { value: 'B2B Data & Intent', icon: Database },
+                          { value: 'Sales Development', icon: Users },
+                          { value: 'All Services', icon: Globe }
+                        ].map((option) => (
+                          <label 
+                            key={option.value} 
+                            className={`flex items-center p-3 border-2 rounded-xl cursor-pointer transition-all duration-300 ${
+                              formData.description === option.value 
+                                ? 'border-blue-500 bg-blue-50' 
+                                : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50'
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="description"
+                              value={option.value}
+                              checked={formData.description === option.value}
+                              onChange={handleInputChange}
+                              className="sr-only"
+                            />
+                            <option.icon 
+                              className={`w-5 h-5 mr-3 ${
+                                formData.description === option.value 
+                                  ? 'text-blue-600' 
+                                  : 'text-gray-400'
+                              }`} 
+                            />
+                            <span className={`font-medium text-sm ${
+                              formData.description === option.value 
+                                ? 'text-blue-800' 
+                                : 'text-gray-700'
+                            }`}>
+                              {option.value}
+                            </span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Message Field */}
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <MessageSquare className="w-4 h-4 inline mr-2" />
+                        Additional Details
+                      </label>
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        rows={3}
+                        placeholder="Tell us about your target audience, industry, or specific requirements..."
+                        className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500 resize-none"
+                      />
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-[#1a1a2e] via-[#16213e] to-[#0f3460] text-white font-bold py-4 px-8 rounded-xl disabled:opacity-50 transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden group"
                     >
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700]/20 to-[#FFA500]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      
+                      {isSubmitting ? (
+                        <div className="flex items-center justify-center relative z-10">
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
+                          Submitting Request...
+                        </div>
+                      ) : (
+                        <span className="flex items-center justify-center relative z-10">
+                          Get My Audience Count
+                          <ArrowUpRight className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                        </span>
+                      )}
+                    </button>
+                    
+                    <p className="text-center text-xs text-gray-500 mt-2">
+                      We'll respond within 24 hours with detailed insights
+                    </p>
+                  </form>
+                </div>
+              </div>
+
+              {/* Desktop Layout - Side by Side */}
+              <div className="hidden lg:flex h-full min-h-[700px]">
+                
+                {/* Left Side - Desktop Branding Panel */}
+                <div className="w-2/5 bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] p-12 text-white flex flex-col justify-center relative overflow-hidden">
+                  
+                  {/* Desktop Background Elements */}
+                  <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+                    <motion.div 
+                      className="absolute -top-10 -left-10 w-40 h-40 bg-gradient-to-br from-[#FFD700]/20 to-[#FFA500]/20 rounded-full blur-3xl"
+                      animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
+                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    />
+                    <motion.div 
+                      className="absolute -bottom-10 -right-10 w-32 h-32 bg-gradient-to-br from-[#4ECDC4]/20 to-[#44A08D]/20 rounded-full blur-2xl"
+                      animate={{ scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                    />
+                  </div>
+
+                  {/* Desktop Content */}
+                  <div className="relative z-10">
+                    <div className="mb-12">
+                      <div className="flex items-center mb-6">
+                        <div className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] p-3 rounded-2xl mr-4 shadow-xl">
+                          <Database className="w-8 h-8 text-black" />
+                        </div>
+                        <div>
+                          <h3 className="text-2xl font-bold">ProspectBase</h3>
+                          <p className="text-blue-200 text-sm">B2B Data Intelligence</p>
+                        </div>
+                      </div>
+                      
+                      <h2 className="text-5xl font-bold leading-tight mb-4">
+                        Unlock Your <br />
+                        <span className="bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FFD700] bg-clip-text text-transparent">
+                          Audience
+                        </span> <br />
+                        Potential
+                      </h2>
+                      
+                      <p className="text-blue-100 text-lg leading-relaxed">
+                        Get precise audience counts and insights to accelerate your B2B growth strategy.
+                      </p>
+                    </div>
+
+                    {/* Desktop Stats */}
+                    <div className="mb-12">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                        <p className="text-blue-200 text-sm mb-4 text-center">Global Database Coverage</p>
+                        <div className="grid grid-cols-3 gap-4">
+                          <div className="text-center">
+                            <div className="text-3xl font-bold text-[#FFD700] mb-1">185M+</div>
+                            <div className="text-xs text-blue-200">B2B Contacts</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-3xl font-bold text-[#4ECDC4] mb-1">142</div>
+                            <div className="text-xs text-blue-200">Countries</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-3xl font-bold text-[#FF6B6B] mb-1">25M+</div>
+                            <div className="text-xs text-blue-200">Companies</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Desktop Trust Indicators */}
+                    <div className="space-y-4">
+                      <div className="flex items-center space-x-3">
+                        <div className="flex space-x-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 text-[#FFD700] fill-current" />
+                          ))}
+                        </div>
+                        <span className="text-blue-200 text-sm">Trusted by 1000+ companies</span>
+                      </div>
+                      
+                      <div className="flex items-center space-x-3">
+                        <Shield className="w-5 h-5 text-[#4ECDC4]" />
+                        <span className="text-blue-200 text-sm">GDPR & CCPA Compliant</span>
+                      </div>
+                      
+                      <div className="flex items-center space-x-3">
+                        <Check className="w-5 h-5 text-green-400" />
+                        <span className="text-blue-200 text-sm">Real-time data verification</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Side - Desktop Form Panel */}
+                <div className="w-3/5 bg-gray-50 p-12 overflow-y-auto">
+                  
+                  {/* Desktop Form Header */}
+                  <div className="mb-8">
+                    <h3 className="text-3xl font-bold text-gray-800 mb-2">Request Audience Count</h3>
+                    <p className="text-gray-600">Fill out the form below and we'll provide you with detailed audience insights within 24 hours.</p>
+                  </div>
+
+                  {/* Desktop Status Messages */}
+                  {submitStatus === 'success' && (
+                    <div className="mb-6 p-4 bg-green-50 border-l-4 border-green-400 rounded-r-xl">
+                      <div className="flex items-center">
+                        <div className="bg-green-400 rounded-full p-1 mr-3">
+                          <Check className="w-4 h-4 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="text-green-800 font-semibold">Success!</h4>
+                          <p className="text-green-700 text-sm">Your request has been submitted. We'll get back to you soon!</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {submitStatus === 'error' && (
+                    <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-400 rounded-r-xl">
+                      <div className="flex items-center">
+                        <X className="w-5 h-5 text-red-400 mr-3" />
+                        <div>
+                          <h4 className="text-red-800 font-semibold">Error</h4>
+                          <p className="text-red-700 text-sm">There was an error submitting your request. Please try again.</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Desktop Form */}
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    
+                    {/* Desktop Name Fields - Side by Side */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          <User className="w-4 h-4 inline mr-2" />
+                          First Name
+                        </label>
+                        <input
+                          type="text"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleInputChange}
+                          placeholder="Enter your first name"
+                          className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500"
+                          required
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Last Name
+                        </label>
+                        <input
+                          type="text"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleInputChange}
+                          placeholder="Enter your last name"
+                          className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500"
+                          required
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Desktop Contact Fields - Side by Side */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          <Mail className="w-4 h-4 inline mr-2" />
+                          Email Address
+                        </label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="Enter your email"
+                          className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500"
+                          required
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          <Phone className="w-4 h-4 inline mr-2" />
+                          Phone Number
+                        </label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          placeholder="Enter your phone number"
+                          className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Desktop Service Selection - Grid Layout */}
+                    <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-4">
                         Which service interests you most?
                       </label>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="grid grid-cols-2 gap-3">
                         {[
-                          { value: 'Content Syndication', icon: Target, color: 'blue' },
-                          { value: 'B2B Data & Intent', icon: Database, color: 'green' },
-                          { value: 'Sales Development', icon: Users, color: 'purple' },
-                          { value: 'All Services', icon: Globe, color: 'orange' }
+                          { value: 'Content Syndication', icon: Target },
+                          { value: 'B2B Data & Intent', icon: Database },
+                          { value: 'Sales Development', icon: Users },
+                          { value: 'All Services', icon: Globe }
                         ].map((option) => (
-                          <motion.label 
+                          <label 
                             key={option.value} 
                             className={`flex items-center p-4 border-2 rounded-xl cursor-pointer transition-all duration-300 ${
                               formData.description === option.value 
                                 ? 'border-blue-500 bg-blue-50' 
                                 : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50'
                             }`}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
                           >
                             <input
                               type="radio"
@@ -3216,17 +3398,13 @@ function B2BcontentSyndication() {
                             }`}>
                               {option.value}
                             </span>
-                          </motion.label>
+                          </label>
                         ))}
                       </div>
-                    </motion.div>
+                    </div>
 
-                    {/* Message Field */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.9 }}
-                    >
+                    {/* Desktop Message Field */}
+                    <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         <MessageSquare className="w-4 h-4 inline mr-2" />
                         Additional Details
@@ -3239,40 +3417,32 @@ function B2BcontentSyndication() {
                         placeholder="Tell us about your target audience, industry, or specific requirements..."
                         className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500 resize-none"
                       />
-                    </motion.div>
+                    </div>
 
-                    {/* Submit Button */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1 }}
+                    {/* Desktop Submit Button */}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-[#1a1a2e] via-[#16213e] to-[#0f3460] text-white font-bold py-4 px-8 rounded-xl disabled:opacity-50 transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden group"
                     >
-                      <motion.button
-                        type="submit"
-                        disabled={isSubmitting}
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="w-full bg-gradient-to-r from-[#1a1a2e] via-[#16213e] to-[#0f3460] text-white font-bold py-4 px-8 rounded-xl disabled:opacity-50 transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden group"
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700]/20 to-[#FFA500]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        
-                        {isSubmitting ? (
-                          <div className="flex items-center justify-center relative z-10">
-                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
-                            Submitting Request...
-                          </div>
-                        ) : (
-                          <span className="flex items-center justify-center relative z-10">
-                            Get My Audience Count
-                            <ArrowUpRight className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-                          </span>
-                        )}
-                      </motion.button>
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700]/20 to-[#FFA500]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       
-                      <p className="text-center text-sm text-gray-500 mt-3">
-                        We'll respond within 24 hours with detailed insights
-                      </p>
-                    </motion.div>
+                      {isSubmitting ? (
+                        <div className="flex items-center justify-center relative z-10">
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
+                          Submitting Request...
+                        </div>
+                      ) : (
+                        <span className="flex items-center justify-center relative z-10">
+                          Get My Audience Count
+                          <ArrowUpRight className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                        </span>
+                      )}
+                    </button>
+                    
+                    <p className="text-center text-sm text-gray-500 mt-3">
+                      We'll respond within 24 hours with detailed insights
+                    </p>
                   </form>
                 </div>
               </div>
