@@ -3470,7 +3470,7 @@
 // export default B2BcontentSyndication;
 "use client";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Plus, Upload, Target, Users, Database, X } from "lucide-react";
+import { ArrowUpRight, Plus, Upload, Target, Users, Database, X, Globe, Zap, Shield } from "lucide-react";
 import { useState } from "react";
 import Head from 'next/head';
 import Link from 'next/link';
@@ -3863,7 +3863,7 @@ function B2BcontentSyndication() {
           </div>
         </motion.section>
 
-        {/* Solution 3: B2B Data & Intent - IMPROVED LAYOUT */}
+        {/* Solution 3: B2B Data & Intent - ENHANCED WITH CONTENT ABOVE, IMAGE BELOW */}
         <motion.section 
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -3871,183 +3871,253 @@ function B2BcontentSyndication() {
           transition={{ duration: 1, delay: 0.4 }}
           className="mb-20"
         >
-          {/* Header Section */}
+          {/* Header Section with Enhanced Styling */}
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-20"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <motion.div 
-              className="flex items-center justify-center mb-8"
+              className="inline-flex items-center justify-center mb-10 relative"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] p-4 rounded-full mr-4 shadow-lg">
-                <Database className="text-black w-10 h-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700]/30 to-[#FFA500]/30 rounded-full blur-xl scale-150"></div>
+              <div className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] p-6 rounded-full mr-6 shadow-2xl relative z-10">
+                <Database className="text-black w-12 h-12" />
               </div>
-              <h3 className="text-4xl font-bold text-[#FFD700]">B2B Data & Intent</h3>
+              <h3 className="text-5xl md:text-6xl font-bold text-[#FFD700] relative z-10">B2B Data & Intent</h3>
             </motion.div>
             
-            <p className="text-2xl font-semibold text-gray-300 leading-relaxed max-w-4xl mx-auto">
-              Global B2B Data Intelligence - Accelerate your sales and marketing efforts with trustworthy data and smarter insights.
-            </p>
-          </motion.div>
-
-          {/* Content Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Left Side - Enhanced Content */}
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+            <motion.p 
+              className="text-3xl font-semibold text-gray-300 leading-relaxed max-w-5xl mx-auto mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-8"
             >
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-gradient-to-r from-gray-800/60 to-gray-900/60 p-8 rounded-xl backdrop-blur-sm border border-[#FFD700]/20"
-              >
-                <h4 className="text-[#FFD700] font-bold text-xl mb-6 flex items-center">
-                  <div className="w-3 h-3 bg-[#FFD700] rounded-full mr-4"></div>
-                  OUR SOLUTION
-                </h4>
-                <p className="text-gray-300 mb-8 leading-relaxed text-lg">
-                  Our comprehensive B2B data intelligence platform provides you with the insights needed to identify, target, 
-                  and engage your ideal prospects with precision. Transform your marketing campaigns with data-driven intelligence 
-                  that delivers measurable results.
-                </p>
-                
-                {/* Feature highlights */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-[#FFD700] rounded-full"></div>
-                    <span className="text-gray-300 font-medium">185M+ Contacts</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-[#FFD700] rounded-full"></div>
-                    <span className="text-gray-300 font-medium">142 Countries</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-[#FFD700] rounded-full"></div>
-                    <span className="text-gray-300 font-medium">25M+ Accounts</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-[#FFD700] rounded-full"></div>
-                    <span className="text-gray-300 font-medium">Real-time Intent</span>
-                  </div>
-                </div>
-
-                <motion.button
-                  onClick={() => setShowModal(true)}
-                  whileHover={{ 
-                    scale: 1.08, 
-                    y: -3,
-                    boxShadow: "0 20px 50px -10px rgba(255, 216, 0, 0.6)"
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-[#FFD800] to-[#FFA500] text-black font-bold py-4 px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl text-lg w-full md:w-auto"
-                >
-                  Request Audience Count
-                </motion.button>
-              </motion.div>
-
-              {/* Additional Benefits */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="bg-gradient-to-r from-gray-800/60 to-gray-900/60 p-8 rounded-xl backdrop-blur-sm border border-[#FFD700]/20"
-              >
-                <h4 className="text-[#FFD700] font-bold text-xl mb-6 flex items-center">
-                  <div className="w-3 h-3 bg-[#FFD700] rounded-full mr-4"></div>
-                  KEY BENEFITS
-                </h4>
-                <ul className="space-y-4 text-gray-300">
-                  <li className="flex items-start">
-                    <div className="w-1.5 h-1.5 bg-[#FFD700] rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span>Enhanced targeting precision with first-party and compliant third-party data</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-1.5 h-1.5 bg-[#FFD700] rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span>Real-time intent signals to identify in-market prospects</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-1.5 h-1.5 bg-[#FFD700] rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span>Global coverage with local market insights</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-1.5 h-1.5 bg-[#FFD700] rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span>Seamless integration with your existing tech stack</span>
-                  </li>
-                </ul>
-              </motion.div>
-            </motion.div>
-
-            {/* Right Side - Enhanced Image */}
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              Global B2B Data Intelligence Platform
+            </motion.p>
+            
+            <motion.p 
+              className="text-xl text-gray-400 max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="lg:sticky lg:top-8"
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="relative group">
+              Accelerate your sales and marketing efforts with trustworthy data and smarter insights that deliver measurable results.
+            </motion.p>
+          </motion.div>
+
+          {/* Enhanced Content Section */}
+          <div className="max-w-7xl mx-auto mb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+              {/* Left Column - Solution */}
+              <motion.div 
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
                 <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="relative rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-r from-[#FFD700]/20 to-[#FFA500]/20 p-2"
+                  className="bg-gradient-to-br from-gray-800/60 via-gray-900/80 to-gray-800/60 p-10 rounded-2xl backdrop-blur-sm border border-[#FFD700]/30 shadow-2xl relative overflow-hidden group"
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
-                    <Image
-                      src="/images/work2.webp"
-                      alt="B2B Data Intelligence Dashboard"
-                      fill
-                      className="object-cover hover:scale-105 transition-transform duration-700"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                    
-                    {/* Overlay Content */}
-                    <div className="absolute bottom-6 left-6 right-6">
-                      <div className="bg-black/60 backdrop-blur-sm rounded-lg p-4">
-                        <h5 className="text-white font-bold text-lg mb-2">Data Intelligence Platform</h5>
-                        <p className="text-gray-200 text-sm">
-                          Transform your data into actionable insights with our advanced analytics platform.
-                        </p>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#FFD700]/10 to-[#FFA500]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  <h4 className="text-[#FFD700] font-bold text-2xl mb-8 flex items-center relative z-10">
+                    <div className="w-4 h-4 bg-[#FFD700] rounded-full mr-4 animate-pulse"></div>
+                    OUR SOLUTION
+                  </h4>
+                  
+                  <p className="text-gray-300 mb-10 leading-relaxed text-lg relative z-10">
+                    Our comprehensive B2B data intelligence platform provides you with the insights needed to identify, 
+                    target, and engage your ideal prospects with precision. Transform your marketing campaigns with 
+                    data-driven intelligence that delivers measurable results.
+                  </p>
+                  
+                  {/* Enhanced Feature Grid */}
+                  <div className="grid grid-cols-2 gap-6 mb-10 relative z-10">
+                    <motion.div 
+                      className="flex items-center space-x-3 bg-gray-800/40 p-4 rounded-xl"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <div className="w-3 h-3 bg-[#FFD700] rounded-full"></div>
+                      <span className="text-gray-300 font-semibold">185M+ Contacts</span>
+                    </motion.div>
+                    <motion.div 
+                      className="flex items-center space-x-3 bg-gray-800/40 p-4 rounded-xl"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <div className="w-3 h-3 bg-[#FFD700] rounded-full"></div>
+                      <span className="text-gray-300 font-semibold">142 Countries</span>
+                    </motion.div>
+                    <motion.div 
+                      className="flex items-center space-x-3 bg-gray-800/40 p-4 rounded-xl"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <div className="w-3 h-3 bg-[#FFD700] rounded-full"></div>
+                      <span className="text-gray-300 font-semibold">25M+ Accounts</span>
+                    </motion.div>
+                    <motion.div 
+                      className="flex items-center space-x-3 bg-gray-800/40 p-4 rounded-xl"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <div className="w-3 h-3 bg-[#FFD700] rounded-full"></div>
+                      <span className="text-gray-300 font-semibold">Real-time Intent</span>
+                    </motion.div>
+                  </div>
+
+                  <motion.button
+                    onClick={() => setShowModal(true)}
+                    whileHover={{ 
+                      scale: 1.08, 
+                      y: -3,
+                      boxShadow: "0 25px 60px -10px rgba(255, 216, 0, 0.6)"
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-gradient-to-r from-[#FFD800] to-[#FFA500] text-black font-bold py-5 px-12 rounded-full transition-all duration-300 shadow-2xl text-lg w-full relative z-10 group"
+                  >
+                    <span className="flex items-center justify-center">
+                      Request Audience Count
+                      <ArrowUpRight className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                    </span>
+                  </motion.button>
+                </motion.div>
+              </motion.div>
+
+              {/* Right Column - Benefits */}
+              <motion.div 
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <motion.div
+                  className="bg-gradient-to-br from-gray-800/60 via-gray-900/80 to-gray-800/60 p-10 rounded-2xl backdrop-blur-sm border border-[#FFD700]/30 shadow-2xl relative overflow-hidden group h-full"
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#FFD700]/10 to-[#FFA500]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  <h4 className="text-[#FFD700] font-bold text-2xl mb-8 flex items-center relative z-10">
+                    <div className="w-4 h-4 bg-[#FFD700] rounded-full mr-4 animate-pulse"></div>
+                    KEY BENEFITS
+                  </h4>
+                  
+                  <ul className="space-y-6 text-gray-300 relative z-10">
+                    <motion.li 
+                      className="flex items-start bg-gray-800/30 p-4 rounded-xl"
+                      whileHover={{ x: 5 }}
+                    >
+                      <Shield className="w-6 h-6 text-[#FFD700] mt-1 mr-4 flex-shrink-0" />
+                      <span className="text-lg">Enhanced targeting precision with first-party and compliant third-party data</span>
+                    </motion.li>
+                    <motion.li 
+                      className="flex items-start bg-gray-800/30 p-4 rounded-xl"
+                      whileHover={{ x: 5 }}
+                    >
+                      <Zap className="w-6 h-6 text-[#FFD700] mt-1 mr-4 flex-shrink-0" />
+                      <span className="text-lg">Real-time intent signals to identify in-market prospects</span>
+                    </motion.li>
+                    <motion.li 
+                      className="flex items-start bg-gray-800/30 p-4 rounded-xl"
+                      whileHover={{ x: 5 }}
+                    >
+                      <Globe className="w-6 h-6 text-[#FFD700] mt-1 mr-4 flex-shrink-0" />
+                      <span className="text-lg">Global coverage with local market insights</span>
+                    </motion.li>
+                    <motion.li 
+                      className="flex items-start bg-gray-800/30 p-4 rounded-xl"
+                      whileHover={{ x: 5 }}
+                    >
+                      <Database className="w-6 h-6 text-[#FFD700] mt-1 mr-4 flex-shrink-0" />
+                      <span className="text-lg">Seamless integration with your existing tech stack</span>
+                    </motion.li>
+                  </ul>
+                </motion.div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Image Section Below Content - Enhanced */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="max-w-6xl mx-auto"
+          >
+            <div className="relative group">
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-r from-[#FFD700]/20 to-[#FFA500]/20 p-3"
+              >
+                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
+                  <Image
+                    src="/images/work2.webp"
+                    alt="B2B Data Intelligence Dashboard"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  
+                  {/* Enhanced Overlay Content */}
+                  <div className="absolute bottom-8 left-8 right-8">
+                    <div className="bg-black/70 backdrop-blur-sm rounded-2xl p-6 border border-[#FFD700]/30">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h5 className="text-white font-bold text-2xl mb-2">Data Intelligence Platform</h5>
+                          <p className="text-gray-200 text-lg">
+                            Transform your data into actionable insights with our advanced analytics platform.
+                          </p>
+                        </div>
+                        <div className="flex space-x-2">
+                          <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                          <span className="text-green-400 font-semibold">Live</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </motion.div>
-                
-                {/* Enhanced Decorative Elements */}
-                <div className="absolute -top-8 -left-8 w-32 h-32 bg-gradient-to-br from-[#FFD700] to-[#FFA500] rounded-full opacity-10 blur-2xl"></div>
-                <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-[#FFD700] to-[#FFA500] rounded-full opacity-20 blur-xl"></div>
-                
-                {/* Floating Data Points */}
-                <motion.div 
-                  className="absolute top-4 right-4 bg-[#FFD700] text-black px-3 py-1 rounded-full text-sm font-bold"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  Live Data
-                </motion.div>
-                
-                <motion.div 
-                  className="absolute bottom-20 -left-4 bg-[#FFA500] text-black px-3 py-1 rounded-full text-sm font-bold"
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                >
-                  Global Reach
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
+                </div>
+              </motion.div>
+              
+              {/* Enhanced Decorative Elements */}
+              <div className="absolute -top-12 -left-12 w-40 h-40 bg-gradient-to-br from-[#FFD700] to-[#FFA500] rounded-full opacity-10 blur-3xl"></div>
+              <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-gradient-to-br from-[#FFD700] to-[#FFA500] rounded-full opacity-20 blur-2xl"></div>
+              
+              {/* Floating Data Points */}
+              <motion.div 
+                className="absolute -top-6 right-20 bg-[#FFD700] text-black px-4 py-2 rounded-full text-sm font-bold shadow-xl"
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                185M+ Contacts
+              </motion.div>
+              
+              <motion.div 
+                className="absolute top-1/2 -left-8 bg-[#FFA500] text-black px-4 py-2 rounded-full text-sm font-bold shadow-xl"
+                animate={{ y: [0, 15, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              >
+                142 Countries
+              </motion.div>
+              
+              <motion.div 
+                className="absolute bottom-1/4 -right-6 bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black px-4 py-2 rounded-full text-sm font-bold shadow-xl"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              >
+                Real-time Intent
+              </motion.div>
+            </div>
+          </motion.div>
         </motion.section>
       </div>
 
