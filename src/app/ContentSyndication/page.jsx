@@ -1393,7 +1393,7 @@ function B2BcontentSyndication() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-2xl mb-6">
+                <div className="relative w-full h-74 rounded-xl overflow-hidden shadow-2xl mb-6">
                   <Image
                     src="images/work1.webp"
                     alt="B2B Data & Intent"
