@@ -788,63 +788,11 @@ function SalesDevelopment() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       
 
-          <div className="flex justify-center">
-            {/* Decorative ringed image frame */}
-            <div className="relative">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/50 to-transparent blur-xl" />
-              <div className="relative p-2 rounded-full bg-white/70 shadow-[0_18px_40px_-16px_rgba(0,0,0,0.35)] border border-black/10">
-                <div className="p-3 rounded-full bg-white shadow-inner ring-1 ring-black/10">
-                  <Image
-                    src="/images/phone.webp"
-                    alt="Phone"
-                    width={300}
-                    height={300}
-                    className="rounded-full border-8 border-yellow-300 shadow-[0_20px_45px_-20px_rgba(0,0,0,0.45)]"
-                    priority={false}
-                  />
-                </div>
-              </div>
-              {/* subtle animated glow */}
-              <motion.div
-                initial={{ opacity: 0.25 }}
-                animate={{ opacity: [0.15, 0.35, 0.15] }}
-                transition={{ repeat: Infinity, duration: 3 }}
-                className="pointer-events-none absolute -inset-4 rounded-full bg-yellow-200/30 blur-2xl"
-              />
-            </div>
-          </div>
+          
         </div>
 
         {/* Bottom Cards */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              title: "Launch a sales development campaign",
-              content:
-                "Define your ICP and outreach strategy with our team for maximum impact.",
-            },
-            {
-              title: "Enhance with verified contact data",
-              content:
-                "Append accurate mobile numbers with Modigie’s real-time validation.",
-            },
-            {
-              title: "Increased call-to-connect rates",
-              content:
-                "Equip sales with hot leads and validated data to reduce time waste.",
-            },
-          ].map((card, i) => (
-            <div
-              key={i}
-              className="bg-yellow-100/70 p-6 rounded-2xl shadow-[0_16px_40px_-16px_rgba(0,0,0,0.3)] border border-black/10"
-            >
-              <h3 className="font-extrabold text-lg mb-2 text-black/90">
-                {card.title}
-              </h3>
-              <p className="text-black/70 leading-relaxed">{card.content}</p>
-            </div>
-          ))}
-        </div>
+        
       </section>
 
       {/* FAQ Section */}
