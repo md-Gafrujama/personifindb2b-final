@@ -2710,61 +2710,62 @@ function ContentSyndication() {
       <Lownav />
 
       {/* Hero Section */}
-      <section
-        className="relative w-full min-h=[88vh] mt-24 bg-cover bg-center flex items-center justify-start px-6 sm:px-8 md:px-16 lg:px-32 overflow-hidden"
-        style={{ backgroundImage: "url('/images/content-syndication-hero.jpg')" }}
-      >
-        {/* subtle overlay for contrast */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/65 via-black/30 to-black/60" />
-        {/* top/bottom decorative borders */}
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent" />
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="relative z-10 text-left text-white max-w-4xl"
-        >
-          <div className="flex items-center mb-6">
-            <div className="bg-[#FFD800] text-black font-bold text-xl rounded-2xl w-14 h-14 flex items-center justify-center mr-3 shadow-[0_10px_30px_-10px_rgba(255,216,0,0.7)] ring-1 ring-black/10">
-              CS
-            </div>
-            <span className="text-white/90 text-2xl font-semibold tracking-wide">
-              content syndication
-            </span>
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] mb-6 drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
-            Content syndication that
-            <br />
-            expands reach and fills
-            <br />
-            <span className="text-[#FFD800]">your funnel with intent.</span>
-          </h1>
-
-          <Link href="/contact" className="inline-block">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              className="group bg-[#FFD800] text-black text-lg font-semibold py-3.5 px-8 rounded-full shadow-[0_14px_30px_-12px_rgba(255,216,0,0.8)] ring-1 ring-black/10 transition-all duration-300"
+    <section
+            className="relative w-full min-h-[88vh] mt-24 bg-cover bg-center flex items-center justify-start px-6 sm:px-8 md:px-16 lg:px-32 overflow-hidden"
+            style={{ backgroundImage: "url('/images/saleshero.jpg')" }}
+          >
+            {/* subtle overlay for contrast */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/65 via-black/30 to-black/60" />
+            {/* top/bottom decorative borders */}
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent" />
+    
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="relative z-10 text-left text-white max-w-4xl"
             >
-              <span className="inline-flex items-center gap-12">
-                GET IN TOUCH
-                <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </span>
-            </motion.button>
-          </Link>
-        </motion.div>
-
-        {/* decorative floating shapes */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 0.25, scale: 1 }}
-          transition={{ duration: 1 }}
-          className="pointer-events-none absolute -right-16 top-20 h-64 w-64 rounded-full bg-[#FFD800] blur-3xl"
-        />
-      </section>
+              <div className="flex items-center mb-6">
+                <div className="bg-[#FFD800] text-black font-bold text-xl rounded-2xl w-14 h-14 flex items-center justify-center mr-3 shadow-[0_10px_30px_-10px_rgba(255,216,0,0.7)] ring-1 ring-black/10">
+                  CS
+                </div>
+                <span className="text-white/90 text-2xl font-semibold tracking-wide">
+                   Content syndication
+                </span>
+              </div>
+    
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] mb-6 drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
+               Content syndication that
+expands reach and fills
+                <br />
+                expands reach and fills
+                <br />
+                <span className="text-[#FFD800]">your funnel with intent..</span>
+              </h1>
+    
+              <Link href="/contact" className="inline-block">
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group bg-[#FFD800] text-black text-lg font-semibold py-3.5 px-8 rounded-full shadow-[0_14px_30px_-12px_rgba(255,216,0,0.8)] ring-1 ring-black/10 transition-all duration-300"
+                >
+                  <span className="inline-flex items-center gap-2">
+                    GET IN TOUCH
+                    <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
+                </motion.button>
+              </Link>
+            </motion.div>
+    
+            {/* decorative floating shapes */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 0.25, scale: 1 }}
+              transition={{ duration: 1 }}
+              className="pointer-events-none absolute -right-16 top-20 h-64 w-64 rounded-full bg-[#FFD800] blur-3xl"
+            />
+          </section>
 
       {/* Value Proposition / Solution */}
       <section className="w-full bg-[#0B1715] text-white py-20 px-6 sm:px-8 md:px-16 lg:px-32 relative">
@@ -2807,7 +2808,7 @@ function ContentSyndication() {
             <div className="relative rounded-2xl overflow-hidden">
               <div className="absolute inset-0 pointer-events-none ring-1 ring-white/10 rounded-2xl" />
               <Image
-                src="/images/workflow-content-syndication.webp"
+                src="/images/work2.webp"
                 alt="Content Syndication Workflow"
                 width={1600}
                 height={1000}
