@@ -550,7 +550,7 @@ function SalesDevelopment() {
         <meta name="twitter:image" content="/images/twitter-sales-development.jpg" />
       </Head>
 
-      {/* Page background accent glow */}
+      Page background accent glow
       <div className="pointer-events-none fixed inset-0 -z-10 opacity-60">
         <div className="absolute -top-10 right-0 h-72 w-72 rounded-full bg-[#FFD800]/20 blur-3xl" />
         <div className="absolute bottom-0 left-10 h-80 w-80 rounded-full bg-emerald-400/10 blur-3xl" />
@@ -786,24 +786,7 @@ function SalesDevelopment() {
       <section className="bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 w-full text-black py-20 px-6 sm:px-10 md:px-20 lg:px-32 xl:px-48 relative">
         <div className="absolute inset-x-0 top-0 h-[1px] bg-black/10" />
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-4xl font-extrabold leading-tight mb-6">
-              Boost connect rates with direct
-              <br className="hidden sm:block" />
-              dial mobile data.
-            </h2>
-            <p className="mb-4 text-lg text-black/80 leading-relaxed">
-              In today’s competitive landscape, accurate contact information is
-              critical. Our partnership with Modigie provides{" "}
-              <strong>verified mobile numbers</strong> for prospects, dramatically
-              improving connect rates and sales productivity.
-            </p>
-            <p className="text-lg text-black/80 leading-relaxed">
-              We enhance sales development by appending validated mobile numbers to
-              prospect records, giving teams the best chance to start meaningful
-              conversations.
-            </p>
-          </div>
+      
 
           <div className="flex justify-center">
             {/* Decorative ringed image frame */}
