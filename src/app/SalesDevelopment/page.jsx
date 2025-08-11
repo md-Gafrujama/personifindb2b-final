@@ -279,75 +279,7 @@ function SalesDevelopment() {
           </motion.div>
         </section>
 
-        {/* Case Study Section */}
-        <section className="bg-[#0E1F1C] text-white w-full py-32 px-6 sm:px-12 md:px-20 lg:px-40 xl:px-60 -mt-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16"
-          >
-            <motion.div
-              className="flex-1"
-              initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-            >
-              <p className="uppercase text-[#ffd800] font-semibold text-sm mb-2">
-                Customer Success Story
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">
-                Enterprise SaaS Company 3X Pipeline with Our Sales Development
-              </h2>
-              <p className="text-gray-300 mb-8">
-                By implementing our targeted sales development approach, this
-                SaaS provider went from inconsistent pipeline to reliably
-                generating 50+ qualified opportunities per month, with 35%
-                converting to closed-won deals.
-              </p>
-              {/* Using Next.js Link for client-side navigation */}
-              <Link href="/" passHref>
-                <motion.p
-                  whileHover={{ x: 5 }}
-                  className="text-2xl text-white font-semibold inline-block cursor-pointer"
-                >
-                  READ FULL CASE STUDY →
-                </motion.p>
-              </Link>
-            </motion.div>
-
-            {/* Image Section */}
-            <motion.div
-              className="flex-1 max-w-xl"
-              initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              <motion.div
-                whileHover={{
-                  scale: 1.02,
-                  boxShadow: "0 15px 30px -5px rgba(0, 0, 0, 0.5)",
-                }}
-                className="w-full rounded-xl shadow-xl overflow-hidden relative"
-                style={{ marginTop: "-200px", position: "relative", zIndex: 20 }}
-              >
-                <div className="w-full h-[700px] aspect-[1/3]">
-                  {/* Using Next.js Image for optimization and lazy loading */}
-                  <Image
-                    src="/images/display-ads.webp"
-                    alt="Display Ads"
-                    fill
-                    className="object-cover rounded-xl"
-                    priority={false} // Images below the fold should not have priority
-                  />
-                </div>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </section>
+       
       </div>
 
       {/* Modigie Section */}
