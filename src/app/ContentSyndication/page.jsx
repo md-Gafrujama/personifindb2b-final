@@ -2211,7 +2211,7 @@
 
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Plus, X, Loader2, Sparkles } from "lucide-react";
+import { ArrowUpRight, Plus, X, Loader2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Head from "next/head";
@@ -2232,33 +2232,18 @@ function ContentSyndication() {
   }, []);
 
   const cardVariants = {
-    offscreen: { 
-      y: 60, 
-      opacity: 0,
-      scale: 0.95
-    },
+    offscreen: { y: 50, opacity: 0 },
     onscreen: {
       y: 0,
       opacity: 1,
-      scale: 1,
-      transition: { 
-        type: "spring", 
-        bounce: 0.3, 
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      },
+      transition: { type: "spring", bounce: 0.35, duration: 0.7 },
     },
   };
 
   const hoverEffect = {
-    scale: 1.05,
-    y: -5,
-    rotateY: 2,
-    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4)",
-    transition: { 
-      duration: 0.3, 
-      ease: [0.25, 0.46, 0.45, 0.94]
-    },
+    scale: 1.04,
+    boxShadow: "0 16px 40px -10px rgba(0, 0, 0, 0.35)",
+    transition: { duration: 0.25, ease: "easeOut" },
   };
 
   const [openQuestion, setOpenQuestion] = useState(null);
@@ -2272,28 +2257,40 @@ function ContentSyndication() {
 
   const faqItems = [
     {
-      question: "What is content syndication and how does it support demand generation?",
-      answer: "Content syndication distributes your assets (eBooks, reports, webinars) across trusted third-party networks to reach targeted audiences and capture opt-in leads, amplifying top/mid-funnel demand and accelerating pipeline creation.",
+      question:
+        "What is content syndication and how does it support demand generation?",
+      answer:
+        "Content syndication distributes your assets (eBooks, reports, webinars) across trusted third-party networks to reach targeted audiences and capture opt-in leads, amplifying top/mid-funnel demand and accelerating pipeline creation.",
     },
     {
-      question: "What types of content work best for syndication programs?",
-      answer: "High-intent, informative assets like industry reports, benchmark studies, ROI guides, product comparison sheets, and webinar recordings typically perform best because they map to real research needs and buying stages.",
+      question:
+        "What types of content work best for syndication programs?",
+      answer:
+        "High-intent, informative assets like industry reports, benchmark studies, ROI guides, product comparison sheets, and webinar recordings typically perform best because they map to real research needs and buying stages.",
     },
     {
-      question: "How is lead quality ensured in content syndication?",
-      answer: "We apply firmographic, technographic, and intent filters, enforce data validation, require explicit opt-in, and implement QA checks (email/phone verification and de-duplication) to keep only qualified, compliant leads.",
+      question:
+        "How is lead quality ensured in content syndication?",
+      answer:
+        "We apply firmographic, technographic, and intent filters, enforce data validation, require explicit opt-in, and implement QA checks (email/phone verification and de-duplication) to keep only qualified, compliant leads.",
     },
     {
-      question: "Which KPIs matter most for content syndication performance?",
-      answer: "Key KPIs include cost per lead (CPL), lead acceptance rate (LAR), MQL-to-SQL conversion, opportunity rate, and pipeline/revenue influenced. Monitoring these ensures budget efficiency and downstream impact.",
+      question:
+        "Which KPIs matter most for content syndication performance?",
+      answer:
+        "Key KPIs include cost per lead (CPL), lead acceptance rate (LAR), MQL-to-SQL conversion, opportunity rate, and pipeline/revenue influenced. Monitoring these ensures budget efficiency and downstream impact.",
     },
     {
-      question: "How do you align content syndication with sales follow-up?",
-      answer: "We sync delivery cadences with sales SLAs, pass structured fields for fast routing, and provide context (asset, topic, persona) so SDRs can personalize follow-up within hours and maintain message continuity.",
+      question:
+        "How do you align content syndication with sales follow-up?",
+      answer:
+        "We sync delivery cadences with sales SLAs, pass structured fields for fast routing, and provide context (asset, topic, persona) so SDRs can personalize follow-up within hours and maintain message continuity.",
     },
     {
-      question: "How can AI improve content syndication outcomes?",
-      answer: "AI can enhance audience matching, predict asset-topic fit, flag likely non-compliant submissions, summarize content for landing pages, and generate tailored follow-up copy for different personas and buying stages.",
+      question:
+        "How can AI improve content syndication outcomes?",
+      answer:
+        "AI can enhance audience matching, predict asset-topic fit, flag likely non-compliant submissions, summarize content for landing pages, and generate tailored follow-up copy for different personas and buying stages.",
     },
   ];
 
@@ -2305,6 +2302,7 @@ function ContentSyndication() {
     }
     if (isFormOpen) {
       document.addEventListener("keydown", onKeyDown);
+      // Prevent background scroll only (no blur applied to background)
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -2345,13 +2343,15 @@ function ContentSyndication() {
       if (data.success) {
         setFormResult({
           status: "success",
-          message: "Thanks! Your request has been received. We'll be in touch shortly.",
+          message:
+            "Thanks! Your request has been received. We’ll be in touch shortly.",
         });
         form.reset();
       } else {
         setFormResult({
           status: "error",
-          message: data.message || "Something went wrong. Please try again later.",
+          message:
+            data.message || "Something went wrong. Please try again later.",
         });
       }
     } catch (err) {
@@ -2364,13 +2364,13 @@ function ContentSyndication() {
     }
   }
 
-  // Enhanced Form component with improved animations
+  // Form component (updated UI with non-blurred background and focus trap feel)
   const FormModal = () => {
     return (
       <AnimatePresence>
         {isFormOpen && (
           <>
-            {/* Enhanced Backdrop */}
+            {/* Backdrop - removed backdrop-blur, softened with gradient + noise */}
             <motion.div
               className="fixed inset-0 z-[70]"
               initial={{ opacity: 0 }}
@@ -2378,173 +2378,176 @@ function ContentSyndication() {
               exit={{ opacity: 0 }}
               onClick={handleCloseForm}
               style={{
-                background: "radial-gradient(90% 120% at 50% 50%, rgba(17,17,17,0.85) 0%, rgba(0,0,0,0.75) 100%)",
+                background:
+                  "radial-gradient(90% 120% at 50% 50%, rgba(17,17,17,0.80) 0%, rgba(0,0,0,0.70) 100%)",
               }}
             >
-              {/* Enhanced noise texture */}
+              {/* Subtle noise canvas for premium feel */}
               <div
-                className="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-overlay"
+                className="absolute inset-0 opacity-[0.06] pointer-events-none mix-blend-overlay"
                 style={{
-                  backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)' opacity='.85'/%3E%3C/svg%3E\")",
+                  backgroundImage:
+                    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)' opacity='.85'/%3E%3C/svg%3E\")",
                 }}
               />
             </motion.div>
 
-            {/* Enhanced Modal */}
+            {/* Modal */}
             <motion.div
               role="dialog"
               aria-modal="true"
               aria-labelledby="cs-form-title"
               className="fixed z-[80] inset-0 flex items-center justify-center p-4 sm:p-6"
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              initial={{ opacity: 0, scale: 0.98, y: 12 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              exit={{ opacity: 0, scale: 0.98, y: 12 }}
             >
-              <motion.div
-                className="relative w-full max-w-2xl rounded-3xl bg-white/98 backdrop-blur-xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.6)] ring-1 ring-black/5 overflow-hidden"
+              <div
+                className="relative w-full max-w-2xl rounded-2xl bg-white/95 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.55)] ring-1 ring-black/10 overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
                 ref={modalRef}
-                layoutId="form-modal"
               >
-                {/* Enhanced accent bar with gradient */}
-                <div className="h-1.5 w-full bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500" />
+                {/* Accent top bar */}
+                <div className="h-1 w-full bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500" />
 
-                {/* Enhanced Header */}
-                <div className="p-6 md:p-8 flex items-start justify-between bg-gradient-to-b from-gray-50/50 to-transparent">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-2xl flex items-center justify-center shadow-lg">
-                        <Sparkles className="w-6 h-6 text-black" />
-                      </div>
-                      <div className="h-6 w-px bg-gradient-to-b from-gray-300 to-transparent" />
-                      <span className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Content Syndication</span>
-                    </div>
+                {/* Header */}
+                <div className="p-6 md:p-7 flex items-start justify-between">
+                  <div>
                     <h2
                       id="cs-form-title"
-                      className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight leading-tight"
+                      className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight"
                     >
                       Tell us about your content syndication goals
                     </h2>
-                    <p className="mt-2 text-gray-600 leading-relaxed">
-                      Share a few details and we'll get back within 1 business day with tailored recommendations.
+                    <p className="mt-1 text-gray-600">
+                      Share a few details and we’ll get back within 1 business day.
                     </p>
                   </div>
-                  <motion.button
+                  <button
                     aria-label="Close form"
                     onClick={handleCloseForm}
-                    className="rounded-2xl p-2.5 hover:bg-gray-100 transition-colors duration-200 ml-4"
+                    className="rounded-full p-2 hover:bg-gray-100 transition"
                     disabled={isSubmitting}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                   >
                     <X className="w-5 h-5 text-gray-700" />
-                  </motion.button>
+                  </button>
                 </div>
 
-                {/* Enhanced Divider */}
-                <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+                {/* Divider */}
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-black/10 to-transparent" />
 
-                {/* Enhanced Body */}
-                <div className="px-6 md:px-8 pb-8">
-                  {/* Enhanced status indicator */}
-                  <div className="mb-6 flex items-center gap-3 text-sm text-gray-600 bg-emerald-50 rounded-xl p-3 border border-emerald-100">
-                    <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="font-medium">Typically responds within 24 hours</span>
-                    <div className="ml-auto px-2 py-1 bg-emerald-100 rounded-lg text-xs font-semibold text-emerald-700">
-                      Priority Response
-                    </div>
+                {/* Body */}
+                <div className="px-6 md:px-7 pb-6 md:pb-7">
+                  {/* Subtle top helper strip */}
+                  <div className="mb-4 flex items-center gap-2 text-xs text-gray-500">
+                    <div className="h-2 w-2 rounded-full bg-emerald-400" />
+                    Typically responds in under 24 hours
                   </div>
 
                   <form
                     onSubmit={onSubmit}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-5"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5"
                   >
                     {/* Hidden inputs for Web3Forms */}
-                    <input type="hidden" name="access_key" value="e505fedc-14ad-49ed-834f-32cd23ad6136" />
-                    <input type="hidden" name="subject" value="New Content Syndication Inquiry" />
+                    <input
+                      type="hidden"
+                      name="access_key"
+                      value="e505fedc-14ad-49ed-834f-32cd23ad6136"
+                    />
+                    <input
+                      type="hidden"
+                      name="subject"
+                      value="New Content Syndication Inquiry"
+                    />
                     <input type="hidden" name="from_name" value="Content Syndication Form" />
                     <input type="hidden" name="redirect" value="" />
-                    <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
+                    <input
+                      type="checkbox"
+                      name="botcheck"
+                      className="hidden"
+                      style={{ display: "none" }}
+                    />
 
-                    {/* Enhanced Name Field */}
-                    <div className="col-span-1 group">
-                      <label className="block text-sm font-semibold text-gray-800 mb-2">
-                        Full Name *
+                    {/* Name */}
+                    <div className="col-span-1">
+                      <label className="block text-sm font-medium text-gray-800 mb-1">
+                        Full Name
                       </label>
                       <input
                         type="text"
                         name="name"
                         required
                         placeholder="Alex Johnson"
-                        className="w-full rounded-2xl border-2 border-gray-200 bg-white px-4 py-3.5 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200/50 focus:border-yellow-400 transition-all duration-200 placeholder:text-gray-400"
+                        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200 focus:border-yellow-400"
                       />
                     </div>
 
-                    {/* Enhanced Email Field */}
-                    <div className="col-span-1 group">
-                      <label className="block text-sm font-semibold text-gray-800 mb-2">
-                        Work Email *
+                    {/* Email */}
+                    <div className="col-span-1">
+                      <label className="block text-sm font-medium text-gray-800 mb-1">
+                        Work Email
                       </label>
                       <input
                         type="email"
                         name="email"
                         required
                         placeholder="alex@company.com"
-                        className="w-full rounded-2xl border-2 border-gray-200 bg-white px-4 py-3.5 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200/50 focus:border-yellow-400 transition-all duration-200 placeholder:text-gray-400"
+                        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200 focus:border-yellow-400"
                       />
                     </div>
 
-                    {/* Enhanced Phone Field */}
-                    <div className="col-span-1 group">
-                      <label className="block text-sm font-semibold text-gray-800 mb-2">
-                        Phone Number
+                    {/* Phone */}
+                    <div className="col-span-1">
+                      <label className="block text-sm font-medium text-gray-800 mb-1">
+                        Phone
                       </label>
                       <input
                         type="tel"
                         name="phone"
                         placeholder="+1 555 123 4567"
-                        className="w-full rounded-2xl border-2 border-gray-200 bg-white px-4 py-3.5 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200/50 focus:border-yellow-400 transition-all duration-200 placeholder:text-gray-400"
+                        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200 focus:border-yellow-400"
                       />
                     </div>
 
-                    {/* Enhanced Company Field */}
-                    <div className="col-span-1 group">
-                      <label className="block text-sm font-semibold text-gray-800 mb-2">
-                        Company Name
+                    {/* Company */}
+                    <div className="col-span-1">
+                      <label className="block text-sm font-medium text-gray-800 mb-1">
+                        Company
                       </label>
                       <input
                         type="text"
                         name="company"
                         placeholder="Company Inc."
-                        className="w-full rounded-2xl border-2 border-gray-200 bg-white px-4 py-3.5 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200/50 focus:border-yellow-400 transition-all duration-200 placeholder:text-gray-400"
+                        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200 focus:border-yellow-400"
                       />
                     </div>
 
-                    {/* Enhanced Role Field */}
-                    <div className="col-span-1 group">
-                      <label className="block text-sm font-semibold text-gray-800 mb-2">
-                        Your Role
+                    {/* Role */}
+                    <div className="col-span-1">
+                      <label className="block text-sm font-medium text-gray-800 mb-1">
+                        Role
                       </label>
                       <input
                         type="text"
                         name="role"
                         placeholder="Head of Demand Gen"
-                        className="w-full rounded-2xl border-2 border-gray-200 bg-white px-4 py-3.5 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200/50 focus:border-yellow-400 transition-all duration-200 placeholder:text-gray-400"
+                        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200 focus:border-yellow-400"
                       />
                     </div>
 
-                    {/* Enhanced Monthly Lead Goal */}
-                    <div className="col-span-1 group">
-                      <label className="block text-sm font-semibold text-gray-800 mb-2">
+                    {/* Monthly Lead Goal */}
+                    <div className="col-span-1">
+                      <label className="block text-sm font-medium text-gray-800 mb-1">
                         Monthly Lead Goal (Syndication)
                       </label>
                       <select
                         name="monthly_lead_goal"
-                        className="w-full rounded-2xl border-2 border-gray-200 bg-white px-4 py-3.5 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200/50 focus:border-yellow-400 transition-all duration-200"
+                        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200 focus:border-yellow-400"
                         defaultValue=""
                       >
-                        <option value="" disabled>Select a range</option>
+                        <option value="" disabled>
+                          Select a range
+                        </option>
                         <option value="25-100">25-100</option>
                         <option value="101-250">101-250</option>
                         <option value="251-500">251-500</option>
@@ -2553,17 +2556,19 @@ function ContentSyndication() {
                       </select>
                     </div>
 
-                    {/* Enhanced Content Asset Type */}
-                    <div className="col-span-1 group">
-                      <label className="block text-sm font-semibold text-gray-800 mb-2">
+                    {/* Content Asset Type */}
+                    <div className="col-span-1">
+                      <label className="block text-sm font-medium text-gray-800 mb-1">
                         Primary Asset Type
                       </label>
                       <select
                         name="asset_type"
-                        className="w-full rounded-2xl border-2 border-gray-200 bg-white px-4 py-3.5 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200/50 focus:border-yellow-400 transition-all duration-200"
+                        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200 focus:border-yellow-400"
                         defaultValue=""
                       >
-                        <option value="" disabled>Select asset type</option>
+                        <option value="" disabled>
+                          Select asset
+                        </option>
                         <option value="ebook">eBook/Guide</option>
                         <option value="report">Research/Report</option>
                         <option value="webinar">Webinar/On-demand</option>
@@ -2572,42 +2577,46 @@ function ContentSyndication() {
                       </select>
                     </div>
 
-                    {/* Enhanced Message Field */}
-                    <div className="col-span-1 md:col-span-2 group">
-                      <label className="block text-sm font-semibold text-gray-800 mb-2">
+                    {/* Message */}
+                    <div className="col-span-1 md:col-span-2">
+                      <label className="block text-sm font-medium text-gray-800 mb-1">
                         What are you looking to achieve?
                       </label>
                       <textarea
                         name="message"
                         rows={4}
                         placeholder="Share your targeting filters (geo, titles, industries, company size), preferred CPL, compliance requirements, and delivery cadence."
-                        className="w-full rounded-2xl border-2 border-gray-200 bg-white px-4 py-3.5 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200/50 focus:border-yellow-400 transition-all duration-200 placeholder:text-gray-400 resize-none"
+                        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-yellow-200 focus:border-yellow-400"
                       ></textarea>
                     </div>
 
                     {/* Page context */}
                     <input type="hidden" name="page" value="Content Syndication" />
-                    <input type="hidden" name="timestamp" value={new Date().toISOString()} />
+                    <input
+                      type="hidden"
+                      name="timestamp"
+                      value={new Date().toISOString()}
+                    />
 
-                    {/* Enhanced Result message */}
+                    {/* Result message */}
                     <div className="col-span-1 md:col-span-2">
                       <AnimatePresence>
                         {formResult.status === "success" && (
                           <motion.div
-                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                            className="rounded-2xl border-2 border-emerald-200 bg-emerald-50 text-emerald-700 px-5 py-4 font-medium"
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 6 }}
+                            className="rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-700 px-4 py-3"
                           >
                             {formResult.message}
                           </motion.div>
                         )}
                         {formResult.status === "error" && (
                           <motion.div
-                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                            className="rounded-2xl border-2 border-red-200 bg-red-50 text-red-700 px-5 py-4 font-medium"
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 6 }}
+                            className="rounded-xl border border-red-200 bg-red-50 text-red-700 px-4 py-3"
                           >
                             {formResult.message}
                           </motion.div>
@@ -2615,34 +2624,37 @@ function ContentSyndication() {
                       </AnimatePresence>
                     </div>
 
-                    {/* Enhanced Actions */}
-                    <div className="col-span-1 md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
-                      <p className="text-xs text-gray-500 max-w-sm">
-                        By submitting, you agree to be contacted regarding your request. We respect your privacy.
+                    {/* Actions */}
+                    <div className="col-span-1 md:col-span-2 flex items-center justify-between gap-3 pt-1">
+                      <p className="text-xs text-gray-500">
+                        By submitting, you agree to be contacted regarding your request.
                       </p>
                       <motion.button
                         whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                         whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                         type="submit"
                         disabled={isSubmitting}
-                        className="inline-flex items-center gap-3 bg-gradient-to-r from-[#FFD800] to-[#FFF000] text-black font-bold py-4 px-8 rounded-2xl border-2 border-black/10 shadow-[0_20px_40px_-15px_rgba(255,216,0,0.4)] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed hover:shadow-[0_25px_50px_-15px_rgba(255,216,0,0.6)]"
+                        className="inline-flex items-center gap-2 bg-[#FFD800] text-black font-semibold py-3 px-6 rounded-full border border-black/10 shadow-[0_14px_30px_-12px_rgba(0,0,0,0.25)] transition disabled:opacity-70"
                       >
                         {isSubmitting ? (
                           <>
-                            <Loader2 className="w-5 h-5 animate-spin" />
-                            Sending Request...
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                            Sending...
                           </>
                         ) : (
                           <>
                             Submit Request
-                            <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                            <ArrowUpRight className="w-5 h-5" />
                           </>
                         )}
                       </motion.button>
                     </div>
                   </form>
+
+                  {/* Bottom soft shadow to lift modal */}
+                  <div className="pointer-events-none mt-6 h-6 rounded-b-2xl bg-gradient-to-b from-transparent to-black/5" />
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
           </>
         )}
@@ -2688,254 +2700,182 @@ function ContentSyndication() {
         <meta name="twitter:image" content="/images/twitter-content-syndication.jpg" />
       </Head>
 
-      {/* Enhanced Page background with improved gradients */}
-      <div className="pointer-events-none fixed inset-0 -z-10 opacity-70">
-        <div className="absolute -top-10 right-0 h-96 w-96 rounded-full bg-gradient-to-br from-[#FFD800]/30 to-yellow-300/20 blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 left-10 h-[32rem] w-[32rem] rounded-full bg-gradient-to-tr from-emerald-400/15 to-teal-300/10 blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40rem] w-[40rem] rounded-full bg-gradient-to-r from-purple-300/5 to-blue-300/5 blur-3xl" />
+      {/* Page background accent glow */}
+      <div className="pointer-events-none fixed inset-0 -z-10 opacity-60">
+        <div className="absolute -top-10 right-0 h-72 w-72 rounded-full bg-[#FFD800]/20 blur-3xl" />
+        <div className="absolute bottom-0 left-10 h-80 w-80 rounded-full bg-emerald-400/10 blur-3xl" />
       </div>
 
       <Upnav />
       <Lownav />
 
-      {/* Enhanced Hero Section */}
+      {/* Hero Section */}
       <section
-        className="relative w-full min-h-[90vh] mt-24 bg-cover bg-center flex items-center justify-start px-6 sm:px-8 md:px-16 lg:px-32 overflow-hidden"
+        className="relative w-full min-h=[88vh] mt-24 bg-cover bg-center flex items-center justify-start px-6 sm:px-8 md:px-16 lg:px-32 overflow-hidden"
         style={{ backgroundImage: "url('/images/content-syndication-hero.jpg')" }}
       >
-        {/* Enhanced overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/65" />
-        
-        {/* Enhanced decorative borders */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400/80 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400/80 to-transparent" />
+        {/* subtle overlay for contrast */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/65 via-black/30 to-black/60" />
+        {/* top/bottom decorative borders */}
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent" />
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="relative z-10 text-left text-white max-w-5xl"
+          transition={{ duration: 0.7 }}
+          className="relative z-10 text-left text-white max-w-4xl"
         >
-          <motion.div 
-            className="flex items-center mb-8"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            <motion.div 
-              className="bg-gradient-to-br from-[#FFD800] to-[#FFF000] text-black font-black text-xl rounded-3xl w-16 h-16 flex items-center justify-center mr-4 shadow-[0_15px_35px_-10px_rgba(255,216,0,0.8)] ring-2 ring-black/10"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
+          <div className="flex items-center mb-6">
+            <div className="bg-[#FFD800] text-black font-bold text-xl rounded-2xl w-14 h-14 flex items-center justify-center mr-3 shadow-[0_10px_30px_-10px_rgba(255,216,0,0.7)] ring-1 ring-black/10">
               CS
-            </motion.div>
-            <span className="text-white/90 text-2xl sm:text-3xl font-bold tracking-wider uppercase">
-              Content Syndication
+            </div>
+            <span className="text-white/90 text-2xl font-semibold tracking-wide">
+              content syndication
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[1.02] mb-8 drop-shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] mb-6 drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
             Content syndication that
             <br />
             expands reach and fills
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD800] via-[#FFF000] to-[#FFD800]">
-              your funnel with intent.
-            </span>
-          </motion.h1>
+            <span className="text-[#FFD800]">your funnel with intent.</span>
+          </h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-          >
-            <Link href="/contact" className="inline-block">
-              <motion.button
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0_20px_40px_-15px_rgba(255,216,0,0.9)"
-                }}
-                whileTap={{ scale: 0.98 }}
-                className="group bg-gradient-to-r from-[#FFD800] to-[#FFF000] text-black text-lg sm:text-xl font-bold py-4 px-10 rounded-full shadow-[0_20px_40px_-15px_rgba(255,216,0,0.8)] ring-2 ring-black/10 transition-all duration-300 hover:ring-black/20"
-              >
-                <span className="inline-flex items-center gap-3">
-                  GET IN TOUCH
-                  <ArrowUpRight className="w-6 h-6 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </span>
-              </motion.button>
-            </Link>
-          </motion.div>
+          <Link href="/contact" className="inline-block">
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              className="group bg-[#FFD800] text-black text-lg font-semibold py-3.5 px-8 rounded-full shadow-[0_14px_30px_-12px_rgba(255,216,0,0.8)] ring-1 ring-black/10 transition-all duration-300"
+            >
+              <span className="inline-flex items-center gap-2">
+                GET IN TOUCH
+                <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
+            </motion.button>
+          </Link>
         </motion.div>
 
-        {/* Enhanced floating shapes */}
+        {/* decorative floating shapes */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 0.3, scale: 1 }}
-          transition={{ duration: 1.2 }}
-          className="pointer-events-none absolute -right-20 top-24 h-80 w-80 rounded-full bg-gradient-to-br from-[#FFD800] to-yellow-300 blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.2, scale: 1 }}
-          transition={{ duration: 1.5, delay: 0.3 }}
-          className="pointer-events-none absolute -left-16 bottom-20 h-72 w-72 rounded-full bg-gradient-to-tr from-emerald-400 to-teal-300 blur-3xl"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 0.25, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="pointer-events-none absolute -right-16 top-20 h-64 w-64 rounded-full bg-[#FFD800] blur-3xl"
         />
       </section>
 
-      {/* Enhanced Value Proposition */}
-      <section className="w-full bg-gradient-to-b from-[#0B1715] to-[#0E1F1C] text-white py-24 px-6 sm:px-8 md:px-16 lg:px-32 relative overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent" />
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-7xl mx-auto"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-12 tracking-tight">
-            Targeted distribution that amplifies reach,
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD800] via-[#FFF000] to-[#FFD800]">
-              and delivers compliant, opt-in leads.
-            </span>
-          </h2>
+      {/* Value Proposition / Solution */}
+      <section className="w-full bg-[#0B1715] text-white py-20 px-6 sm:px-8 md:px-16 lg:px-32 relative">
+        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent" />
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-10 tracking-tight">
+          Targeted distribution that amplifies reach,
+          <br />
+          <span className="text-[#FFD800]">and delivers compliant, opt-in leads.</span>
+        </h2>
 
-          <motion.div 
-            className="border-2 border-white/20 rounded-3xl p-10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] relative overflow-hidden"
-            whileInView={{ opacity: 1, scale: 1 }}
-            initial={{ opacity: 0, scale: 0.95 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            {/* Subtle background pattern */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-yellow-400 to-transparent rounded-full blur-3xl" />
+        <div className="border border-white/10 rounded-2xl p-8 bg-white/5 backdrop-blur-sm shadow-[0_25px_50px_-12px_rgba(0,0,0,0.55)]">
+          <div className="flex flex-col md:flex-row gap-10 md:gap-14">
+            <div className="md:w-1/2">
+              <h3 className="text-[#FFD800] font-bold text-xl mb-4 uppercase tracking-wide">
+                Our Solution
+              </h3>
+              <div className="h-1 w-16 bg-[#FFD800] rounded" />
             </div>
-            
-            <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 relative z-10">
-              <div className="lg:w-2/5">
-                <div className="flex items-center gap-4 mb-6">
-                  <h3 className="text-[#FFD800] font-black text-2xl uppercase tracking-wider">
-                    Our Solution
-                  </h3>
-                  <div className="flex-1 h-1 bg-gradient-to-r from-[#FFD800] to-transparent rounded" />
-                </div>
-              </div>
-              <div className="lg:w-3/5 text-lg leading-relaxed text-white/95 space-y-8">
-                <p className="text-xl font-medium">
-                  We distribute your best content across vetted channels and networks, applying precise firmographic, technographic, and intent filters to reach the right buyers at the right time.
-                </p>
-                <p className="text-lg">
-                  Every lead is opt-in, validated, and delivered with rich context—so marketing scales pipeline contribution while sales accelerates follow-up and conversion.
-                </p>
-              </div>
+            <div className="md:w-1/2 text-lg leading-relaxed text-white/90 space-y-6">
+              <p>
+                We distribute your best content across vetted channels and networks, applying precise firmographic, technographic, and intent filters to reach the right buyers at the right time.
+              </p>
+              <p>
+                Every lead is opt-in, validated, and delivered with rich context—so marketing scales pipeline contribution while sales accelerates follow-up and conversion.
+              </p>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
-      {/* Enhanced Workflow Section */}
-      <section className="w-full bg-gradient-to-b from-[#0E1F1C] to-[#0B1715] py-24 px-6 sm:px-8 md:px-16 lg:px-32 text-center relative overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-300/60 to-transparent" />
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-7xl mx-auto"
-        >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD800] via-[#FFF000] to-[#FFD800] mb-16 leading-tight">
-            HOW OUR CONTENT SYNDICATION PROCESS WORKS
-          </h2>
+      {/* Workflow Section */}
+      <section className="w-full bg-[#0B1715] py-20 px-6 sm:px-8 md:px-16 lg:px-32 text-center relative">
+        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-yellow-300/40 to-transparent" />
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#FFD800] mb-10">
+          HOW OUR CONTENT SYNDICATION PROCESS WORKS
+        </h2>
 
-          <motion.div 
-            className="relative"
-            whileInView={{ opacity: 1, scale: 1 }}
-            initial={{ opacity: 0, scale: 0.95 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="rounded-3xl overflow-hidden border-2 border-white/20 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.8)] bg-gradient-to-b from-white/10 to-white/5 p-3 backdrop-blur-sm">
-              <div className="relative rounded-2xl overflow-hidden">
-                <div className="absolute inset-0 pointer-events-none ring-2 ring-white/10 rounded-2xl" />
-                <Image
-                  src="/images/workflow-content-syndication.webp"
-                  alt="Content Syndication Workflow"
-                  width={1600}
-                  height={1000}
-                  className="w-full h-auto object-contain rounded-2xl"
-                  priority={false}
-                />
-              </div>
+        <div className="mx-auto max-w-6xl">
+          <div className="rounded-3xl overflow-hidden border border-white/10 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)] bg-gradient-to-b from-white/5 to-white/0 p-2">
+            <div className="relative rounded-2xl overflow-hidden">
+              <div className="absolute inset-0 pointer-events-none ring-1 ring-white/10 rounded-2xl" />
+              <Image
+                src="/images/workflow-content-syndication.webp"
+                alt="Content Syndication Workflow"
+                width={1600}
+                height={1000}
+                className="w-full h-auto object-contain"
+                priority={false}
+              />
             </div>
-            <p className="text-white/80 text-sm mt-6 font-medium">
-              A comprehensive view of targeting, distribution, validation, delivery, and follow-up enablement.
-            </p>
-          </motion.div>
-        </motion.div>
+          </div>
+          <p className="text-white/70 text-sm mt-4">
+            A high-level view of targeting, distribution, validation, delivery, and follow-up enablement.
+          </p>
+        </div>
       </section>
 
-      {/* Enhanced Strategic Placement Section */}
+      {/* Strategic Placement Section */}
       <section className="w-full overflow-hidden">
-        <div className="bg-[url('/images/bg2.webp')] bg-[#0E1F1C] bg-cover bg-center w-full text-black pt-24 pb-40 px-4 sm:px-12 md:px-20 lg:px-40 xl:px-60 relative z-10">
+        <div className="bg-[url('/images/bg2.webp')] bg-[#0E1F1C] bg-cover bg-center w-full text-black pt-20 pb-36 px-4 sm:px-12 md:px-20 lg:px-40 xl:px-60 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.9 }}
+            transition={{ duration: 0.8 }}
             className="max-w-7xl mx-auto"
           >
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-8 drop-shadow-lg"
+              transition={{ delay: 0.15, duration: 0.7 }}
+              className="text-4xl sm:text-5xl font-extrabold leading-tight mb-6 drop-shadow"
             >
               Precision targeting and compliant lead delivery,
-              <br /> 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-black to-gray-800">
-                tailored to your ICP.
-              </span>
+              <br /> tailored to your ICP.
             </motion.h1>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="flex flex-col md:flex-row gap-6 items-start mb-10 p-8 bg-white/70 backdrop-blur-xl rounded-3xl shadow-[0_20px_50px_-15px_rgba(0,0,0,0.3)] border-2 border-black/10"
+              transition={{ delay: 0.3, duration: 0.7 }}
+              className="flex flex-col md:flex-row gap-4 items-start mb-6 p-6 bg-white/60 rounded-2xl backdrop-blur shadow-[0_16px_40px_-12px_rgba(0,0,0,0.2)] border border-black/5"
             >
-              <p className="text-xl md:w-1/3 text-black font-bold">
+              <p className="text-lg md:w-1/3 text-black font-semibold">
                 Our Services
               </p>
-              <p className="text-lg md:w-2/3 text-black/85 leading-relaxed">
+              <p className="text-lg md:w-2/3 text-black/80">
                 We plan, execute, and optimize end-to-end content syndication—from audience filters and offer mapping to delivery QA and sales enablement—so marketing scales influence while{" "}
-                <strong className="font-bold text-black">pipeline keeps growing</strong>.
+                <strong>pipeline keeps growing</strong>.
               </p>
             </motion.div>
 
-            {/* Enhanced Service Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-black">
+            {/* Service Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 text-black">
               {[
                 {
                   title: "Audience & Filters:",
-                  content: "Align to ICP with firmographic, technographic, and intent criteria to reach in-market buyers.",
+                  content:
+                    "Align to ICP with firmographic, technographic, and intent criteria to reach in-market buyers.",
                 },
                 {
                   title: "Multi-Channel Distribution:",
-                  content: "Syndicate assets across vetted publishers, communities, and networks with brand-safe placement.",
+                  content:
+                    "Syndicate assets across vetted publishers, communities, and networks with brand-safe placement.",
                 },
                 {
                   title: "Lead QA & Compliance:",
-                  content: "Opt-in capture, de-duplication, verification, and consent-friendly delivery aligned to your SLAs.",
+                  content:
+                    "Opt-in capture, de-duplication, verification, and consent-friendly delivery aligned to your SLAs.",
                 },
               ].map((service, index) => (
                 <motion.div
@@ -2945,184 +2885,156 @@ function ContentSyndication() {
                   viewport={{ once: true, amount: 0.4 }}
                   whileHover={hoverEffect}
                   variants={cardVariants}
-                  className="relative bg-gradient-to-br from-[#FFEE7A] to-[#FFE55A] p-10 rounded-3xl shadow-[0_25px_50px_-20px_rgba(0,0,0,0.4)] border-2 border-black/10 overflow-hidden group cursor-pointer"
+                  className="relative bg-[#FFEE7A] p-8 rounded-2xl shadow-[0_18px_40px_-16px_rgba(0,0,0,0.35)] border border-black/10 overflow-hidden"
                 >
-                  <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-gradient-to-br from-yellow-300 to-yellow-200 blur-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
-                  <div className="relative">
-                    <h2 className="font-extrabold text-2xl mb-4 text-gray-900 tracking-tight">
+                  <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-yellow-300 blur-2xl opacity-70" />
+                  <div className="relative p-2 rounded-lg">
+                    <h2 className="font-extrabold text-xl mb-3 text-gray-900 tracking-tight">
                       {service.title}
                     </h2>
-                    <p className="text-gray-800 leading-relaxed text-lg font-medium">
-                      {service.content}
-                    </p>
+                    <p className="text-gray-800 leading-relaxed">{service.content}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            {/* Enhanced CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="mt-20 flex justify-center md:justify-start"
-            >
-              <Link href="/" passHref className="block" onClick={handleOpenForm}>
+            {/* CTA */}
+            <Link href="/" passHref className="block" onClick={handleOpenForm}>
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ delay: 0.5 }}
+                className="mt-16 flex justify-center md:justify-start"
+              >
                 <motion.button
                   whileHover={{
                     scale: 1.05,
                     backgroundColor: "#ffea00",
-                    boxShadow: "0_25px_50px_-20px_rgba(0,0,0,0.5)",
+                    boxShadow: "0 20px 45px -18px rgba(0,0,0,0.4)",
                   }}
-                  whileTap={{ scale: 0.98 }}
-                  className="bg-gradient-to-r from-[#ffd800] to-[#ffea00] text-black font-bold py-5 px-12 rounded-full transition-all duration-300 text-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.4)] border-2 border-black/10 hover:border-black/20"
+                  whileTap={{ scale: 0.97 }}
+                  className="bg-[#ffd800] text-black font-semibold py-4 px-8 rounded-full transition-all duration-300 text-lg shadow-[0_14px_30px_-12px_rgba(0,0,0,0.35)] border border-black/10"
                 >
                   CONNECT FOR CONTENT SYNDICATION  →
                 </motion.button>
-              </Link>
-            </motion.div>
+              </motion.div>
+            </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* Enhanced Highlight Band */}
-      <section className="bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 w-full text-black py-24 px-6 sm:px-10 md:px-20 lg:px-32 xl:px-48 relative overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-[2px] bg-black/20" />
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Content can be added here for future use */}
+      {/* Highlight Band (kept for visual continuity) */}
+      <section className="bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 w-full text-black py-20 px-6 sm:px-10 md:px-20 lg:px-32 xl:px-48 relative">
+        <div className="absolute inset-x-0 top-0 h-[1px] bg-black/10" />
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Reserved for future content (stats, logos, proof points) */}
         </div>
+        {/* Bottom Cards (placeholder retained to keep structure) */}
       </section>
 
-      {/* Enhanced FAQ Section */}
-      <section className="min-h-screen w-full flex items-stretch bg-gradient-to-b from-[#0E1F1C] to-[#0B1715] relative overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-300/50 to-transparent" />
-        
-        <div className="w-full flex flex-col lg:flex-row">
-          {/* Enhanced Left Side - Title */}
-          <div className="bg-gradient-to-br from-[#0E1F1C] to-[#0B1715] lg:w-2/5 p-10 lg:p-12 flex flex-col items-start relative">
-            <motion.div 
-              className="sticky top-32"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-                Content Syndication
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD800] via-[#FFF000] to-[#FFD800]">
-                  FAQs
-                </span>
+      {/* FAQ Section */}
+      <section className="min-h-screen w-full flex items-stretch bg-[#0E1F1C] relative">
+        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-300/30 to-transparent" />
+        <div className="w-full flex flex-col md:flex-row">
+          {/* Left Side - Title */}
+          <div className="bg-[#0E1F1C] md:w-2/5 p-10 flex flex-col items-start">
+            <div className="sticky top-28">
+              <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                Content Syndication FAQs
               </h1>
-              <div className="mt-6 h-2 w-24 bg-gradient-to-r from-[#FFD800] to-[#FFF000] rounded-full" />
-              <p className="mt-6 text-white/80 text-lg font-medium leading-relaxed">
-                Everything needed to plan, distribute, validate, and convert with confidence.
+              <div className="mt-4 h-1 w-20 bg-[#FFD800] rounded" />
+              <p className="mt-4 text-white/60">
+                Everything needed to plan, distribute, validate, and convert.
               </p>
-            </motion.div>
+            </div>
           </div>
 
-          {/* Enhanced Right Side - FAQ Content */}
-          <div className="lg:w-3/5 p-8 lg:p-12">
-            <motion.div 
-              className="space-y-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+          {/* Right Side - FAQ Content */}
+          <div className="md:w-3/5 p-6 md:p-10">
+            <div className="space-y-4">
               {faqItems.map((item, index) => {
                 const isOpen = openQuestion === index;
                 return (
-                  <motion.div
+                  <div
                     key={index}
-                    className="rounded-3xl border-2 border-white/20 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-                    whileHover={{ scale: 1.01 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden"
                   >
                     <button
-                      className="flex items-start w-full text-left py-6 px-6 focus:outline-none group"
+                      className="flex items-center w-full text-left py-4 px-4 focus:outline-none group"
                       onClick={() => toggleQuestion(index)}
                       aria-expanded={isOpen}
                       aria-controls={`faq-panel-${index}`}
                     >
-                      <motion.span 
-                        className="text-[#FFD800] flex-shrink-0 mr-4 mt-1"
-                        animate={{ rotate: isOpen ? 45 : 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <Plus size={24} />
-                      </motion.span>
-                      <span className="text-white font-semibold text-lg group-hover:text-yellow-200 transition-colors duration-200 leading-relaxed">
+                      <span className="text-white flex-shrink-0 mr-3">
+                        <Plus
+                          size={22}
+                          className={
+                            isOpen
+                              ? "rotate-45 transition-transform"
+                              : "transition-transform"
+                          }
+                        />
+                      </span>
+                      <span className="text-white font-medium group-hover:text-yellow-200 transition-colors">
                         {item.question}
                       </span>
                     </button>
 
-                    <AnimatePresence>
+                    <motion.div
+                      id={`faq-panel-${index}`}
+                      initial={false}
+                      animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      className="px-4"
+                    >
                       {isOpen && (
-                        <motion.div
-                          id={`faq-panel-${index}`}
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                          className="px-6"
-                        >
-                          <div className="pb-6 pr-4 text-gray-300 text-lg leading-relaxed border-t border-white/10 pt-4">
-                            <p>{item.answer}</p>
-                          </div>
-                        </motion.div>
+                        <div className="pb-5 pt-1 pr-2 text-gray-300">
+                          <p className="leading-relaxed">{item.answer}</p>
+                        </div>
                       )}
-                    </AnimatePresence>
-                  </motion.div>
+                    </motion.div>
+                  </div>
                 );
               })}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Enhanced Final CTA */}
+      {/* Final CTA */}
       <section
-        className="w-full min-h-[50vh] md:min-h-[60vh] lg:min-h-[70vh] bg-cover bg-center relative flex items-center justify-center text-center overflow-hidden"
+        className="w-full min-h-[320px] md:min-h-[420px] lg:min-h-[520px] bg-cover bg-center relative flex items-center justify-center text-center"
         style={{ backgroundImage: "url('/images/connectus.jpg')" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/50" />
-        
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/40" />
         <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8 }}
           className="relative z-10 text-white flex flex-col items-center"
         >
           <Link
             href="/contact"
-            className="flex items-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold group"
+            className="flex items-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold group"
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 drop-shadow-lg">
-              Connect
-            </span>
+            <span className="text-yellow-400 drop-shadow">Connect</span>
             <motion.span
-              className="ml-4 w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:rotate-45 transition-all duration-300 ring-2 ring-black/20 shadow-[0_20px_50px_-20px_rgba(255,216,0,0.8)]"
+              className="ml-3 w-9 h-9 md:w-10 md:h-10 bg-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:rotate-45 transition duration-300 ring-1 ring-black/10 shadow-[0_16px_40px_-16px_rgba(255,216,0,0.7)]"
               whileHover={{ scale: 1.15, rotate: 45 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
-              <ArrowUpRight className="text-black w-6 h-6 md:w-8 md:h-8 font-bold" />
+              <ArrowUpRight className="text-black w-5 h-5 md:w-6 md:h-6" />
             </motion.span>
           </Link>
-          <motion.p 
-            className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-4 font-bold tracking-wide"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
+          <p className="text-white text-2xl sm:text-3xl md:text-4xl mt-2 font-medium">
             with us
-          </motion.p>
+          </p>
         </motion.div>
 
-        {/* Enhanced frame border */}
-        <div className="pointer-events-none absolute inset-0 ring-2 ring-white/20 rounded-none" />
+        {/* Framed edge */}
+        <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 rounded-none" />
       </section>
 
       <Footer />
