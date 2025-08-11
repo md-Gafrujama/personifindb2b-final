@@ -169,7 +169,7 @@ function SalesDevelopment() {
         <div className="flex justify-center">
           {/* Using Next.js Image for optimization and lazy loading (default behavior) */}
           <Image
-            src="/images/flowchart3.png"
+            src="images/work1.webp"
             alt="Sales Development Workflow"
             width={1200} // Set appropriate width for intrinsic sizing
             height={800} // Set appropriate height for intrinsic sizing
