@@ -2749,7 +2749,7 @@ function ContentSyndication() {
               whileTap={{ scale: 0.98 }}
               className="group bg-[#FFD800] text-black text-lg font-semibold py-3.5 px-8 rounded-full shadow-[0_14px_30px_-12px_rgba(255,216,0,0.8)] ring-1 ring-black/10 transition-all duration-300"
             >
-              <span className="inline-flex items-center gap-2">
+              <span className="inline-flex items-center gap-12">
                 GET IN TOUCH
                 <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
