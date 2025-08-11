@@ -430,9 +430,9 @@
 
 // export default SalesDevelopment;
 "use client";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowUpRight, Plus } from "lucide-react";
-import { useMemo, useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
@@ -444,62 +444,29 @@ const Upnav = dynamic(() => import("../../components/Upnav"), { ssr: false });
 const Footer = dynamic(() => import("../../components/Footer"), { ssr: false });
 
 function SalesDevelopment() {
-  const [openQuestion, setOpenQuestion] = useState<number | null>(null);
-  const prefersReducedMotion = useReducedMotion();
+  // Smooth scroll behavior (applied globally when component mounts)
+  if (typeof window !== "undefined") {
+    document.documentElement.style.scrollBehavior = "smooth";
+  }
 
-  // Shared motion configurations for smoother consistency
-  const transitions = useMemo(
-    () => ({
-      spring: { type: "spring", bounce: 0.35, duration: 0.7 },
-      fast: { duration: 0.25, ease: "easeOut" },
-      med: { duration: 0.45, ease: "easeOut" },
-      slow: { duration: 0.8, ease: "easeOut" },
-    }),
-    []
-  );
-
-  const cardVariants = useMemo(
-    () => ({
-      offscreen: { y: prefersReducedMotion ? 0 : 24, opacity: 0 },
-      onscreen: {
-        y: 0,
-        opacity: 1,
-        transition: { ...transitions.spring },
-      },
-    }),
-    [prefersReducedMotion, transitions]
-  );
-
-  const fadeUp = useMemo(
-    () => ({
-      hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
-      visible: {
-        opacity: 1,
-        y: 0,
-        transition: { ...transitions.med },
-      },
-    }),
-    [prefersReducedMotion, transitions]
-  );
-
-  const staggerParent = useMemo(
-    () => ({
-      hidden: {},
-      visible: {
-        transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-      },
-    }),
-    []
-  );
-
-  const hoverEffect = {
-    scale: 1.03,
-    boxShadow:
-      "0 14px 40px -10px rgba(0,0,0,0.35), 0 6px 18px -6px rgba(0,0,0,0.25)",
-    transition: { ...transitions.fast },
+  const cardVariants = {
+    offscreen: { y: 50, opacity: 0 },
+    onscreen: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", bounce: 0.35, duration: 0.7 },
+    },
   };
 
-  const toggleQuestion = (index: number) => {
+  const hoverEffect = {
+    scale: 1.04,
+    boxShadow: "0 16px 40px -10px rgba(0, 0, 0, 0.35)",
+    transition: { duration: 0.25, ease: "easeOut" },
+  };
+
+  const [openQuestion, setOpenQuestion] = useState(null);
+
+  const toggleQuestion = (index) => {
     setOpenQuestion(openQuestion === index ? null : index);
   };
 
@@ -545,10 +512,6 @@ function SalesDevelopment() {
     },
   ];
 
-  // Smooth fade-in on mount to reduce harsh content pop
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
   return (
     <>
       <Head>
@@ -562,7 +525,7 @@ function SalesDevelopment() {
           content="sales development, pipeline generation, lead generation, B2B sales, sales outreach, SDR, sales qualified leads, Modigie, sales strategy"
         />
         <link rel="canonical" href="[Your Canonical URL]" />
-        {/* Open Graph */}
+        {/* Open Graph Tags */}
         <meta
           property="og:title"
           content="Sales Development & Pipeline Generation - [Your Company Name]"
@@ -587,454 +550,425 @@ function SalesDevelopment() {
         <meta name="twitter:image" content="/images/twitter-sales-development.jpg" />
       </Head>
 
-      <div
-        className={`transition-opacity duration-500 ${
-          mounted ? "opacity-100" : "opacity-0"
-        }`}
+      {/* Page background accent glow */}
+      <div className="pointer-events-none fixed inset-0 -z-10 opacity-60">
+        <div className="absolute -top-10 right-0 h-72 w-72 rounded-full bg-[#FFD800]/20 blur-3xl" />
+        <div className="absolute bottom-0 left-10 h-80 w-80 rounded-full bg-emerald-400/10 blur-3xl" />
+      </div>
+
+      <Upnav />
+      <Lownav />
+
+      {/* Hero Section */}
+      <section
+        className="relative w-full min-h-[88vh] mt-24 bg-cover bg-center flex items-center justify-start px-6 sm:px-8 md:px-16 lg:px-32 overflow-hidden"
+        style={{ backgroundImage: "url('/images/saleshero.jpg')" }}
       >
-        <Upnav />
-        <Lownav />
+        {/* subtle overlay for contrast */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/65 via-black/30 to-black/60" />
+        {/* top/bottom decorative borders */}
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent" />
 
-        {/* Hero Section */}
-        <section
-          className="relative w-full min-h-[90vh] mt-24 bg-cover bg-center flex items-center justify-start px-6 sm:px-8 md:px-16 lg:px-32"
-          style={{ backgroundImage: "url('/images/saleshero.jpg')" }}
-          aria-label="Hero section"
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="relative z-10 text-left text-white max-w-4xl"
         >
-          {/* Dark overlay for readability */}
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
-          {/* Subtle radial vignette */}
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(0,0,0,0.5))]" />
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={staggerParent}
-            className="relative text-left text-white max-w-4xl"
-          >
-            <motion.div variants={fadeUp} className="flex items-center mb-6">
-              <div className="bg-[#FFD800] text-black font-bold text-xl rounded-full w-14 h-14 flex items-center justify-center mr-3 shadow-md shadow-black/20">
-                SD
-              </div>
-              <span className="text-white/90 text-2xl font-semibold">
-                sales development
-              </span>
-            </motion.div>
-
-            <motion.h1
-              variants={fadeUp}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 tracking-tight"
-            >
-              Sales development that
-              <br />
-              fills your pipeline with
-              <br />
-              <span className="text-[#FFD800] drop-shadow-[0_2px_10px_rgba(255,216,0,0.4)]">
-                qualified opportunities.
-              </span>
-            </motion.h1>
-
-            <motion.div variants={fadeUp}>
-              <Link href="/contact" aria-label="Get in touch">
-                <motion.button
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow:
-                      "0 16px 36px -12px rgba(255,216,0,0.6), 0 8px 18px -10px rgba(0,0,0,0.4)",
-                  }}
-                  whileTap={{ scale: 0.97 }}
-                  className="bg-[#FFD800] text-black text-lg font-semibold py-3 px-8 rounded-full shadow-lg transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-400/60"
-                >
-                  GET IN TOUCH
-                </motion.button>
-              </Link>
-            </motion.div>
-          </motion.div>
-        </section>
-
-        {/* Verified Engagement */}
-        <section className="w-full bg-[#0E1F1C] text-white py-20 px-6 sm:px-8 md:px-16 lg:px-32">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={staggerParent}
-            className="max-w-7xl mx-auto"
-          >
-            <motion.h2
-              variants={fadeUp}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8"
-            >
-              Proven strategies to accelerate pipeline
-              <br />
-              growth, <span className="text-[#FFD700]">guaranteed.</span>
-            </motion.h2>
-
-            <div className="border-t border-white/10 pt-12 flex flex-col md:flex-row gap-12">
-              <motion.div variants={fadeUp} className="md:w-1/2">
-                <h3 className="text-[#FFD700] font-bold text-xl mb-4 tracking-wide">
-                  OUR SOLUTION
-                </h3>
-              </motion.div>
-              <motion.div
-                variants={fadeUp}
-                className="md:w-1/2 text-lg space-y-6 text-white/90"
-              >
-                <p className="leading-relaxed">
-                  Our sales development approach combines data-driven targeting with
-                  human-centric outreach to connect with decision-makers who are
-                  ready to have meaningful conversations about your solution.
-                </p>
-                <p className="leading-relaxed">
-                  With decades of experience building high-performing SDR teams, we
-                  deliver qualified meetings and accelerate sales cycles across
-                  industries.
-                </p>
-              </motion.div>
+          <div className="flex items-center mb-6">
+            <div className="bg-[#FFD800] text-black font-bold text-xl rounded-2xl w-14 h-14 flex items-center justify-center mr-3 shadow-[0_10px_30px_-10px_rgba(255,216,0,0.7)] ring-1 ring-black/10">
+              SD
             </div>
-          </motion.div>
-        </section>
+            <span className="text-white/90 text-2xl font-semibold tracking-wide">
+              sales development
+            </span>
+          </div>
 
-        {/* Workflow Section */}
-        <section className="w-full bg-[#0E1F1C] py-20 px-6 sm:px-8 md:px-16 lg:px-32 text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={transitions.med}
-            className="text-3xl md:text-4xl font-bold text-[#FFD700] mb-10"
-          >
-            HOW OUR SALES DEVELOPMENT PROCESS WORKS
-          </motion.h2>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] mb-6 drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
+            Sales development that
+            <br />
+            fills your pipeline with
+            <br />
+            <span className="text-[#FFD800]">
+              qualified opportunities.
+            </span>
+          </h1>
 
-          <div className="flex justify-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={transitions.slow}
-              className="w-full max-w-6xl"
+          <Link href="/contact" className="inline-block">
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              className="group bg-[#FFD800] text-black text-lg font-semibold py-3.5 px-8 rounded-full shadow-[0_14px_30px_-12px_rgba(255,216,0,0.8)] ring-1 ring-black/10 transition-all duration-300"
             >
+              <span className="inline-flex items-center gap-2">
+                GET IN TOUCH
+                <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
+            </motion.button>
+          </Link>
+        </motion.div>
+
+        {/* decorative floating shapes */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 0.25, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="pointer-events-none absolute -right-16 top-20 h-64 w-64 rounded-full bg-[#FFD800] blur-3xl"
+        />
+      </section>
+
+      {/* Verified Engagement / Solution */}
+      <section className="w-full bg-[#0B1715] text-white py-20 px-6 sm:px-8 md:px-16 lg:px-32 relative">
+        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent" />
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-10 tracking-tight">
+          Proven strategies to accelerate pipeline
+          <br />
+          growth, <span className="text-[#FFD800]">guaranteed.</span>
+        </h2>
+
+        <div className="border border-white/10 rounded-2xl p-8 bg-white/5 backdrop-blur-sm shadow-[0_25px_50px_-12px_rgba(0,0,0,0.55)]">
+          <div className="flex flex-col md:flex-row gap-10 md:gap-14">
+            <div className="md:w-1/2">
+              <h3 className="text-[#FFD800] font-bold text-xl mb-4 uppercase tracking-wide">
+                Our Solution
+              </h3>
+              <div className="h-1 w-16 bg-[#FFD800] rounded" />
+            </div>
+            <div className="md:w-1/2 text-lg leading-relaxed text-white/90 space-y-6">
+              <p>
+                Our sales development approach combines data-driven targeting with
+                human-centric outreach to connect with decision-makers ready for
+                meaningful conversations about your solution.
+              </p>
+              <p>
+                With decades of experience building high-performing SDR teams, our
+                methodologies consistently deliver qualified meetings and accelerate
+                sales cycles across industries.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Workflow Section */}
+      <section className="w-full bg-[#0B1715] py-20 px-6 sm:px-8 md:px-16 lg:px-32 text-center relative">
+        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-yellow-300/40 to-transparent" />
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#FFD800] mb-10">
+          HOW OUR SALES DEVELOPMENT PROCESS WORKS
+        </h2>
+
+        <div className="mx-auto max-w-6xl">
+          <div className="rounded-3xl overflow-hidden border border-white/10 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)] bg-gradient-to-b from-white/5 to-white/0 p-2">
+            <div className="relative rounded-2xl overflow-hidden">
+              <div className="absolute inset-0 pointer-events-none ring-1 ring-white/10 rounded-2xl" />
               <Image
                 src="/images/work1.webp"
                 alt="Sales Development Workflow"
-                width={1200}
-                height={800}
-                className="w-full h-auto rounded-xl ring-1 ring-white/10 shadow-2xl shadow-black/30 object-contain"
+                width={1600}
+                height={1000}
+                className="w-full h-auto object-contain"
                 priority={false}
               />
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Strategic Placement Section */}
-        <section className="w-full overflow-hidden">
-          <div className="relative bg-[#0E1F1C] bg-[url('/images/bg2.webp')] bg-cover bg-center text-black pt-20 pb-36 px-4 sm:px-12 md:px-20 lg:px-40 xl:px-60">
-            {/* gradient wash to keep yellow cards readable */}
-            <div className="absolute inset-0 bg-white/40 mix-blend-lighten pointer-events-none" />
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
-              variants={staggerParent}
-              className="relative max-w-7xl mx-auto"
-            >
-              <motion.h1
-                variants={fadeUp}
-                className="text-4xl sm:text-5xl font-bold leading-tight mb-6"
-              >
-                Targeted outreach strategies
-                <br /> tailored to your ideal customers.
-              </motion.h1>
-
-              <motion.div
-                variants={fadeUp}
-                className="flex flex-col md:flex-row gap-4 items-start mb-6 p-6 bg-white/60 backdrop-blur-md rounded-xl ring-1 ring-black/5"
-              >
-                <p className="text-lg md:w-1/3 text-black font-semibold">
-                  Our Services
-                </p>
-                <p className="text-lg md:w-2/3 text-black/80">
-                  Our team handles all aspects of sales development, from prospect
-                  research and list building to outreach and qualification, through
-                  to handoff to your sales team. Focus on closing deals while{" "}
-                  <strong>we keep your pipeline full</strong>.
-                </p>
-              </motion.div>
-
-              {/* Cards */}
-              <motion.div
-                variants={staggerParent}
-                className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 text-black"
-              >
-                {[
-                  {
-                    title: "Precision Targeting:",
-                    content:
-                      "We identify and engage with your ideal customer profile using firmographic, technographic, and intent data.",
-                  },
-                  {
-                    title: "Multi-Channel Outreach:",
-                    content:
-                      "Strategic combination of email, phone, LinkedIn, and video messages tailored to each prospect.",
-                  },
-                  {
-                    title: "Conversation Intelligence:",
-                    content:
-                      "Our technology analyzes interactions to continuously refine messaging and improve results.",
-                  },
-                ].map((service, index) => (
-                  <motion.div
-                    key={index}
-                    initial="offscreen"
-                    whileInView="onscreen"
-                    viewport={{ once: true, amount: 0.4 }}
-                    whileHover={hoverEffect}
-                    variants={cardVariants}
-                    className="relative bg-[#ffea00] p-8 rounded-xl shadow-lg min-h-[250px] flex flex-col justify-center ring-1 ring-black/5"
-                  >
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/0 to-white/20 pointer-events-none" />
-                    <div className="p-1 rounded-lg">
-                      <h2 className="font-bold text-xl mb-3 text-gray-800 tracking-tight">
-                        {service.title}
-                      </h2>
-                      <p className="text-gray-700 leading-relaxed">{service.content}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-
-              {/* CTA Link */}
-              <Link href="/" passHref>
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ delay: 0.2, ...transitions.med }}
-                  className="mt-16 flex justify-center md:justify-start"
-                >
-                  <motion.button
-                    whileHover={{
-                      scale: 1.05,
-                      backgroundColor: "#ffea00",
-                      boxShadow:
-                        "0 16px 30px -12px rgba(0,0,0,0.35), 0 8px 18px -10px rgba(0,0,0,0.25)",
-                      transition: { ...transitions.fast },
-                    }}
-                    whileTap={{ scale: 0.97 }}
-                    className="bg-[#ffd800] hover:bg-yellow-300 text-black font-semibold py-4 px-8 rounded-full transition-all duration-300 text-lg shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-400/60"
-                    aria-label="I am ready to fill my pipeline"
-                  >
-                    I AM READY TO FILL MY PIPELINE →
-                  </motion.button>
-                </motion.div>
-              </Link>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Modigie Section */}
-        <section className="bg-gradient-to-br from-yellow-300 to-yellow-500 w-full text-black py-20 px-6 sm:px-10 md:px-20 lg:px-32 xl:px-48">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={staggerParent}
-            className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"
-          >
-            <motion.div variants={fadeUp}>
-              <h2 className="text-4xl font-bold leading-tight mb-6 tracking-tight">
-                Boost connect rates with direct
-                <br className="hidden sm:block" />
-                dial mobile data.
-              </h2>
-              <p className="mb-4 text-lg text-black/80 leading-relaxed">
-                In today's competitive landscape, having accurate contact information
-                is critical. Our partnership with Modigie provides{" "}
-                <strong>verified mobile numbers</strong> for your prospects,
-                dramatically improving connect rates and sales productivity.
-              </p>
-              <p className="text-lg text-black/80 leading-relaxed">
-                We enhance your sales development efforts by appending validated
-                mobile numbers to prospect records, giving your team the best chance
-                to start meaningful conversations.
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp}
-              className="flex justify-center lg:justify-end"
-            >
-              <div className="relative">
-                <div className="absolute -inset-3 bg-white/30 rounded-full blur-xl" />
-                <Image
-                  src="/images/phone.webp"
-                  alt="Phone"
-                  width={300}
-                  height={300}
-                  className="relative rounded-full border-8 border-yellow-300 shadow-xl max-w-[300px] w-full"
-                  priority={false}
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Bottom Cards */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={staggerParent}
-            className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6"
-          >
-            {[
-              {
-                title: "Launch a sales development campaign",
-                content:
-                  "Work with our team to define your ideal customer profile and outreach strategy for maximum impact.",
-              },
-              {
-                title: "Enhance with verified contact data",
-                content:
-                  "We process your prospect lists through Modigie's real-time database to append accurate mobile numbers.",
-              },
-              {
-                title: "Increased call-to-connect rates",
-                content:
-                  "Your sales team gets hot leads with validated contact information, reducing time wasted on wrong numbers.",
-              },
-            ].map((card, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUp}
-                whileHover={hoverEffect}
-                className="bg-yellow-100 p-6 rounded-lg shadow-md ring-1 ring-black/5"
-              >
-                <h3 className="font-bold text-lg mb-2 tracking-tight">
-                  {card.title}
-                </h3>
-                <p className="text-black/80 leading-relaxed">{card.content}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="min-h-screen w-full flex items-stretch bg-[#0E1F1C]">
-          <div className="w-full flex flex-col md:flex-row">
-            {/* Left Side - Title */}
-            <div className="bg-[#0E1F1C] md:w-2/5 p-8 flex flex-col items-start">
-              <motion.div
-                initial={{ opacity: 0, x: -12 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={transitions.med}
-              >
-                <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-                  Sales Development FAQs
-                </h1>
-              </motion.div>
-            </div>
-
-            {/* Right Side - FAQ Content */}
-            <div className="md:w-3/5 p-6 md:p-10">
-              <div className="space-y-2">
-                {faqItems.map((item, index) => {
-                  const isOpen = openQuestion === index;
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.2 }}
-                      transition={transitions.fast}
-                      className={`rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden`}
-                    >
-                      <button
-                        className="flex items-center w-full text-left py-4 px-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300/60"
-                        onClick={() => toggleQuestion(index)}
-                        aria-expanded={isOpen}
-                        aria-controls={`faq-panel-${index}`}
-                      >
-                        <span className="text-white flex-shrink-0 mr-3">
-                          <Plus
-                            size={20}
-                            className={`transition-transform ${
-                              isOpen ? "rotate-45" : ""
-                            }`}
-                            aria-hidden="true"
-                          />
-                        </span>
-                        <span className="text-white font-medium">
-                          {item.question}
-                        </span>
-                      </button>
-
-                      <motion.div
-                        id={`faq-panel-${index}`}
-                        initial={false}
-                        animate={{
-                          height: isOpen ? "auto" : 0,
-                          opacity: isOpen ? 1 : 0,
-                        }}
-                        transition={{ duration: 0.28, ease: "easeOut" }}
-                        className="px-3"
-                      >
-                        {isOpen && (
-                          <div className="pb-4 pr-2 text-gray-300 leading-relaxed">
-                            <p>{item.answer}</p>
-                          </div>
-                        )}
-                      </motion.div>
-                    </motion.div>
-                  );
-                })}
-              </div>
             </div>
           </div>
-        </section>
+          <p className="text-white/70 text-sm mt-4">
+            A high-level view of research, outreach, qualification, and handoff.
+          </p>
+        </div>
+      </section>
 
-        {/* Final CTA */}
-        <section
-          className="w-full h-[300px] md:h-[400px] lg:h-[500px] bg-cover bg-center relative flex items-center justify-center text-center"
-          style={{ backgroundImage: `url('/images/connectus.jpg')` }}
-        >
-          {/* overlay for readability */}
-          <div className="absolute inset-0 bg-black/40" />
+      {/* Strategic Placement Section */}
+      <section className="w-full overflow-hidden">
+        <div className="bg-[url('/images/bg2.webp')] bg-[#0E1F1C] bg-cover bg-center w-full text-black pt-20 pb-36 px-4 sm:px-12 md:px-20 lg:px-40 xl:px-60 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={transitions.slow}
-            className="relative text-white flex flex-col items-center"
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-7xl mx-auto"
           >
-            <Link
-              href="/contact"
-              className="flex items-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold group"
-              aria-label="Connect with us"
+            <motion.h1
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: 0.15, duration: 0.7 }}
+              className="text-4xl sm:text-5xl font-extrabold leading-tight mb-6 drop-shadow"
             >
-              <span className="text-yellow-400 drop-shadow-[0_2px_8px_rgba(255,216,0,0.4)]">
-                Connect
-              </span>
-              <motion.span
-                className="ml-3 w-8 h-8 md:w-10 md:h-10 bg-yellow-400 rounded-full flex items-center justify-center transition duration-300"
-                whileHover={{ scale: 1.15, rotate: 45 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                aria-hidden="true"
-              >
-                <ArrowUpRight className="text-black w-5 h-5 md:w-6 md:h-6" />
-              </motion.span>
-            </Link>
-            <p className="text-white text-2xl sm:text-3xl md:text-4xl mt-2 font-medium">
-              with us
-            </p>
-          </motion.div>
-        </section>
+              Targeted outreach strategies
+              <br /> tailored to your ideal customers.
+            </motion.h1>
 
-        <Footer />
-      </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
+              className="flex flex-col md:flex-row gap-4 items-start mb-6 p-6 bg-white/60 rounded-2xl backdrop-blur shadow-[0_16px_40px_-12px_rgba(0,0,0,0.2)] border border-black/5"
+            >
+              <p className="text-lg md:w-1/3 text-black font-semibold">
+                Our Services
+              </p>
+              <p className="text-lg md:w-2/3 text-black/80">
+                Our team handles all aspects of sales development, from prospect
+                research and list building to outreach and qualification, through to
+                handoff to the sales team—so closing deals stays the focus while{" "}
+                <strong>we keep your pipeline full</strong>.
+              </p>
+            </motion.div>
+
+            {/* Service Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 text-black">
+              {[
+                {
+                  title: "Precision Targeting:",
+                  content:
+                    "We identify and engage your ICP using firmographic, technographic, and intent data.",
+                },
+                {
+                  title: "Multi-Channel Outreach:",
+                  content:
+                    "Email, phone, LinkedIn, and video—strategically combined and tailored to each prospect.",
+                },
+                {
+                  title: "Conversation Intelligence:",
+                  content:
+                    "We analyze interactions to refine messaging continuously and improve outcomes.",
+                },
+              ].map((service, index) => (
+                <motion.div
+                  key={index}
+                  initial="offscreen"
+                  whileInView="onscreen"
+                  viewport={{ once: true, amount: 0.4 }}
+                  whileHover={hoverEffect}
+                  variants={cardVariants}
+                  className="relative bg-[#FFEE7A] p-8 rounded-2xl shadow-[0_18px_40px_-16px_rgba(0,0,0,0.35)] border border-black/10 overflow-hidden"
+                >
+                  <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-yellow-300 blur-2xl opacity-70" />
+                  <div className="relative p-2 rounded-lg">
+                    <h2 className="font-extrabold text-xl mb-3 text-gray-900 tracking-tight">
+                      {service.title}
+                    </h2>
+                    <p className="text-gray-800 leading-relaxed">{service.content}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <Link href="/" passHref className="block">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ delay: 0.5 }}
+                className="mt-16 flex justify-center md:justify-start"
+              >
+                <motion.button
+                  whileHover={{
+                    scale: 1.05,
+                    backgroundColor: "#ffea00",
+                    boxShadow: "0 20px 45px -18px rgba(0,0,0,0.4)",
+                  }}
+                  whileTap={{ scale: 0.97 }}
+                  className="bg-[#ffd800] text-black font-semibold py-4 px-8 rounded-full transition-all duration-300 text-lg shadow-[0_14px_30px_-12px_rgba(0,0,0,0.35)] border border-black/10"
+                >
+                  I AM READY TO FILL MY PIPELINE →
+                </motion.button>
+              </motion.div>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Modigie Section */}
+      <section className="bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 w-full text-black py-20 px-6 sm:px-10 md:px-20 lg:px-32 xl:px-48 relative">
+        <div className="absolute inset-x-0 top-0 h-[1px] bg-black/10" />
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-4xl font-extrabold leading-tight mb-6">
+              Boost connect rates with direct
+              <br className="hidden sm:block" />
+              dial mobile data.
+            </h2>
+            <p className="mb-4 text-lg text-black/80 leading-relaxed">
+              In today’s competitive landscape, accurate contact information is
+              critical. Our partnership with Modigie provides{" "}
+              <strong>verified mobile numbers</strong> for prospects, dramatically
+              improving connect rates and sales productivity.
+            </p>
+            <p className="text-lg text-black/80 leading-relaxed">
+              We enhance sales development by appending validated mobile numbers to
+              prospect records, giving teams the best chance to start meaningful
+              conversations.
+            </p>
+          </div>
+
+          <div className="flex justify-center">
+            {/* Decorative ringed image frame */}
+            <div className="relative">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/50 to-transparent blur-xl" />
+              <div className="relative p-2 rounded-full bg-white/70 shadow-[0_18px_40px_-16px_rgba(0,0,0,0.35)] border border-black/10">
+                <div className="p-3 rounded-full bg-white shadow-inner ring-1 ring-black/10">
+                  <Image
+                    src="/images/phone.webp"
+                    alt="Phone"
+                    width={300}
+                    height={300}
+                    className="rounded-full border-8 border-yellow-300 shadow-[0_20px_45px_-20px_rgba(0,0,0,0.45)]"
+                    priority={false}
+                  />
+                </div>
+              </div>
+              {/* subtle animated glow */}
+              <motion.div
+                initial={{ opacity: 0.25 }}
+                animate={{ opacity: [0.15, 0.35, 0.15] }}
+                transition={{ repeat: Infinity, duration: 3 }}
+                className="pointer-events-none absolute -inset-4 rounded-full bg-yellow-200/30 blur-2xl"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Cards */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              title: "Launch a sales development campaign",
+              content:
+                "Define your ICP and outreach strategy with our team for maximum impact.",
+            },
+            {
+              title: "Enhance with verified contact data",
+              content:
+                "Append accurate mobile numbers with Modigie’s real-time validation.",
+            },
+            {
+              title: "Increased call-to-connect rates",
+              content:
+                "Equip sales with hot leads and validated data to reduce time waste.",
+            },
+          ].map((card, i) => (
+            <div
+              key={i}
+              className="bg-yellow-100/70 p-6 rounded-2xl shadow-[0_16px_40px_-16px_rgba(0,0,0,0.3)] border border-black/10"
+            >
+              <h3 className="font-extrabold text-lg mb-2 text-black/90">
+                {card.title}
+              </h3>
+              <p className="text-black/70 leading-relaxed">{card.content}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="min-h-screen w-full flex items-stretch bg-[#0E1F1C] relative">
+        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-300/30 to-transparent" />
+        <div className="w-full flex flex-col md:flex-row">
+          {/* Left Side - Title */}
+          <div className="bg-[#0E1F1C] md:w-2/5 p-10 flex flex-col items-start">
+            <div className="sticky top-28">
+              <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                Sales Development FAQs
+              </h1>
+              <div className="mt-4 h-1 w-20 bg-[#FFD800] rounded" />
+              <p className="mt-4 text-white/60">
+                Everything needed to align, engage, measure, and scale.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Side - FAQ Content */}
+          <div className="md:w-3/5 p-6 md:p-10">
+            <div className="space-y-4">
+              {faqItems.map((item, index) => {
+                const isOpen = openQuestion === index;
+                return (
+                  <div
+                    key={index}
+                    className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden"
+                  >
+                    <button
+                      className="flex items-center w-full text-left py-4 px-4 focus:outline-none group"
+                      onClick={() => toggleQuestion(index)}
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-panel-${index}`}
+                    >
+                      <span className="text-white flex-shrink-0 mr-3">
+                        <Plus
+                          size={22}
+                          className={
+                            isOpen
+                              ? "rotate-45 transition-transform"
+                              : "transition-transform"
+                          }
+                        />
+                      </span>
+                      <span className="text-white font-medium group-hover:text-yellow-200 transition-colors">
+                        {item.question}
+                      </span>
+                    </button>
+
+                    <motion.div
+                      id={`faq-panel-${index}`}
+                      initial={false}
+                      animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      className="px-4"
+                    >
+                      {isOpen && (
+                        <div className="pb-5 pt-1 pr-2 text-gray-300">
+                          <p className="leading-relaxed">{item.answer}</p>
+                        </div>
+                      )}
+                    </motion.div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section
+        className="w-full min-h-[320px] md:min-h-[420px] lg:min-h-[520px] bg-cover bg-center relative flex items-center justify-center text-center"
+        style={{ backgroundImage: "url('/images/connectus.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/40" />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 text-white flex flex-col items-center"
+        >
+          <Link
+            href="/contact"
+            className="flex items-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold group"
+          >
+            <span className="text-yellow-400 drop-shadow">Connect</span>
+            <motion.span
+              className="ml-3 w-9 h-9 md:w-10 md:h-10 bg-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:rotate-45 transition duration-300 ring-1 ring-black/10 shadow-[0_16px_40px_-16px_rgba(255,216,0,0.7)]"
+              whileHover={{ scale: 1.15, rotate: 45 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <ArrowUpRight className="text-black w-5 h-5 md:w-6 md:h-6" />
+            </motion.span>
+          </Link>
+          <p className="text-white text-2xl sm:text-3xl md:text-4xl mt-2 font-medium">
+            with us
+          </p>
+        </motion.div>
+
+        {/* Framed edge */}
+        <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 rounded-none" />
+      </section>
+
+      <Footer />
     </>
   );
 }
