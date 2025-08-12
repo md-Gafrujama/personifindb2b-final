@@ -2226,7 +2226,7 @@ function SalesDevelopment() {
           className="relative z-10 text-left text-white max-w-5xl w-full"
         >
           {/* Brand identifier */}
-          <div className="flex items-center mb-4 sm:mb-6 mt-12">
+          <div className="flex items-center mb-4 sm:mb-6 ">
             <div className="bg-[#FFD800] text-black font-bold text-base sm:text-lg lg:text-xl rounded-xl sm:rounded-2xl w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center mr-3 shadow-[0_10px_30px_-10px_rgba(255,216,0,0.7)] ring-1 ring-black/10">
               SD
             </div>
