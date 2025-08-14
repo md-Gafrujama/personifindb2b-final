@@ -1,8 +1,7 @@
-
 "use client";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Plus, Upload, Target, Users, Database, X, Globe, Zap, Shield, Star, Check, Mail, Phone, MessageSquare, User } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -70,49 +69,54 @@ function DisplayAds() {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: 'e505fedc-14ad-49ed-834f-32cd23ad6136',
-          ...formData
-        })
-      });
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  
+  try {
+    const formDataObj = new FormData();
+    formDataObj.append('access_key', '2033055e-d24e-47ab-9caa-69ef0ef56b5f'); 
+    formDataObj.append('firstName', formData.firstName);
+    formDataObj.append('lastName', formData.lastName);
+    formDataObj.append('email', formData.email);
+    formDataObj.append('phone', formData.phone);
+    formDataObj.append('description', formData.description);
+    formDataObj.append('message', formData.message);
+    formDataObj.append('subject', 'New Audience Count Request');
 
-      const result = await response.json();
-      
-      if (result.success) {
-        setSubmitStatus('success');
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          description: '',
-          message: ''
-        });
-        setTimeout(() => {
-          setShowModal(false);
-          setSubmitStatus('');
-        }, 2000);
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      console.error('Error:', error);
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formDataObj 
+    });
+
+    const result = await response.json();
+    
+    if (result.success) {
+      setSubmitStatus('success');
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        description: '',
+        message: ''
+      });
+      setTimeout(() => {
+        setShowModal(false);
+        setSubmitStatus('');
+      }, 2000);
+    } else {
+      console.error('Form submission failed:', result);
       setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
     }
-  };
+  } catch (error) {
+    console.error('Network error:', error);
+    setSubmitStatus('error');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   const faqItems = [
     {
@@ -156,466 +160,633 @@ function DisplayAds() {
       <DynamicUpnav />
       <LazyLoadedLownav />
 
-
-{/* B2B Data Intelligence Section - Exact Match to Image */}
-<div className="min-h-screen bg-gradient-to-br from-[#0E1F1C] via-[#1a2f29] to-[#0E1F1C] py-20 mt-24 lg:mt-28">
-  <div className="max-w-7xl mx-auto px-6">
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      
-      {/* Left Content */}
-      <div className="space-y-8">
-        <motion.p 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-[#FFD700] text-lg font-semibold"
-        >
-          B2B Data & Intent
-        </motion.p>
-        
-        <motion.h2 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl md:text-6xl font-bold text-white leading-tight"
-        >
-          Global <span className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">B2B Data</span>
-          <br />Intelligence
-        </motion.h2>
-        
-        <motion.p 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-gray-300 text-lg leading-relaxed max-w-lg"
-        >
-          Fuel your next sales and marketing campaign with verified contact data and business intelligence.
-        </motion.p>
-        
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <motion.button
-            whileHover={hoverEffect}
-            onClick={() => setShowModal(true)}
-            className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300"
-          >
-            Request Audience Count
-          </motion.button>
-        </motion.div>
-      </div>
-
-      {/* Right Side - Woman Image and Contact Card */}
-      <motion.div 
-        initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="relative flex items-center justify-center"
-      >
-        {/* Main Woman Image Container */}
-        <div className="relative">
-          {/* Woman Image Placeholder - Replace with your actual image */}
-          <div className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-[#FFD700]/20 to-[#FFA500]/20 rounded-full flex items-center justify-center border-4 border-[#FFD700]/30">
-            <div className="text-[#FFD700] text-center">
-              <User className="w-24 h-24 mx-auto mb-4" />
-              <p className="text-lg font-semibold">Woman Image</p>
-            </div>
-          </div>
-
-          {/* Floating Contact Card */}
+      {/* Modal for the form */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="absolute -top-8 -left-16 bg-white rounded-2xl p-6 shadow-2xl max-w-xs z-10"
-            whileHover={{ scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto relative"
           >
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <div className="w-8 h-8 bg-red-200 rounded-full flex items-center justify-center">
-                  <User className="w-4 h-4 text-red-600" />
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
+            >
+              <X size={24} />
+            </button>
+
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">Request Audience Count</h2>
+              <p className="text-gray-600">Fill out the form below and we'll get back to you with your audience data.</p>
+            </div>
+
+            {submitStatus === 'success' && (
+              <motion.div 
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg flex items-center"
+              >
+                <Check className="mr-2" size={20} />
+                Form submitted successfully!
+              </motion.div>
+            )}
+
+            {submitStatus === 'error' && (
+              <motion.div 
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg"
+              >
+                There was an error submitting the form. Please try again.
+              </motion.div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-gray-700 text-sm font-medium mb-2">
+                    First Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition-all"
+                    placeholder="Enter first name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-medium mb-2">
+                    Last Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition-all"
+                    placeholder="Enter last name"
+                  />
                 </div>
               </div>
-              <div className="flex-1">
-                <h3 className="font-semibold text-gray-800 text-sm">Lisa Davis</h3>
-                <p className="text-xs text-gray-600 mb-3">VP Sales</p>
+
+              <div>
+                <label className="block text-gray-700 text-sm font-medium mb-2">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition-all"
+                  placeholder="Enter email address"
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 text-sm font-medium mb-2">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition-all"
+                  placeholder="Enter phone number"
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 text-sm font-medium mb-2">
+                  What best describes your needs?
+                </label>
+                <select
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition-all"
+                >
+                  <option value="">Select an option</option>
+                  <option value="content-syndication">Content Syndication</option>
+                  <option value="sales-development">Sales Development</option>
+                  <option value="data-intelligence">B2B Data Intelligence</option>
+                  <option value="lead-generation">Lead Generation</option>
+                  <option value="audience-targeting">Audience Targeting</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-gray-700 text-sm font-medium mb-2">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows="4"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 resize-none transition-all"
+                  placeholder="Tell us more about your requirements, target audience, or any specific questions..."
+                />
+              </div>
+
+              <motion.button
+                type="submit"
+                disabled={isSubmitting}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black font-semibold py-3 rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black mr-2"></div>
+                    Submitting...
+                  </div>
+                ) : (
+                  'Submit Request'
+                )}
+              </motion.button>
+            </form>
+          </motion.div>
+        </div>
+      )}
+
+      {/* B2B Data Intelligence Section */}
+      <div className="min-h-screen bg-gradient-to-br from-[#0E1F1C] via-[#1a2f29] to-[#0E1F1C] py-20 mt-24 lg:mt-28">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left Content */}
+            <div className="space-y-8">
+              <motion.p 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-[#FFD700] text-lg font-semibold"
+              >
+                B2B Data & Intent
+              </motion.p>
+              
+              <motion.h2 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-4xl md:text-6xl font-bold text-white leading-tight"
+              >
+                Global <span className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">B2B Data</span>
+                <br />Intelligence
+              </motion.h2>
+              
+              <motion.p 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-gray-300 text-lg leading-relaxed max-w-lg"
+              >
+                Fuel your next sales and marketing campaign with verified contact data and business intelligence.
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <motion.button
+                  whileHover={hoverEffect}
+                  onClick={() => setShowModal(true)}
+                  className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300"
+                >
+                  Request Audience Count
+                </motion.button>
+              </motion.div>
+            </div>
+
+            {/* Right Side - Woman Image and Contact Card */}
+            <motion.div 
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative flex items-center justify-center"
+            >
+              {/* Main Woman Image Container */}
+              <div className="relative">
+                {/* Woman Image Placeholder*/}
+                <div className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-[#FFD700]/20 to-[#FFA500]/20 rounded-full flex items-center justify-center border-4 border-[#FFD700]/30">
+                  <div className="text-[#FFD700] text-center">
+                    <User className="w-24 h-24 mx-auto mb-4" />
+                    <p className="text-lg font-semibold">Woman Image</p>
+                  </div>
+                </div>
+
+                {/* Floating Contact Card */}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="absolute -top-8 -left-16 bg-white rounded-2xl p-6 shadow-2xl max-w-xs z-10"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 bg-red-200 rounded-full flex items-center justify-center">
+                        <User className="w-4 h-4 text-red-600" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-gray-800 text-sm">Lisa Davis</h3>
+                      <p className="text-xs text-gray-600 mb-3">VP Sales</p>
+                      
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-3 h-3 bg-gray-300 rounded-full flex items-center justify-center">
+                            <div className="w-1.5 h-1.5 bg-gray-500 rounded-full"></div>
+                          </div>
+                          <span className="text-xs text-gray-600">Seattle</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-3 h-3 bg-gray-300 rounded-full flex items-center justify-center">
+                            <div className="w-1.5 h-1.5 bg-gray-500 rounded-full"></div>
+                          </div>
+                          <span className="text-xs text-gray-600">l.davis@example.com</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-3 h-3 bg-gray-300 rounded-full flex items-center justify-center">
+                            <div className="w-1.5 h-1.5 bg-gray-500 rounded-full"></div>
+                          </div>
+                          <span className="text-xs text-gray-600">+1-555-4870</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Trusted Companies Section - Moved Below and Added Scrolling Animation */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-20 text-center"
+          >
+            <p className="text-gray-400 text-sm mb-8">Trusted by the world's leading companies</p>
+            
+            {/* Scrolling Container */}
+            <div className="relative overflow-hidden">
+              <div className="flex animate-scroll-right space-x-8 items-center">
+                {/* First set of logos */}
+                <div className="flex space-x-8 items-center flex-shrink-0">
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">TANIUM</span>
+                  </div>
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">DELL</span>
+                  </div>
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">proofpoint</span>
+                  </div>
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">indeed</span>
+                  </div>
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">zendesk</span>
+                  </div>
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">HP</span>
+                  </div>
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">paloalto</span>
+                  </div>
+                </div>
                 
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-gray-300 rounded-full flex items-center justify-center">
-                      <div className="w-1.5 h-1.5 bg-gray-500 rounded-full"></div>
-                    </div>
-                    <span className="text-xs text-gray-600">Seattle</span>
+                {/* Duplicate set for seamless loop */}
+                <div className="flex space-x-8 items-center flex-shrink-0">
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">TANIUM</span>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-gray-300 rounded-full flex items-center justify-center">
-                      <div className="w-1.5 h-1.5 bg-gray-500 rounded-full"></div>
-                    </div>
-                    <span className="text-xs text-gray-600">l.davis@example.com</span>
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">DELL</span>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-gray-300 rounded-full flex items-center justify-center">
-                      <div className="w-1.5 h-1.5 bg-gray-500 rounded-full"></div>
-                    </div>
-                    <span className="text-xs text-gray-600">+1-555-4870</span>
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">proofpoint</span>
+                  </div>
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">indeed</span>
+                  </div>
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">zendesk</span>
+                  </div>
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">HP</span>
+                  </div>
+                  <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
+                    <span className="text-white text-xs font-bold">paloalto</span>
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
-      </motion.div>
-    </div>
+      </div>
 
-    {/* Trusted Companies Section - Moved Below and Added Scrolling Animation */}
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: 0.8 }}
-      className="mt-20 text-center"
-    >
-      <p className="text-gray-400 text-sm mb-8">Trusted by the world's leading companies</p>
-      
-      {/* Scrolling Container */}
-      <div className="relative overflow-hidden">
-        <div className="flex animate-scroll-right space-x-8 items-center">
-          {/* First set of logos */}
-          <div className="flex space-x-8 items-center flex-shrink-0">
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">TANIUM</span>
-            </div>
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">DELL</span>
-            </div>
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">proofpoint</span>
-            </div>
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">indeed</span>
-            </div>
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">zendesk</span>
-            </div>
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">HP</span>
-            </div>
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">paloalto</span>
-            </div>
-          </div>
-          
-          {/* Duplicate set for seamless loop */}
-          <div className="flex space-x-8 items-center flex-shrink-0">
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">TANIUM</span>
-            </div>
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">DELL</span>
-            </div>
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">proofpoint</span>
-            </div>
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">indeed</span>
-            </div>
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">zendesk</span>
-            </div>
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">HP</span>
-            </div>
-            <div className="h-12 w-24 bg-gray-600 rounded flex items-center justify-center opacity-60">
-              <span className="text-white text-xs font-bold">paloalto</span>
-            </div>
+      {/* Statistics Section */}
+      <div className="bg-gradient-to-br from-[#1a2f29] to-[#0E1F1C] py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Engage and win more deals
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-center"
+            >
+              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-pink-400 to-pink-600 bg-clip-text text-transparent mb-2">
+                181M+
+              </div>
+              <div className="text-white font-semibold">Business Professionals</div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-center"
+            >
+              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent mb-2">
+                25M
+              </div>
+              <div className="text-white font-semibold">Accounts</div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-center"
+            >
+              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent mb-2">
+                142+
+              </div>
+              <div className="text-white font-semibold">Countries</div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-center"
+            >
+              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-2">
+                118
+              </div>
+              <div className="text-white font-semibold">Job Functions</div>
+            </motion.div>
           </div>
         </div>
       </div>
-    </motion.div>
-  </div>
-</div>
 
+      {/* Global Outreach Section - Hydration Safe */}
+      <div className="bg-gradient-to-br from-[#0E1F1C] to-[#1a2f29] py-10 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-8 md:mb-16"
+          >
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
+              <span className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">Smarter</span>
+              <span className="text-white"> Outreach</span>
+            </h2>
+            <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-3xl mx-auto px-2">
+              Our mission is simple: provide the world's most advanced and actionable B2B contact data.
+            </p>
+          </motion.div>
 
+          {/* World Map Container - Fixed Height */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="relative bg-gradient-to-br from-[#1a2f29] to-[#0E1F1C] rounded-2xl md:rounded-3xl p-4 md:p-8 overflow-hidden"
+            style={{ minHeight: '500px' }} // Fixed consistent height
+          >
+            {/* Responsive Dotted Background */}
+            <div 
+              className="absolute inset-0 opacity-30 md:opacity-40"
+              style={{
+                backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255, 215, 0, 0.6) 1px, transparent 0)`,
+                backgroundSize: '6px 6px'
+              }}
+            />
+            
+            {/* World Map Shape Overlay */}
+            <div className="absolute inset-0 hidden md:block">
+              <svg viewBox="0 0 1000 400" className="w-full h-full opacity-30">
+                <g fill="rgba(255, 215, 0, 0.3)">
+                  {/* North America */}
+                  <path d="M50 80 Q120 60 180 80 Q220 85 250 100 L280 120 Q290 140 275 160 L250 180 Q200 185 150 175 L100 160 Q70 140 50 110 Z"/>
+                  {/* South America */}
+                  <path d="M200 220 Q230 210 250 230 L260 270 Q265 320 255 360 Q245 380 235 375 Q225 370 220 350 L215 310 Q210 270 215 240 Z"/>
+                  {/* Europe */}
+                  <path d="M380 70 Q420 65 460 75 Q480 80 485 90 L480 105 Q470 115 450 120 L420 125 Q395 120 380 110 L375 90 Z"/>
+                  {/* Africa */}
+                  <path d="M350 130 Q390 120 420 135 L435 160 Q440 200 435 240 L430 280 Q425 310 415 325 Q405 330 395 325 L390 300 Q385 260 388 220 L392 180 Q395 150 350 130 Z"/>
+                  {/* Asia */}
+                  <path d="M500 80 Q580 75 660 85 Q720 90 780 100 L820 120 Q825 140 815 160 L780 180 Q720 185 660 180 L580 175 Q520 170 500 150 L495 120 Z"/>
+                  {/* Australia */}
+                  <path d="M650 280 Q690 275 720 285 Q740 295 745 310 Q740 325 720 330 L690 335 Q670 330 650 315 Q645 300 650 280 Z"/>
+                </g>
+              </svg>
+            </div>
 
-{/* Statistics Section */}
-<div className="bg-gradient-to-br from-[#1a2f29] to-[#0E1F1C] py-20">
-  <div className="max-w-7xl mx-auto px-6">
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="text-center mb-16"
-    >
-      <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-        Engage and win more deals
-      </h2>
-    </motion.div>
+            {/* Data Points Container - CSS Only Responsive */}
+            <div className="relative z-10 h-full">
+              
+              {/* Mobile Layout: Grid of Cards (Always rendered, hidden on desktop) */}
+              <div className="block lg:hidden">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mt-4">
+                  {[
+                    { region: "North America", value: "67,691,053", borderColor: "#FFD700", textColor: "text-yellow-400" },
+                    { region: "Europe", value: "46,288,201", borderColor: "#06b6d4", textColor: "text-cyan-500" },
+                    { region: "APAC", value: "32,829,798", borderColor: "#a855f7", textColor: "text-purple-500" },
+                    { region: "Middle East", value: "11,082,324", borderColor: "#ef4444", textColor: "text-red-500" },
+                    { region: "LATAM", value: "18,609,598", borderColor: "#10b981", textColor: "text-green-500" },
+                    { region: "Africa", value: "4,842,848", borderColor: "#eab308", textColor: "text-yellow-500" }
+                  ].map((item, index) => (
+                    <motion.div
+                      key={item.region}
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="bg-white rounded-xl px-3 sm:px-4 py-3 shadow-xl border-l-4"
+                      style={{ borderLeftColor: item.borderColor }}
+                    >
+                      <div className="text-xs text-gray-600 font-medium mb-1">{item.region}</div>
+                      <div className={`text-base sm:text-lg font-bold ${item.textColor}`}>
+                        {item.value}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-center"
-      >
-        <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-pink-400 to-pink-600 bg-clip-text text-transparent mb-2">
-          181M+
+              {/* Desktop Layout: Positioned over Map (Always rendered, hidden on mobile) */}
+              <div className="hidden lg:block">
+                {/* North America - Top Left */}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="absolute top-12 xl:top-16 left-16 xl:left-20"
+                >
+                  <div className="bg-white rounded-xl px-4 py-3 shadow-xl border-l-4 border-[#FFD700] hover:shadow-2xl transition-shadow duration-300">
+                    <div className="text-xs text-gray-600 font-medium mb-1">North America</div>
+                    <div className="text-lg font-bold text-[#FFD700]">67,691,053</div>
+                  </div>
+                </motion.div>
+
+                {/* Europe - Top Center */}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="absolute top-8 xl:top-12 left-1/2 transform -translate-x-1/2"
+                >
+                  <div className="bg-white rounded-xl px-4 py-3 shadow-xl border-l-4 border-cyan-500 hover:shadow-2xl transition-shadow duration-300">
+                    <div className="text-xs text-gray-600 font-medium mb-1">Europe</div>
+                    <div className="text-lg font-bold text-cyan-500">46,288,201</div>
+                  </div>
+                </motion.div>
+
+                {/* APAC - Top Right */}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="absolute top-12 xl:top-16 right-16 xl:right-20"
+                >
+                  <div className="bg-white rounded-xl px-4 py-3 shadow-xl border-l-4 border-purple-500 hover:shadow-2xl transition-shadow duration-300">
+                    <div className="text-xs text-gray-600 font-medium mb-1">APAC</div>
+                    <div className="text-lg font-bold text-purple-500">32,829,798</div>
+                  </div>
+                </motion.div>
+
+                {/* Middle East - Center */}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  className="absolute top-28 xl:top-32 right-1/3"
+                >
+                  <div className="bg-white rounded-xl px-4 py-3 shadow-xl border-l-4 border-red-500 hover:shadow-2xl transition-shadow duration-300">
+                    <div className="text-xs text-gray-600 font-medium mb-1">Middle East</div>
+                    <div className="text-lg font-bold text-red-500">11,082,324</div>
+                  </div>
+                </motion.div>
+
+                {/* LATAM - Bottom Left */}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  className="absolute bottom-16 xl:bottom-20 left-24 xl:left-28"
+                >
+                  <div className="bg-white rounded-xl px-4 py-3 shadow-xl border-l-4 border-green-500 hover:shadow-2xl transition-shadow duration-300">
+                    <div className="text-xs text-gray-600 font-medium mb-1">LATAM</div>
+                    <div className="text-lg font-bold text-green-500">18,609,598</div>
+                  </div>
+                </motion.div>
+
+                {/* Africa - Bottom Center */}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                  className="absolute bottom-12 xl:bottom-16 left-1/2 transform -translate-x-1/2"
+                >
+                  <div className="bg-white rounded-xl px-4 py-3 shadow-xl border-l-4 border-yellow-500 hover:shadow-2xl transition-shadow duration-300">
+                    <div className="text-xs text-gray-600 font-medium mb-1">Africa</div>
+                    <div className="text-lg font-bold text-yellow-500">4,842,848</div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Static Animation Dots - No Dynamic Logic */}
+            <div className="absolute inset-0 pointer-events-none">
+              {[
+                { left: '15%', top: '25%' },
+                { left: '35%', top: '15%' },
+                { left: '55%', top: '35%' },
+                { left: '75%', top: '20%' },
+                { left: '25%', top: '65%' },
+                { left: '45%', top: '75%' },
+                { left: '65%', top: '60%' },
+                { left: '85%', top: '45%' }
+              ].map((position, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-0.5 h-0.5 sm:w-1 sm:h-1 bg-[#FFD700] rounded-full"
+                  style={{
+                    left: position.left,
+                    top: position.top
+                  }}
+                  animate={{
+                    opacity: [0.3, 0.8, 0.3],
+                    scale: [0.5, 1, 0.5]
+                  }}
+                  transition={{
+                    duration: 3 + (i % 2),
+                    repeat: Infinity,
+                    delay: i * 0.3
+                  }}
+                />
+              ))}
+            </div>
+          </motion.div>
         </div>
-        <div className="text-white font-semibold">Business Professionals</div>
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-center"
-      >
-        <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent mb-2">
-          25M
-        </div>
-        <div className="text-white font-semibold">Accounts</div>
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="text-center"
-      >
-        <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent mb-2">
-          142+
-        </div>
-        <div className="text-white font-semibold">Countries</div>
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        className="text-center"
-      >
-        <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-2">
-          118
-        </div>
-        <div className="text-white font-semibold">Job Functions</div>
-      </motion.div>
-    </div>
-  </div>
-</div>
-
-{/* Global Outreach Section - Exact Match to Image */}
-<div className="bg-gradient-to-br from-[#0E1F1C] to-[#1a2f29] py-20">
-  <div className="max-w-7xl mx-auto px-6">
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="text-center mb-16"
-    >
-      <h2 className="text-4xl md:text-5xl font-bold mb-6">
-        <span className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">Smarter</span>
-        <span className="text-white"> Outreach</span>
-      </h2>
-      <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-        Our mission is simple: provide the world's most advanced and actionable B2B contact data.
-      </p>
-    </motion.div>
-
-    {/* World Map Container - Exact Layout */}
-    <motion.div 
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1 }}
-      className="relative bg-gradient-to-br from-[#1a2f29] to-[#0E1F1C] rounded-3xl p-8 overflow-hidden"
-      style={{ minHeight: '500px' }}
-    >
-      {/* Dotted World Map Background - Matching your image exactly */}
-      <div 
-        className="absolute inset-0 opacity-40"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255, 215, 0, 0.6) 1px, transparent 0)`,
-          backgroundSize: '8px 8px'
-        }}
-      />
-      
-      {/* World Map Shape Overlay */}
-      <div className="absolute inset-0">
-        <svg viewBox="0 0 1000 400" className="w-full h-full opacity-30">
-          {/* More accurate world map silhouette */}
-          <g fill="rgba(255, 215, 0, 0.3)">
-            {/* North America - positioned like in your image */}
-            <path d="M50 80 Q120 60 180 80 Q220 85 250 100 L280 120 Q290 140 275 160 L250 180 Q200 185 150 175 L100 160 Q70 140 50 110 Z"/>
-            
-            {/* South America */}
-            <path d="M200 220 Q230 210 250 230 L260 270 Q265 320 255 360 Q245 380 235 375 Q225 370 220 350 L215 310 Q210 270 215 240 Z"/>
-            
-            {/* Europe - positioned like in your image */}
-            <path d="M380 70 Q420 65 460 75 Q480 80 485 90 L480 105 Q470 115 450 120 L420 125 Q395 120 380 110 L375 90 Z"/>
-            
-            {/* Africa */}
-            <path d="M350 130 Q390 120 420 135 L435 160 Q440 200 435 240 L430 280 Q425 310 415 325 Q405 330 395 325 L390 300 Q385 260 388 220 L392 180 Q395 150 350 130 Z"/>
-            
-            {/* Asia - positioned like in your image */}
-            <path d="M500 80 Q580 75 660 85 Q720 90 780 100 L820 120 Q825 140 815 160 L780 180 Q720 185 660 180 L580 175 Q520 170 500 150 L495 120 Z"/>
-            
-            {/* Australia */}
-            <path d="M650 280 Q690 275 720 285 Q740 295 745 310 Q740 325 720 330 L690 335 Q670 330 650 315 Q645 300 650 280 Z"/>
-          </g>
-        </svg>
       </div>
-
-      {/* Data Points - Positioned exactly like your image */}
-      <div className="relative z-10 h-full">
-        {/* North America - Top Left */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="absolute top-16 left-20"
-        >
-          <div className="bg-white rounded-xl px-4 py-3 shadow-xl border-l-4 border-[#FFD700]">
-            <div className="text-xs text-gray-600 font-medium mb-1">North America</div>
-            <div className="text-lg font-bold text-[#FFD700]">67,691,053</div>
-          </div>
-        </motion.div>
-
-        {/* Europe - Top Center */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="absolute top-12 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="bg-white rounded-xl px-4 py-3 shadow-xl border-l-4 border-cyan-500">
-            <div className="text-xs text-gray-600 font-medium mb-1">Europe</div>
-            <div className="text-lg font-bold text-cyan-500">46,288,201</div>
-          </div>
-        </motion.div>
-
-        {/* APAC - Top Right */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="absolute top-16 right-20"
-        >
-          <div className="bg-white rounded-xl px-4 py-3 shadow-xl border-l-4 border-purple-500">
-            <div className="text-xs text-gray-600 font-medium mb-1">APAC</div>
-            <div className="text-lg font-bold text-purple-500">32,829,798</div>
-          </div>
-        </motion.div>
-
-        {/* Middle East - Center */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="absolute top-32 right-1/3"
-        >
-          <div className="bg-white rounded-xl px-4 py-3 shadow-xl border-l-4 border-red-500">
-            <div className="text-xs text-gray-600 font-medium mb-1">Middle East</div>
-            <div className="text-lg font-bold text-red-500">11,082,324</div>
-          </div>
-        </motion.div>
-
-        {/* LATAM - Bottom Left */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="absolute bottom-20 left-28"
-        >
-          <div className="bg-white rounded-xl px-4 py-3 shadow-xl border-l-4 border-green-500">
-            <div className="text-xs text-gray-600 font-medium mb-1">LATAM</div>
-            <div className="text-lg font-bold text-green-500">18,609,598</div>
-          </div>
-        </motion.div>
-
-        {/* Africa - Bottom Center */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="absolute bottom-16 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="bg-white rounded-xl px-4 py-3 shadow-xl border-l-4 border-yellow-500">
-            <div className="text-xs text-gray-600 font-medium mb-1">Africa</div>
-            <div className="text-lg font-bold text-yellow-500">4,842,848</div>
-          </div>
-        </motion.div>
-      </div>
-
-{/* Fixed Connecting dots animation - No hydration mismatch */}
-<div className="absolute inset-0 pointer-events-none">
-  {[
-    { left: '15%', top: '20%' },
-    { left: '25%', top: '35%' },
-    { left: '40%', top: '15%' },
-    { left: '55%', top: '45%' },
-    { left: '65%', top: '25%' },
-    { left: '75%', top: '60%' },
-    { left: '85%', top: '30%' },
-    { left: '20%', top: '70%' },
-    { left: '35%', top: '55%' },
-    { left: '50%', top: '80%' },
-    { left: '70%', top: '40%' },
-    { left: '80%', top: '65%' },
-    { left: '30%', top: '25%' },
-    { left: '45%', top: '70%' },
-    { left: '60%', top: '15%' },
-    { left: '90%', top: '50%' },
-    { left: '10%', top: '60%' },
-    { left: '95%', top: '35%' },
-    { left: '5%', top: '45%' },
-    { left: '78%', top: '20%' }
-  ].map((position, i) => (
-    <motion.div
-      key={i}
-      className="absolute w-1 h-1 bg-[#FFD700] rounded-full"
-      style={{
-        left: position.left,
-        top: position.top
-      }}
-      animate={{
-        opacity: [0.3, 0.8, 0.3],
-        scale: [0.5, 1, 0.5]
-      }}
-      transition={{
-        duration: 2 + (i % 3),
-        repeat: Infinity,
-        delay: i * 0.1
-      }}
-    />
-  ))}
-</div>
-
-    </motion.div>
-  </div>
-</div>
-
- 
-
+       
       {/* FAQ Section */}
       <div className="min-h-screen w-full flex items-stretch bg-gradient-to-br from-[#0E1F1C] via-[#1a2f29] to-[#0E1F1C]">
         <div className="w-full flex flex-col md:flex-row">
