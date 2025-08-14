@@ -6,7 +6,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-
+import { useRouter } from 'next/navigation';
 // Define a simple LoadingSkeleton component for dynamic imports
 const LoadingSkeleton = () => (
   <div className="flex items-center justify-center h-20 bg-gray-800 text-white">
@@ -24,6 +24,7 @@ const DynamicUpnav = dynamic(() => import('../../components/Upnav'), {
 const Footer = dynamic(() => import("../../components/Footer"), { ssr: false });
 
 function DisplayAds() {
+  const router = useRouter();
   const cardVariants = {
     offscreen: { y: 80, opacity: 0 },
     onscreen: {
@@ -46,17 +47,6 @@ function DisplayAds() {
   };
 
   const [openQuestion, setOpenQuestion] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    description: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState('');
 
   const toggleQuestion = (index) => {
     setOpenQuestion(openQuestion === index ? null : index);
@@ -69,53 +59,6 @@ function DisplayAds() {
     });
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-  
-  try {
-    const formDataObj = new FormData();
-    formDataObj.append('access_key', '2033055e-d24e-47ab-9caa-69ef0ef56b5f'); 
-    formDataObj.append('firstName', formData.firstName);
-    formDataObj.append('lastName', formData.lastName);
-    formDataObj.append('email', formData.email);
-    formDataObj.append('phone', formData.phone);
-    formDataObj.append('description', formData.description);
-    formDataObj.append('message', formData.message);
-    formDataObj.append('subject', 'New Audience Count Request');
-
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formDataObj 
-    });
-
-    const result = await response.json();
-    
-    if (result.success) {
-      setSubmitStatus('success');
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        description: '',
-        message: ''
-      });
-      setTimeout(() => {
-        setShowModal(false);
-        setSubmitStatus('');
-      }, 2000);
-    } else {
-      console.error('Form submission failed:', result);
-      setSubmitStatus('error');
-    }
-  } catch (error) {
-    console.error('Network error:', error);
-    setSubmitStatus('error');
-  } finally {
-    setIsSubmitting(false);
-  }
-};
 
 
   const faqItems = [
@@ -160,163 +103,6 @@ const handleSubmit = async (e) => {
       <DynamicUpnav />
       <LazyLoadedLownav />
 
-      {/* Modal for the form */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3 }}
-            className="bg-white rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto relative"
-          >
-            <button
-              onClick={() => setShowModal(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
-            >
-              <X size={24} />
-            </button>
-
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">Request Audience Count</h2>
-              <p className="text-gray-600">Fill out the form below and we'll get back to you with your audience data.</p>
-            </div>
-
-            {submitStatus === 'success' && (
-              <motion.div 
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg flex items-center"
-              >
-                <Check className="mr-2" size={20} />
-                Form submitted successfully!
-              </motion.div>
-            )}
-
-            {submitStatus === 'error' && (
-              <motion.div 
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg"
-              >
-                There was an error submitting the form. Please try again.
-              </motion.div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-gray-700 text-sm font-medium mb-2">
-                    First Name *
-                  </label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition-all"
-                    placeholder="Enter first name"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 text-sm font-medium mb-2">
-                    Last Name *
-                  </label>
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition-all"
-                    placeholder="Enter last name"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-gray-700 text-sm font-medium mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition-all"
-                  placeholder="Enter email address"
-                />
-              </div>
-
-              <div>
-                <label className="block text-gray-700 text-sm font-medium mb-2">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition-all"
-                  placeholder="Enter phone number"
-                />
-              </div>
-
-              <div>
-                <label className="block text-gray-700 text-sm font-medium mb-2">
-                  What best describes your needs?
-                </label>
-                <select
-                  name="description"
-                  value={formData.description}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition-all"
-                >
-                  <option value="">Select an option</option>
-                  <option value="content-syndication">Content Syndication</option>
-                  <option value="sales-development">Sales Development</option>
-                  <option value="data-intelligence">B2B Data Intelligence</option>
-                  <option value="lead-generation">Lead Generation</option>
-                  <option value="audience-targeting">Audience Targeting</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-gray-700 text-sm font-medium mb-2">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows="4"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 resize-none transition-all"
-                  placeholder="Tell us more about your requirements, target audience, or any specific questions..."
-                />
-              </div>
-
-              <motion.button
-                type="submit"
-                disabled={isSubmitting}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black font-semibold py-3 rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <div className="flex items-center justify-center">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black mr-2"></div>
-                    Submitting...
-                  </div>
-                ) : (
-                  'Submit Request'
-                )}
-              </motion.button>
-            </form>
-          </motion.div>
-        </div>
-      )}
 
       {/* B2B Data Intelligence Section */}
       <div className="min-h-screen bg-gradient-to-br from-[#0E1F1C] via-[#1a2f29] to-[#0E1F1C] py-20 mt-24 lg:mt-28">
@@ -362,13 +148,14 @@ const handleSubmit = async (e) => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
-                <motion.button
-                  whileHover={hoverEffect}
-                  onClick={() => setShowModal(true)}
-                  className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300"
-                >
-                  Request Audience Count
-                </motion.button>
+              <motion.button
+                whileHover={hoverEffect}
+                onClick={() => router.push('/AudienceCountForm')} 
+                className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300"
+              >
+                Request Audience Count
+              </motion.button>
+
               </motion.div>
             </div>
 
